@@ -2,35 +2,38 @@
 // Definir o tamanho máximo da pilha
 #pragma once
 //Tamanho máximo da pilha
-const int MaxStackSize = 100;
 
-class Stack{
+class Mochila {
     //* Métodos *//
-    public:
-        //Construtor - Garante que sua Stack (pilha) começe vazia
-        Stack();
+public:
+    //Construtor - Garante que sua Stack (pilha) começe vazia
+    Mochila();
 
-        //Destrutor - é desnecessário caso não haja alocação dinâmica de memória
-        ~Stack();
+    //Destrutor - Como utilizaremos alocação dinâmica, faremos implementação do destrutor.
+    ~Mochila();
 
-        //Status
-        bool Full();
-        bool Empty();
+    //Status
+    bool MochilaCheia();
+    bool MochilaVazia();
 
-        //Operações básicas
-        int Push(int x);
-        int Pop(int &x);
+    //Operações básicas
+    int ColocarItem(int x);
+    int RetirarItem(int& x);
 
-        //Outras Operações (Clear,Top,Size)
-        int Size();
-        void Clear();
-        int Top(int &x); // Retorna o elemento do topo da pilha
-        
+    //Outras Operações (Clear,Top,Size)
+    //int Size();
+    void LimparMochila();
+    int ItemMochila(int& x); // Retorna o elemento do topo da Mochila
+
     //* Campos de dados *//
-    private:
-        //Vetor que armazena os elementos da pilha
-        int entry[MaxStackSize + 1]; // MaxStackSize + 1 pois o índice 0 não é utilizado
+private:
+    //Struct que armazena os elementos da Mochila
+    struct MochilaNode {
+        Item Entry;// AJUSTAR, COLOCAR O ITEM COMO TIPO;
+        MochilaNode* NextNode; //// ligação para próximo elemento na Mochila // um ponteiro (NextNode) do tipo Struct(MochilaNode)
+    }
+    typedef MochilaNode* MochilaPointer;
 
-        //Posição topo da pilha
-        int top;
+    //Posição topo da pilha
+    MochilaPointer top;
 };
