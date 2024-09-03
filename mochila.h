@@ -33,4 +33,5 @@ class Stack{
 
         //Posição topo da pilha
         int top;
+        int teste;
 };
