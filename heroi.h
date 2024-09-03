@@ -7,8 +7,12 @@ using namespace std;
 class Heroi{
     public:
         void define_nome(string x);
-        void adiciona_item_mochila();
-        void adiciona_item_cinta();
+        void define_vida(int x);
+        void recebe_dano(int x);
+        void define_mana(int x);
+        void gasta_mana(int x);
+        void transfere_para_mochila(Item x);
+        void transfere_para_cinta(Item x);
     private:
         string nome;
         int vida_Total;
