@@ -1,6 +1,7 @@
 // Arquivo de definição da Classe Stack
 // Definir o tamanho máximo da pilha
 #pragma once
+#include "Item.cpp"
 //Tamanho máximo da pilha
 
 class Mochila {
@@ -17,13 +18,13 @@ public:
     bool MochilaVazia();
 
     //Operações básicas
-    int ColocarItem(int x);
-    int RetirarItem(int& x);
+    int ColocarItem(Item x);
+    int RetirarItem(Item& x);
 
     //Outras Operações (Clear,Top,Size)
     //int Size();
     void LimparMochila();
-    int ItemMochila(int& x); // Retorna o elemento do topo da Mochila
+    int ItemMochila(Item& x); // Retorna o elemento do topo da Mochila
 
     //* Campos de dados *//
 private:
@@ -31,7 +32,7 @@ private:
     struct MochilaNode {
         Item Entry;// AJUSTAR, COLOCAR O ITEM COMO TIPO;
         MochilaNode* NextNode; //// ligação para próximo elemento na Mochila // um ponteiro (NextNode) do tipo Struct(MochilaNode)
-    }
+    };
     typedef MochilaNode* MochilaPointer;
 
     //Posição topo da pilha
