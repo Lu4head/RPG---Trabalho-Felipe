@@ -20,6 +20,6 @@ class Heroi{
         int vida_Atual;
         int mana_Total;
         int mana_Atual;
-        Stack Mochila;
+        Mochila Mochila;
         List Cinta;
 };
