@@ -1,4 +1,4 @@
-#include "mochila.h"
+#include "Mochila.h"
 #include <iostream>
 
 using namespace std;

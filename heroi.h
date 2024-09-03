@@ -1,22 +1,17 @@
 #include <string>
-#include <Mochila.cpp>
-#include <Cinta.cpp>
+#include "Mochila.cpp"
+#include "Cinta.cpp"
 
 using namespace std;
 
 class Heroi{
     public:
-        void define_nome(string x);
-        void adiciona_item_mochila();
-        void remove_item_mochila();
-        void adiciona_item_cinta();
-        void remove_item_cinta();
-
     private:
         string nome;
-        int pontos_de_vida;
-        int dano;
-        int esquiva;
-        Stack mochila;
-        List cinta;
+        int vida_Total;
+        int vida_Atual;
+        int mana_Total;
+        int mana_Atual;
+        Stack Mochila;
+        List Cinta;
 };
