@@ -2,8 +2,8 @@
 #include <random>
 #include <cstdlib>
 #include "heroi.h"
-#include "monstro.h"
-
+//include "monstro.h"
+class Monstro{};
 using namespace std;
 
 const double danoHeroi = 5;
@@ -66,7 +66,7 @@ int main() {
 			break;
 
 		default:
-			cout << "Opção invalida!" << endl;
+			cout << "Opï¿½ï¿½o invalida!" << endl;
 
 			break;
 		}
