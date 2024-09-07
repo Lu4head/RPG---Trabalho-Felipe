@@ -22,7 +22,7 @@ char movimento;
 
         mapa.mover_heroi(movimento);
 
-        cout << "Mapa Após Movimento:" << endl;
+        //cout << "Mapa Após Movimento:" << endl;
         system("cls");
         mapa.mostrar_mapa();
     }
