@@ -26,11 +26,11 @@ bool Cinto::Full(){
 void Cinto::Insert(Item item, int posicao){
     if(Full()){
         cout << "Lista cheia! Sem espaco para novo elemento!" << endl;
-        abort();
+        return;
     }
     if(posicao < 1 || posicao > count + 1){
         cout << "Posicao Invalida!" << endl;
-        abort();
+        return;
     }
     for(int i = count ; i >= posicao ; i--){    
         Entry [ i + 1 ] = Entry[i];
@@ -42,11 +42,11 @@ void Cinto::Insert(Item item, int posicao){
 void Cinto::Delete(Item &item_retorno, int posicao){
     if(Empty()){
         cout << "Lista vazia! nao ha elementos para serem removidos!" << endl;
-        abort();
+        return;
     }
     if(posicao < 1 || posicao > count){
         cout << "Posicao Invalida!" << endl;
-        abort();
+        return;
     }
     item_retorno = Entry[posicao];
     for(int i = posicao; i < count; i++){
@@ -72,7 +72,7 @@ void Cinto::Clear(){
 void Cinto::Retrieve(Item &item_retorno, int posicao){
     if(posicao < 1 || posicao > count){
         cout << "Posicao Invalida!" << endl;
-        abort();
+        return;
     }
     item_retorno = Entry[posicao];
 };
@@ -80,7 +80,7 @@ void Cinto::Retrieve(Item &item_retorno, int posicao){
 void Cinto::Replace(Item item, int posicao){
     if(posicao < 1 || posicao > count){
         cout << "Posicao Invalida!" << endl;
-        abort();
+        return;
     }
     Entry[posicao] = item;
 };
