@@ -32,7 +32,7 @@ int Mochila::ColocarItem(Item x) {
     p = new MochilaNode; // alocamos esse "p" de forma dinamica
     if (p == NULL) { // verificamos se ainda temos memoria para alocar
         cout << "Limite de memoria excedido" << endl;
-        abort();
+        return;
     }
     p->Entry = x; //como o p esta apontando para MochilaNode, temos acesso ao Item, e NextNode. Usamos desse acesso, para guardar o valor "x" no Item
     p->NextNode = top; // e colocamos no NextNode, apontando para o mesmo lugar que o top estava antes, pro inicio da Mochila
@@ -44,7 +44,7 @@ int Mochila::RetirarItem(Item& x) {
     MochilaPointer p;
     if (MochilaVazia()) {
         cout << "Mochila vazia!" << endl;
-        abort();
+        return;
     }
     x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
     p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
@@ -70,7 +70,7 @@ int Mochila::ItemMochila(Item& x) {
 
     if (top == NULL) {
         cout << "Mochila Vazia!!" << endl;
-        abort();
+        return;
     }
     x = top->Entry;
 };
