@@ -1,10 +1,9 @@
 #include <string>
+class Item {
+public:
+    Item(std::string nome_item, float peso_item);
 
-using namespace std;
-
-class Item{
-    public:
-        string tipo_item;
-        float peso;
-        int dano;
+private:
+    std::string nome_item;
+    float peso_item;
 };

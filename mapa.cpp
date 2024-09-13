@@ -22,7 +22,7 @@ void Mapa::inicializar_mapa() {
     }
 }
 
-// Coloca o herói em uma posição específica
+// Coloca o heróiv em uma posição específica
 void Mapa::colocar_heroi(int x, int y) {
     // Verifica se as coordenadas estão dentro dos limites do mapa
     if (x >= 0 && x < mapa_largura && y >= 0 && y < mapa_altura) {
