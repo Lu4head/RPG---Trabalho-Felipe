@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-#include ".\classes\arma.h"
-#include <iostream>
+#include "Item.h"
 #include <string>
 using namespace std;
 
 
-#ifndef ARMA_H
-#define ARMA_H
+#ifndef ITEM_H
+#define ITEM_H
 
-Arma::Arma(string nome_item,float peso_item, float dano) : Item(nome_item,peso_item), dano(dano){
-    cout << "Sua espada: ";
+Item::Item(string nome_item,float peso_item) : nome_item(nome_item), peso_item(peso_item){
 }
-
 
 
 #endif
-=======
-#include "Item.h"
-
-Item::Item(){
-    
-}
->>>>>>> 493b08574ab6565e87176b67fb0f14161663a959

@@ -41,6 +41,7 @@ void Mapa::mostrar_mapa() {
         }
         cout << endl;
     }
+     cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << endl;
 }
 
 
@@ -60,7 +61,18 @@ void Mapa::mover_heroi(char x){
             if (posicao_x > 0) posicao_x--;
             break;
         case 'd': // Mover para a direita
-            if (posicao_x < mapa_largura - 1) posicao_x++;
+            if (posicao_x < mapa_largura){
+                posicao_x++;
+                if (posicao_x == mapa_largura){
+                    posicao_x = 0; // para ir para a primeira posição da proxima linha
+                    posicao_y ++;
+                    if (posicao_y >= mapa_altura){
+                        posicao_y = mapa_altura -1;
+                        posicao_x = mapa_largura -1;
+                    }
+                }
+            }
+
             break;
         default:
             cout << "Direção inválida!" << endl;
