@@ -1,4 +1,3 @@
-#include ".\classes\Item.h"
+#include "Item.cpp"
 
 Item EspadaLonga;
-EspadaLonga.Cria

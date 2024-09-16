@@ -1,15 +1,16 @@
 #include <iostream>
 #include <random>
 #include <cstdlib>
-#include "heroi.h"
-//include "monstro.h"
+#include "Heroi.cpp"
+#include "lista_de_monstros.cpp"
+
 class Monstro{};
 using namespace std;
 
 const double danoHeroi = 5;
 const double danoMonstro = 3.5;
 
-bool Lutar(int hp, int hpmonstro, int ataque) {
+bool Batalha(Heroi hero, Monstro monster) {
 	int Destreza = 0;
 	unsigned seed = time(0);
 	Monstro Monstro;
