@@ -2,6 +2,9 @@
 // Mapa.cpp
 #include ".\classes\mapa.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
 using namespace std;
 
 #ifndef MAPA_H
@@ -81,6 +84,8 @@ void Mapa::mover_heroi(char x){
 
     // Coloca o herói na nova posição
     tamanho_mapa[posicao_x][posicao_y] = 'H';
+
+    eventos();
 }
 
 
@@ -91,5 +96,24 @@ void Mapa::limpar_mapa() {
             tamanho_mapa[j][i] ='.';
         }
     }
+}
+
+void Mapa::eventos(){
+    int evento = rand() % 3; // para gerar um numero entre 0 e 2
+
+    switch (evento) {
+        case 0: 
+            cout << "Um pouco de Paz" << endl; // quando nada acontece
+            break;
+        case 1:
+            cout << "Um inimigo preparar" << endl; // Implementar a logica do combate - puxar de outro arquivo
+            break;
+        case 2:
+            cout << "Um item, pegue ou deixa para lá" << endl; // Implementar a logica de achar item - puxar de outro arquivo
+            break;
+    } 
+
+    cout << "Aperte uma tecla para sair" << endl;
+    getch();
 }
 #endif 

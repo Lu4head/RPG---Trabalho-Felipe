@@ -4,15 +4,15 @@
 
 using namespace std;
 
-#ifndef LIST_H
-#define LIST_H
+#ifndef CINTO_H
+#define CINTO_H
 
 Cinto::Cinto(){
     count = 0;
 }
 
 Cinto::~Cinto(){
-    cout << "Lista Destruida!" << endl;
+    Clear();
 }
 
 bool Cinto::Empty(){
@@ -20,14 +20,15 @@ bool Cinto::Empty(){
 }
 
 bool Cinto::Full(){
-    return count == MaxList;
+    return count == MaxList + 1;
 }
 
 void Cinto::Insert(Item item, int posicao){
-    if(Full()){
-        cout << "Lista cheia! Sem espaco para novo elemento!" << endl;
+    if (Full()){
+        cout << "Cinto está cheio!" << endl;
         return;
     }
+
     if(posicao < 1 || posicao > count + 1){
         cout << "Posicao Invalida!" << endl;
         return;
@@ -41,7 +42,7 @@ void Cinto::Insert(Item item, int posicao){
 
 void Cinto::Delete(Item &item_retorno, int posicao){
     if(Empty()){
-        cout << "Lista vazia! nao ha elementos para serem removidos!" << endl;
+        cout << "Cinto vazio!" << endl;
         return;
     }
     if(posicao < 1 || posicao > count){
@@ -55,35 +56,49 @@ void Cinto::Delete(Item &item_retorno, int posicao){
     count--;
 };
 
-int Cinto::Size(){
-    return count;
-};
-
 void Cinto::Clear(){
     count = 0;
-    /* ...ou...
-    int x;
-    while(!Empty()){
-        Delete(x, count);
-    }
-    */
-};
+    cout << "Cinto foi esvaziado, todos itens foram descartados!";
+}
 
-void Cinto::Retrieve(Item &item_retorno, int posicao){
+void Cinto::usar_item(int posicao){
+    if(Empty()){
+        cout << "Sem itens no cinto!";
+        return;
+    }
+    
     if(posicao < 1 || posicao > count){
         cout << "Posicao Invalida!" << endl;
         return;
     }
-    item_retorno = Entry[posicao];
-};
+    if(Entry[posicao].get_tipo_do_item() == "Cura" || Entry[posicao].get_tipo_do_item() == "mana"){
+    cout << "Utilizando o item " << Entry[posicao].get_nome() << endl;
+    // colocar a logica para usar o item aqui, tipo curar a vida ou recuperar mana
+}
 
-void Cinto::Replace(Item item, int posicao){
-    if(posicao < 1 || posicao > count){
-        cout << "Posicao Invalida!" << endl;
+    for(int i = posicao; i < count; i++){
+        Entry[i] = Entry[i + 1];
+    }
+    count--;
+}
+
+
+int Cinto::espaco_disponivel() {
+    return MaxList - count;
+}
+
+
+void Cinto::mostrar_itens() {
+    if (Empty()) {
+        std::cout << "O cinto está vazio!" << std::endl;
         return;
     }
-    Entry[posicao] = item;
-};
+
+    std::cout << "Itens no cinto:" << std::endl;
+    for (int i = 0; i < count; i++) {
+        std::cout << i + 1 << ": " << Entry[i].get_nome() << std::endl;
+    }
+}
 
 
 #endif

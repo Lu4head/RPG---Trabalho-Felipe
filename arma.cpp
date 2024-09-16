@@ -1,4 +1,4 @@
-#include "arma.h"
+#include "./classes/arma.h"
 #include <string>
 using namespace std;
 
@@ -10,4 +10,4 @@ Arma::Arma(string nome_item,float peso_item, float dano, string tipo_da_arma) : 
 }
 
 
-#endif ARMA_H
+#endif
