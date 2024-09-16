@@ -1,7 +1,7 @@
 // Arquivo de definição da Classe Stack
 // Definir o tamanho máximo da pilha
 #pragma once
-#include "Item.cpp"
+#include "Item.h"
 //Tamanho máximo da pilha
 
 class Mochila {

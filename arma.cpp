@@ -1,4 +1,4 @@
-#include "./classes/arma.h"
+#include "./classes/Arma.h"
 #include <string>
 using namespace std;
 

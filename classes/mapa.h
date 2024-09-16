@@ -1,4 +1,4 @@
-
+#pragma once
 const int mapa_altura = 10;
 const int mapa_largura = 10;
 

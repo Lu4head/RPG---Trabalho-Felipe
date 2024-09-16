@@ -1,8 +1,6 @@
-
-#include "item.h"
+#pragma once
+#include "Item.h"
 #include <string>
-
-
 class Arma: public Item{
     public:
 

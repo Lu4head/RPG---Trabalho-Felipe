@@ -1,7 +1,8 @@
+#pragma once
 #include <iostream>
 #include <random>
 #include <cstdlib>
-#include "Heroi.cpp"
+#include "./classes/Personagem.h"
 #include "lista_de_monstros.cpp"
 
 class Monstro{};
@@ -10,7 +11,7 @@ using namespace std;
 const double danoHeroi = 5;
 const double danoMonstro = 3.5;
 
-bool Batalha(Heroi hero, Monstro monster) {
+bool Batalha(Personagem heroi, Monstro monstro) {
 	int Destreza = 0;
 	unsigned seed = time(0);
 	Monstro Monstro;

@@ -1,6 +1,6 @@
 
 // Mapa.cpp
-#include ".\classes\mapa.h"
+#include ".\classes\Mapa.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

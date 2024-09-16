@@ -1,9 +1,9 @@
 
-#include ".\classes\mapa.h"
+#include ".\classes\Mapa.h"
 #include ".\classes\Cinto.h"
-#include ".\classes\arma.h"
-#include ".\classes\pocao.h"
-#include ".\classes\item.h"
+#include ".\classes\Arma.h"
+#include ".\classes\Pocao.h"
+#include ".\classes\Item.h"
 #include <iostream>
 #include <conio.h> // função getch()
 #include <cstdlib>  // função system()

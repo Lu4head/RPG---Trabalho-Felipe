@@ -1,4 +1,5 @@
-#include "item.h"
+#pragma once
+#include "Item.h"
 const int MaxList = 9;
 
 class Cinto{

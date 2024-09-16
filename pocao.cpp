@@ -1,4 +1,4 @@
-#include ".\classes\pocao.h"
+#include ".\classes\Pocao.h"
 #include "string"
 using namespace std;
 

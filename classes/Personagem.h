@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include "Mochila.cpp"
 #include "Cinto.cpp"
@@ -5,7 +6,7 @@
 
 using namespace std;
 
-class Heroi{
+class Personagem{
     public:
         void define_nome(string x);
         void define_vida(int x);
@@ -20,6 +21,9 @@ class Heroi{
         int vida_Atual;
         int mana_Total;
         int mana_Atual;
+        int nivel;
+        int exp_total;
+        int exp_atual;
         Mochila Mochila;
         Cinto Cinto;
 };
