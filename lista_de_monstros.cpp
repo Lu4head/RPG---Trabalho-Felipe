@@ -3,3 +3,5 @@
 
 // Criando inimigos/monstros do jogo
 
+Monstro Ogro;
+

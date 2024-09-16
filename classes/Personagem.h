@@ -15,6 +15,9 @@ class Personagem{
         void gasta_mana(int x);
         void transfere_para_mochila(Item x);
         void transfere_para_cinto(Item x);
+        void exibe_vida(int &x);
+        Mochila Mochila;
+        Cinto Cinto;
     private:
         string nome;
         int vida_Total;
@@ -23,7 +26,5 @@ class Personagem{
         int mana_Atual;
         int nivel;
         int exp_total;
-        int exp_atual;
-        Mochila Mochila;
-        Cinto Cinto;
+        int exp_atual;    
 };

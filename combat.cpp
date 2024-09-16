@@ -4,23 +4,18 @@
 #include <cstdlib>
 #include "./classes/Personagem.h"
 #include "lista_de_monstros.cpp"
+#include "lista_de_monstros.cpp"
 
-class Monstro{};
 using namespace std;
 
-const double danoHeroi = 5;
-const double danoMonstro = 3.5;
-
 bool Batalha(Personagem heroi, Monstro monstro) {
-	int Destreza = 0;
 	unsigned seed = time(0);
-	Monstro Monstro;
-
+	int destreza;
 	srand(seed);
-	Destreza = 1 + rand() % 20;
-	if (Destreza > 5) {
+	destreza = 1 + rand() % 20;
+	if (destreza > 5) {
 		cout << "Seu Primeiro ataque foi um sucesso ! " << endl;
-		ataque = 1 + rand() % 20;
+		int ataque = 1 + rand() % 20;
 		if (ataque < 15) {
 			Monstro.HpMonstro -= danoHeroi;
 		}
@@ -29,7 +24,7 @@ bool Batalha(Personagem heroi, Monstro monstro) {
 		}
 
 	}
-	else (Destreza <= 5) {
+	else (destreza <= 5) {
 		cout << "Voce foi muito lento!" << endl;
 
 		ataque = 1 + rand() % 20;
@@ -46,9 +41,10 @@ bool Batalha(Personagem heroi, Monstro monstro) {
 }
 
 
-int main() {
-	Heroi meuHeroi;
-	Monstro Monstro;
+void simula_batalha() {
+	Personagem heroi;
+	Monstro monstro;
+	int x, y;
 	cout << "Voce encontrou um monstro, o que voce deseja fazer? " << endl;
 	int escolha = 0;
 	do {
@@ -72,7 +68,8 @@ int main() {
 
 			break;
 		}
-	} while (meuHeroi.hp > 0 && Monstro.HpMonstro > 0)
+	heroi.exibe_vida(x);
+	} while ( x > 0 && monstro.HpMonstro > 0)
 
 
 }
