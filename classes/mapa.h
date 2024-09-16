@@ -15,6 +15,8 @@ private:
     char tamanho_mapa[mapa_largura][mapa_altura]; // Matriz que representa o mapa
     int posicao_x, posicao_y; // posicao do heroi 
     void limpar_mapa();
+
+    void eventos();
 };
 
 

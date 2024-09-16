@@ -1,4 +1,4 @@
-#include ".\classes\Item.h"
+#include "item.h"
 const int MaxList = 9;
 
 class Cinto{
@@ -13,10 +13,11 @@ class Cinto{
         void Insert(Item item, int posicao);
         void Delete(Item &item_retorno, int posicao);
         // Operações Extras
-        int Size();
         void Clear();
-        void Retrieve(Item &item, int posicao);
-        void Replace(Item item_retorno, int posicao);
+        void usar_item(int posicao); // usar ou remover item
+        int espaco_disponivel(); // verificar se tem algum espaço disponivel 
+        void mostrar_itens(); // Mostra todos os itens no cinto
+
     private:
         Item Entry[MaxList + 1];
         int count;

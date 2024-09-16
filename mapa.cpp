@@ -2,6 +2,9 @@
 // Mapa.cpp
 #include ".\classes\mapa.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
 using namespace std;
 
 #ifndef MAPA_H
@@ -22,7 +25,7 @@ void Mapa::inicializar_mapa() {
     }
 }
 
-// Coloca o herói em uma posição específica
+// Coloca o heróiv em uma posição específica
 void Mapa::colocar_heroi(int x, int y) {
     // Verifica se as coordenadas estão dentro dos limites do mapa
     if (x >= 0 && x < mapa_largura && y >= 0 && y < mapa_altura) {
@@ -41,6 +44,7 @@ void Mapa::mostrar_mapa() {
         }
         cout << endl;
     }
+     cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << endl;
 }
 
 
@@ -60,7 +64,18 @@ void Mapa::mover_heroi(char x){
             if (posicao_x > 0) posicao_x--;
             break;
         case 'd': // Mover para a direita
-            if (posicao_x < mapa_largura - 1) posicao_x++;
+            if (posicao_x < mapa_largura){
+                posicao_x++;
+                if (posicao_x == mapa_largura){
+                    posicao_x = 0; // para ir para a primeira posição da proxima linha
+                    posicao_y ++;
+                    if (posicao_y >= mapa_altura){
+                        posicao_y = mapa_altura -1;
+                        posicao_x = mapa_largura -1;
+                    }
+                }
+            }
+
             break;
         default:
             cout << "Direção inválida!" << endl;
@@ -69,6 +84,8 @@ void Mapa::mover_heroi(char x){
 
     // Coloca o herói na nova posição
     tamanho_mapa[posicao_x][posicao_y] = 'H';
+
+    eventos();
 }
 
 
@@ -79,5 +96,24 @@ void Mapa::limpar_mapa() {
             tamanho_mapa[j][i] ='.';
         }
     }
+}
+
+void Mapa::eventos(){
+    int evento = rand() % 3; // para gerar um numero entre 0 e 2
+
+    switch (evento) {
+        case 0: 
+            cout << "Um pouco de Paz" << endl; // quando nada acontece
+            break;
+        case 1:
+            cout << "Um inimigo preparar" << endl; // Implementar a logica do combate - puxar de outro arquivo
+            break;
+        case 2:
+            cout << "Um item, pegue ou deixa para lá" << endl; // Implementar a logica de achar item - puxar de outro arquivo
+            break;
+    } 
+
+    cout << "Aperte uma tecla para sair" << endl;
+    getch();
 }
 #endif 
