@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
-#include "Mochila.cpp"
-#include "Cinto.cpp"
-#include "Item.cpp"
+#include "Mochila.h"
+#include "Cinto.h"
+#include "Item.h"
 
 using namespace std;
 

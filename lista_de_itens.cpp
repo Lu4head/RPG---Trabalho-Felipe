@@ -1,6 +1,5 @@
-#pragma once
-#include "Arma.h"
-#include "Pocao.h"
+#include "./classes/Arma.h"
+#include "./classes/Pocao.h"
 
 
 // criando armas e pocao

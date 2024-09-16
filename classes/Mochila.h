@@ -18,13 +18,13 @@ public:
     bool MochilaVazia();
 
     //Operações básicas
-    int ColocarItem(Item x);
-    int RetirarItem(Item& x);
+    void ColocarItem(Item x);
+    void RetirarItem(Item& x);
 
     //Outras Operações (Clear,Top,Size)
     //int Size();
     void LimparMochila();
-    int ItemMochila(Item& x); // Retorna o elemento do topo da Mochila
+    void ItemMochila(Item& x); // Retorna o elemento do topo da Mochila
 
     //* Campos de dados *//
 private:

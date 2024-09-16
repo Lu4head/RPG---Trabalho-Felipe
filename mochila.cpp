@@ -1,4 +1,4 @@
-#include "Mochila.h"
+#include "./classes/Mochila.h"
 #include <iostream>
 
 using namespace std;
@@ -27,7 +27,7 @@ bool Mochila::MochilaVazia() {
     return (top == NULL);
 };
 
-int Mochila::ColocarItem(Item x) {
+void Mochila::ColocarItem(Item x) {
     MochilaPointer p; // criamos um ponteiro novo, p, que aponta para uma struct MochilaNode
     p = new MochilaNode; // alocamos esse "p" de forma dinamica
     if (p == NULL) { // verificamos se ainda temos memoria para alocar
@@ -40,7 +40,7 @@ int Mochila::ColocarItem(Item x) {
 
 };
 
-int Mochila::RetirarItem(Item& x) {
+void Mochila::RetirarItem(Item& x) {
     MochilaPointer p;
     if (MochilaVazia()) {
         cout << "Mochila vazia!" << endl;
@@ -66,7 +66,7 @@ void Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), pore
 
 };
 
-int Mochila::ItemMochila(Item& x) {
+void Mochila::ItemMochila(Item& x) {
 
     if (top == NULL) {
         cout << "Mochila Vazia!!" << endl;
