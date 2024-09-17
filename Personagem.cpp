@@ -44,8 +44,8 @@ void Personagem::transfere_para_mochila(Item &x, int p){
 void Personagem::transfere_para_cinto(Item &x, int p){
     Item item_transferido;
     mochila_personagem.RetirarItem(item_transferido);
-    cinto_personagem.Colocar_item(item_transferido,p)
-};
+    cinto_personagem.Colocar_item(item_transferido,p);
+}
 
 void Personagem::exibe_vida(int &x){
     x = vida_Atual;
