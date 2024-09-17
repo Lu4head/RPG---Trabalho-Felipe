@@ -9,7 +9,8 @@ public:
 
     std::string get_nome();
     std::string get_tipo_do_item();
-
+    int get_peso();
+    
 private:
     std::string nome_item;
     std::string tipo_do_item;

@@ -11,8 +11,8 @@ class Cinto{
         bool Empty();
         bool Full();
         // Operações Básicas
-        void Insert(Item item, int posicao);
-        void Delete(Item &item_retorno, int posicao);
+        void Colocar_item(Item item, int posicao);
+        void Remover_item(Item &item_retorno, int posicao);
         // Operações Extras
         void Clear();
         void usar_item(int posicao); // usar ou remover item
@@ -21,5 +21,6 @@ class Cinto{
 
     private:
         Item Entry[MaxList + 1];
+        int peso_max;
         int count;
 };

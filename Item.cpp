@@ -15,6 +15,10 @@ string Item::get_nome()  {
     return nome_item;
 }
 
+int Item::get_peso(){
+    return peso_item;
+}
+
 // Método para obter o tipo do item
 string Item::get_tipo_do_item() {
     return tipo_do_item;

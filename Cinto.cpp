@@ -9,6 +9,7 @@ using namespace std;
 
 Cinto::Cinto(){
     count = 0;
+    peso_max = 20;
 }
 
 Cinto::~Cinto(){
@@ -23,12 +24,15 @@ bool Cinto::Full(){
     return count == MaxList + 1;
 }
 
-void Cinto::Insert(Item item, int posicao){
+void Cinto::Colocar_item(Item item, int posicao){
     if (Full()){
         cout << "Cinto está cheio!" << endl;
         return;
     }
-
+    if(item.get_peso() > peso_max){
+        std::cout << "Esse item não cabe no cinto, é pesado demais!" << std::endl;
+        return;
+    }
     if(posicao < 1 || posicao > count + 1){
         cout << "Posicao Invalida!" << endl;
         return;
@@ -40,7 +44,7 @@ void Cinto::Insert(Item item, int posicao){
     count++;
 };
 
-void Cinto::Delete(Item &item_retorno, int posicao){
+void Cinto::Remover_item(Item &item_retorno, int posicao){
     if(Empty()){
         cout << "Cinto vazio!" << endl;
         return;
@@ -95,8 +99,8 @@ void Cinto::mostrar_itens() {
     }
 
     std::cout << "Itens no cinto:" << std::endl;
-    for (int i = 0; i < count; i++) {
-        std::cout << i + 1 << ": " << Entry[i].get_nome() << std::endl;
+    for (int i = 1; i < count; i++) {
+        std::cout << i << ": " << Entry[i].get_nome() << std::endl;
     }
 }
 
