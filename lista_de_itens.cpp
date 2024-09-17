@@ -1,5 +1,5 @@
-#include "./classes/Arma.h"
-#include "./classes/Pocao.h"
+#include "Arma.cpp"
+#include "Pocao.cpp"
 
 
 // criando armas e pocao
