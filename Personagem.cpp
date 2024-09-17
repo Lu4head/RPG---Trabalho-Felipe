@@ -17,7 +17,7 @@ Personagem::Personagem(string nome){
 
 Personagem::~Personagem(){};
 
-void Personagem::recebe_dano(int x){
+void Personagem::recebe_dano(float x){
     if(vida_Atual - x > 0){
         vida_Atual = vida_Atual - x;
     } else{
@@ -47,7 +47,7 @@ void Personagem::transfere_para_cinto(Item &x, int p){
     cinto_personagem.Colocar_item(item_transferido,p);
 }
 
-void Personagem::exibe_vida(int &x){
+void Personagem::exibe_vida(float &x){
     x = vida_Atual;
     std::cout << "Vida: " << vida_Atual << " / " << vida_Total << std::endl;
 };
