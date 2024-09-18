@@ -4,11 +4,9 @@
 #include "Cinto.h"
 #include "Item.h"
 
-using namespace std;
-
 class Personagem{
     public:
-        Personagem(string nome);
+        Personagem(std::string nome);
         ~Personagem();
         void recebe_dano(float x);
         int gasta_mana(float x);
@@ -21,7 +19,7 @@ class Personagem{
         Mochila mochila_personagem;
         Cinto cinto_personagem;
     private:
-        string nome;
+        std::string nome;
         float vida_Total;
         float vida_Atual;
         int mana_Total;

@@ -1,9 +1,6 @@
 #include ".\classes\Cinto.h"
 #include <iostream>
 
-
-using namespace std;
-
 #ifndef CINTO_H
 #define CINTO_H
 
@@ -26,7 +23,7 @@ bool Cinto::Cinto_cheio(){
 
 int Cinto::Colocar_item(Item item, int posicao){
     if (Cinto_cheio()){
-        cout << "Cinto está cheio!" << endl;
+        std::cout << "Cinto está cheio!" << std::endl;
         return 1;
     }
     if(item.get_peso() > peso_max){
@@ -34,7 +31,7 @@ int Cinto::Colocar_item(Item item, int posicao){
         return 2;
     }
     if(posicao < 1 || posicao > count + 1){
-        cout << "Posicao Invalida!" << endl;
+        std::cout << "Posicao Invalida!" << std::endl;
         return 3;
     }
     for(int i = count ; i >= posicao ; i--){    
@@ -47,11 +44,11 @@ int Cinto::Colocar_item(Item item, int posicao){
 
 int Cinto::Remover_item(Item &item_retorno, int posicao){
     if(Cinto_vazio()){
-        cout << "Cinto vazio!" << endl;
+        std::cout << "Cinto vazio!" << std::endl;
         return 1;
     }
     if(posicao < 1 || posicao > count){
-        cout << "Posicao Invalida!" << endl;
+        std::cout << "Posicao Invalida!" << std::endl;
         return 3;
     }
     item_retorno = Entry[posicao];
@@ -64,27 +61,28 @@ int Cinto::Remover_item(Item &item_retorno, int posicao){
 
 int Cinto::Esvaziar_cinto(){
     if(Cinto_vazio()){
-        cout << "O cinto já está vazio!" << endl;
+        std::cout << "O cinto já está vazio!" << std::endl;
         return 1;
     }
     count = 0;
-    cout << "Cinto foi esvaziado, todos itens foram descartados!";
+    std::cout << "Cinto foi esvaziado, todos itens foram descartados!";
     return 0;
 };
 
 int Cinto::usar_item(int posicao){
     if(Cinto_vazio()){
-        cout << "Sem itens no cinto!";
+        std::cout << "Sem itens no cinto!";
         return 1;
     }
     
     if(posicao < 1 || posicao > count){
-        cout << "Posicao Invalida!" << endl;
+        std::cout << "Posicao Invalida!" << std::endl;
         return 3;
     }
     if(Entry[posicao].get_tipo_do_item() == "Cura" || Entry[posicao].get_tipo_do_item() == "mana"){
-    cout << "Utilizando o item " << Entry[posicao].get_nome() << endl;
+    std::cout << "Utilizando o item " << Entry[posicao].get_nome() << std::endl;
     // colocar a logica para usar o item aqui, tipo curar a vida ou recuperar mana
+    return 0;
 } 
 
     for(int i = posicao; i < count; i++){

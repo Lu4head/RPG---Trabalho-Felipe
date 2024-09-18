@@ -1,8 +1,6 @@
 #include "./classes/Arma.h"
 #include <string>
 
-
-
 #ifndef ARMA_H
 #define ARMA_H
 

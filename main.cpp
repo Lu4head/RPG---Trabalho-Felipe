@@ -8,6 +8,7 @@
 #include <conio.h> // função getch()
 #include <cstdlib>  // função system()
 #include <locale.h> // Definir linguagem do terminal - setlocale()
+
 using namespace std;
 
 int main() {

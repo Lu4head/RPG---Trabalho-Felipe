@@ -2,18 +2,18 @@
 #include <string>
 
 class Item {
-public:
-    Item(std::string nome_item, float peso_item);
+    public:
+        Item(std::string nome_item, float peso_item);
 
-    Item(); // para criar um array
+        Item(); // para criar um array
 
-    std::string get_nome();
-    std::string get_tipo_do_item();
-    int get_peso();
-    
-private:
-    std::string nome_item;
-    std::string tipo_do_item;
-    float peso_item;
+        std::string get_nome();
+        std::string get_tipo_do_item();
+        int get_peso();
+        
+    private:
+        std::string nome_item;
+        std::string tipo_do_item;
+        float peso_item;
 };
 

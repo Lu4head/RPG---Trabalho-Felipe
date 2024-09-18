@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <conio.h>
-using namespace std;
+
 
 #ifndef MAPA_H
 #define MAPA_H
@@ -33,18 +33,18 @@ void Mapa::colocar_heroi(int x, int y) {
         posicao_y = y;
         tamanho_mapa[posicao_x][posicao_y] = 'H'; // Coloca o herói na posição especificada
     } else {
-        cout << "Coordenadas fora dos limites do mapa." << endl;
+        std::cout << "Coordenadas fora dos limites do mapa." << std::endl;
     }
 };
 
 void Mapa::mostrar_mapa() {
     for (int i = 0; i < mapa_largura; ++i) {
         for (int j = 0; j < mapa_altura; ++j) {
-            cout << tamanho_mapa[j][i] << " ";
+            std::cout << tamanho_mapa[j][i] << " ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
-    cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << endl;
+    std::cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << std::endl;
 };
 
 
@@ -78,7 +78,7 @@ void Mapa::mover_heroi(char x){
 
             break;
         default:
-            cout << "Direção inválida!" << endl;
+            std::cout << "Direção inválida!" << std::endl;
             return;
     }
 
@@ -103,17 +103,17 @@ void Mapa::eventos(){
 
     switch (evento) {
         case 0: 
-            cout << "Um pouco de Paz" << endl; // quando nada acontece
+            std::cout << "Um pouco de Paz" << std::endl; // quando nada acontece
             break;
         case 1:
-            cout << "Um inimigo preparar" << endl; // Implementar a logica do combate - puxar de outro arquivo
+            std::cout << "Um inimigo preparar" << std::endl; // Implementar a logica do combate - puxar de outro arquivo
             break;
         case 2:
-            cout << "Um item, pegue ou deixa para lá" << endl; // Implementar a logica de achar item - puxar de outro arquivo
+            std::cout << "Um item, pegue ou deixa para lá" << std::endl; // Implementar a logica de achar item - puxar de outro arquivo
             break;
     } 
 
-    cout << "Aperte uma tecla para sair" << endl;
+    std::cout << "Aperte uma tecla para sair" << std::endl;
     getch();
 };
 

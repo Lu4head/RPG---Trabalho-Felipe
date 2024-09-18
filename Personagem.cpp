@@ -4,7 +4,7 @@
 #ifndef PERSONAGEM_H
 #define PERSONAGEM_H
 
-Personagem::Personagem(string nome): nome(nome){
+Personagem::Personagem(std::string nome): nome(nome){
     vida_Total = 100;
     vida_Atual = vida_Total;
     mana_Total = 100;
@@ -37,24 +37,24 @@ int Personagem::gasta_mana(float x){
 
 void Personagem::transfere_para_mochila(Item &x, int p){
     if(cinto_personagem.Remover_item(x, p) != 0){
-        cout << "Não foi possivel transferir o item" << endl;
+        std::cout << "Não foi possivel transferir o item" << std::endl;
         return;
     }
     if(mochila_personagem.ColocarItem(x) != 0){
         cinto_personagem.Colocar_item(x, p);
-        cout << "Não foi possivel trasferir o item" << endl;
+        std::cout << "Não foi possivel trasferir o item" << std::endl;
         return;
     }
 };
 
 void Personagem::transfere_para_cinto(Item &x, int p){
     if(mochila_personagem.RetirarItem(x) != 0){
-        cout << "Não foi possivel transferir o item" << endl;
+        std::cout << "Não foi possivel transferir o item" << std::endl;
         return;
     }
     if(cinto_personagem.Colocar_item(x,p) != 0){
         mochila_personagem.ColocarItem(x);
-        cout << "Não foi possivel trasferir o item" << endl;
+        std::cout << "Não foi possivel trasferir o item" << std::endl;
         return;
     }
 }

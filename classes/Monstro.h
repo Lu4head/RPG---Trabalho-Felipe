@@ -1,8 +1,8 @@
-    #pragma once
-    #include <string>
-    #include <iostream>
+#pragma once
+#include <string>
+#include <iostream>
 
-    class Monstro {
+class Monstro {
     public:
         // Construtor
         Monstro(std::string nome, float vida_total, float mana_total, float dano_fisico, float dano_magico);
@@ -26,4 +26,4 @@
         int nivel;
         float dano_fisico;
         float dano_magico;
-    };
+};
