@@ -11,7 +11,9 @@ class Personagem{
         Personagem(string nome);
         ~Personagem();
         void recebe_dano(float x);
-        void gasta_mana(int x);
+        int gasta_mana(float x);
+        void cura(float x);
+        void recupera_mana(float x);
         void transfere_para_mochila(Item &x, int p);
         void transfere_para_cinto(Item &x, int p);
         void exibe_vida(float &x);

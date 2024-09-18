@@ -6,18 +6,21 @@ class Cinto{
     public:
         // Construtor e destrutor  
         Cinto();
-        ~Cinto(); // O proprio compilador se encarrega de destruir se esse não for criado
+        ~Cinto();
+
         // Status
-        bool Empty();
-        bool Full();
+        bool Cinto_vazio();
+        bool Cinto_cheio();
+
         // Operações Básicas
-        void Colocar_item(Item item, int posicao);
-        void Remover_item(Item &item_retorno, int posicao);
+        int Colocar_item(Item item, int posicao);
+        int Remover_item(Item &item_retorno, int posicao);
+
         // Operações Extras
-        void Clear();
-        void usar_item(int posicao); // usar ou remover item
-        int espaco_disponivel(); // verificar se tem algum espaço disponivel 
-        void mostrar_itens(); // Mostra todos os itens no cinto
+        int Esvaziar_cinto();
+        int usar_item(int posicao); // usar ou remover item
+        int espacos_disponiveis(); // verificar se tem algum espaço disponivel 
+        int mostrar_itens(); // Mostra todos os itens no cinto
 
     private:
         Item Entry[MaxList + 1];

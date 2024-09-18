@@ -43,8 +43,8 @@ int main() {
             cout << "Você encontrou um item!" << endl;
 
             // Podemos adicionar itens ao cinto
-            if (!cinto.Full()) {
-                cinto.Insert(Katana, cinto.espaco_disponivel());
+            if (!cinto.Cinto_cheio()) {
+                cinto.Colocar_item(Katana, cinto.espacos_disponiveis());
                 cout << "Você adicionou " << Katana.get_nome() << " ao cinto!" << endl;
             } else {
                 cout << "Cinto cheio! Não foi possível pegar o item." << endl;

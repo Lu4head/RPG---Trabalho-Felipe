@@ -14,7 +14,7 @@ Mapa::Mapa() {
     inicializar_mapa();
     posicao_x = -1;
     posicao_y = -1;
-}
+};
 
 // Inicializa o mapa com zeros
 void Mapa::inicializar_mapa() {
@@ -23,7 +23,7 @@ void Mapa::inicializar_mapa() {
             tamanho_mapa[i][j] = '.'; // '.' representa um espaço vazio
         }
     }
-}
+};
 
 // Coloca o heróiv em uma posição específica
 void Mapa::colocar_heroi(int x, int y) {
@@ -35,7 +35,7 @@ void Mapa::colocar_heroi(int x, int y) {
     } else {
         cout << "Coordenadas fora dos limites do mapa." << endl;
     }
-}
+};
 
 void Mapa::mostrar_mapa() {
     for (int i = 0; i < mapa_largura; ++i) {
@@ -44,8 +44,8 @@ void Mapa::mostrar_mapa() {
         }
         cout << endl;
     }
-     cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << endl;
-}
+    cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << endl;
+};
 
 
 void Mapa::mover_heroi(char x){
@@ -86,7 +86,7 @@ void Mapa::mover_heroi(char x){
     tamanho_mapa[posicao_x][posicao_y] = 'H';
 
     eventos();
-}
+};
 
 
 void Mapa::limpar_mapa() {
@@ -96,7 +96,7 @@ void Mapa::limpar_mapa() {
             tamanho_mapa[j][i] ='.';
         }
     }
-}
+};
 
 void Mapa::eventos(){
     int evento = rand() % 3; // para gerar um numero entre 0 e 2
@@ -115,5 +115,6 @@ void Mapa::eventos(){
 
     cout << "Aperte uma tecla para sair" << endl;
     getch();
-}
+};
+
 #endif 

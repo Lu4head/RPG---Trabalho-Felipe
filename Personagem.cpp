@@ -4,8 +4,7 @@
 #ifndef PERSONAGEM_H
 #define PERSONAGEM_H
 
-Personagem::Personagem(string nome){
-    nome = this->nome;
+Personagem::Personagem(string nome): nome(nome){
     vida_Total = 100;
     vida_Atual = vida_Total;
     mana_Total = 100;
@@ -25,26 +24,39 @@ void Personagem::recebe_dano(float x){
     }
 };
 
-void Personagem::gasta_mana(int x){
+int Personagem::gasta_mana(float x){
     if(mana_Atual - x < 0){
         std::cout << "Mana insuficiente" << std::endl;
-        return;
+        return 1;
     }
     else{
         mana_Atual = mana_Atual - x;
+        return 0;
     }
 };
 
 void Personagem::transfere_para_mochila(Item &x, int p){
-    Item item_transferido;
-    cinto_personagem.Remover_item(item_transferido, p);
-    mochila_personagem.ColocarItem(item_transferido);
+    if(cinto_personagem.Remover_item(x, p) != 0){
+        cout << "Não foi possivel transferir o item" << endl;
+        return;
+    }
+    if(mochila_personagem.ColocarItem(x) != 0){
+        cinto_personagem.Colocar_item(x, p);
+        cout << "Não foi possivel trasferir o item" << endl;
+        return;
+    }
 };
 
 void Personagem::transfere_para_cinto(Item &x, int p){
-    Item item_transferido;
-    mochila_personagem.RetirarItem(item_transferido);
-    cinto_personagem.Colocar_item(item_transferido,p);
+    if(mochila_personagem.RetirarItem(x) != 0){
+        cout << "Não foi possivel transferir o item" << endl;
+        return;
+    }
+    if(cinto_personagem.Colocar_item(x,p) != 0){
+        mochila_personagem.ColocarItem(x);
+        cout << "Não foi possivel trasferir o item" << endl;
+        return;
+    }
 }
 
 void Personagem::exibe_vida(float &x){
@@ -52,7 +64,7 @@ void Personagem::exibe_vida(float &x){
     std::cout << "Vida: " << vida_Atual << " / " << vida_Total << std::endl;
 };
 
-void Personagem::aumenta_nivel(){
+void Personagem::aumenta_nivel() {
     if(exp_atual >= exp_total){
         float multiplicador_exp = 1.25;
         float multiplicador_vida = 1.25;
@@ -65,6 +77,23 @@ void Personagem::aumenta_nivel(){
         mana_Total = mana_Total * multiplicador_mana; // aumenta a mana max
         vida_Atual = vida_Total; // enche a vida
         mana_Atual = mana_Total; // enche a mana
+    }
 };
+
+void Personagem::cura(float x){
+    if(vida_Atual + x < vida_Total){
+        vida_Atual = vida_Atual + x;
+    } else {
+        vida_Atual = vida_Total;
+    }
+}
+
+void Personagem::recupera_mana(float x){
+    if(mana_Atual + x < mana_Total){
+        mana_Atual = mana_Atual + x;
+    } else {
+        mana_Atual = mana_Total;
+    }
+}
 
 #endif
