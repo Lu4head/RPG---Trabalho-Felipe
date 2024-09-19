@@ -1,16 +1,32 @@
+// #include "lista_de_itens.cpp"
 // #include <iostream>
-// //#include <vector>
-// //#include <string>
-// #include <locale.h>
-// #include "Monstro.cpp"
 
 // using namespace std;
 
-// void teste(){
+// void exibe_Espada_curta(){
+//     cout << "" << endl;
+//     return;
+// }
 
-//     cout << R"(t
-//     e
-//     s
-//     t
-//     e)" << endl;
+// Arma Escolhe_arma(char x, int posicao, int posicao_anterior){
+//     Arma armas_iniciais[3] = {Espada_curta , Adaga_enferrujada, Varinha_quebrada};
+
+//     switch (x)
+//     {
+//     case 'd':
+//         posicao++;
+//         break;
+//     case 'a':
+//         posicao--;
+//     case '\r':
+//         return armas_iniciais(posicao);
+    
+//     default:
+//         break;
+//     }
+
+// };
+
+// int main(){
+
 // }
