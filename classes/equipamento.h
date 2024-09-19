@@ -15,3 +15,4 @@ extern Pocao pocao_de_cura_forte;
 extern Pocao pocao_de_mana_fraca;
 extern Pocao pocao_de_mana_media;
 extern Pocao pocao_de_mana_forte;
+

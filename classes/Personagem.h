@@ -21,8 +21,11 @@ class Personagem{
         std::string exibe_nome();
         void aumenta_nivel();
         Arma arma_equipada();
+        void Inserir_cinto(Item item, int posicao);
+        void usar_item_cinto(int posicao);
+        void mostrar_cinto(); 
         Mochila mochila_personagem;
-        Cinto cinto_personagem;
+        
     private:
         std::string nome;
         float vida_Total;
@@ -31,5 +34,6 @@ class Personagem{
         int mana_Atual;
         int nivel;
         int exp_total;
-        int exp_atual;    
+        int exp_atual;  
+        Cinto cinto_personagem;  
 };

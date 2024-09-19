@@ -18,7 +18,8 @@ int main() {
     // Inicializa o gerador de números aleatórios
     srand(static_cast<unsigned int>(time(0)));
 
-    // Instanciando o cinto
+    // Instanciando o cinto e o heroi
+    Personagem heroi("Duzzi");
     Cinto cinto;
 
     // Criando alguns itens de exemplo
@@ -28,7 +29,7 @@ int main() {
     // Colocar herói no mapa
     Mapa mapa;
     mapa.colocar_heroi(0, 0);
-    mapa.mostrar_mapa();
+    mapa.mostrar_mapa(cinto);
     
     char movimento;
     while (true) {
@@ -39,7 +40,7 @@ int main() {
             break; 
         }
 
-        mapa.mover_heroi(movimento);
+        mapa.mover_heroi(movimento, heroi, cinto);
         
         // Sorteia se um item será encontrado
         int sorteio = rand() % 3; // Pode resultar em 0 (nada), 1 (item), ou 2 (combate)
@@ -62,7 +63,7 @@ int main() {
         }
         
         system("cls"); // Limpar a tela do console
-        mapa.mostrar_mapa();
+        mapa.mostrar_mapa(cinto);
     }
 
     return 0;
