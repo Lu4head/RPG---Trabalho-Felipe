@@ -1,4 +1,6 @@
 #include ".\classes\Personagem.h"
+#include ".\classes\Arma.h"
+#include ".\classes\Pocao.h"
 #include <iostream>
 
 #ifndef PERSONAGEM_H
@@ -59,10 +61,13 @@ void Personagem::transfere_para_cinto(Item &x, int p){
     }
 }
 
-void Personagem::exibe_vida(float &x){
-    x = vida_Atual;
-    std::cout << "Vida: " << vida_Atual << " / " << vida_Total << std::endl;
+float Personagem::exibe_vida(){
+    return vida_Atual;
 };
+
+std::string Personagem::exibe_nome(){
+    return nome;
+}
 
 void Personagem::aumenta_nivel() {
     if(exp_atual >= exp_total){
@@ -80,12 +85,23 @@ void Personagem::aumenta_nivel() {
     }
 };
 
-void Personagem::cura(float x){
-    if(vida_Atual + x < vida_Total){
+void Personagem::usa_pocao(Pocao &pc) {
+    if (pc.get_tipo_do_item() == "Cura") {
+        float vida_antes = vida_Atual; 
+        cura(pc.get_cura());
+        std::cout << "Você usou uma: " << pc.get_nome() << " e recuperou: " << vida_Atual - vida_antes << " pontos de vida" << std::endl;
+    } else {
+        std::cout << "A poção não tem efeito de cura!" << std::endl;
+    }
+}
+
+void Personagem::cura(float x) {
+    if (vida_Atual + x < vida_Total) {
         vida_Atual = vida_Atual + x;
     } else {
         vida_Atual = vida_Total;
     }
+    std::cout << "A vida atual agora é: " << vida_Atual << " / " << vida_Total << std::endl;
 }
 
 void Personagem::recupera_mana(float x){
@@ -95,5 +111,15 @@ void Personagem::recupera_mana(float x){
         mana_Atual = mana_Total;
     }
 }
+
+Arma Personagem::arma_equipada(){
+Arma Katana("Nikana", 1.5, 20,"Destreza");
+Arma Adaga("Kriss", 0.5, 12, "Destreza");
+Arma Manopla("Atlas", 3.0, 38,"Forca"); 
+Arma Machadinha("Loki", 0.1,18,"Forca");
+return Katana;
+}
+
+
 
 #endif

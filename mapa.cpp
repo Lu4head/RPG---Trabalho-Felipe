@@ -1,6 +1,9 @@
 
 // Mapa.cpp
-#include ".\classes\Mapa.h"
+#include "./classes/Mapa.h"
+#include "./classes/combate.h"
+#include "./classes/mobs.h"
+#include "./classes/Personagem.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -98,23 +101,27 @@ void Mapa::limpar_mapa() {
     }
 };
 
-void Mapa::eventos(){
+void Mapa::eventos() {
     int evento = rand() % 3; // para gerar um numero entre 0 e 2
+    Personagem heroi("Duzzi");
+
+    // Inicializar Monstro com valores de exemplo
+    Monstro mob("Goblin", 50, 30, 5, 10);
 
     switch (evento) {
-        case 0: 
+        case 0:
             std::cout << "Um pouco de Paz" << std::endl; // quando nada acontece
             break;
         case 1:
-            std::cout << "Um inimigo preparar" << std::endl; // Implementar a logica do combate - puxar de outro arquivo
+            std::cout << "Um inimigo apareceu!" << std::endl; // Implementar a lógica do combate - puxar de outro arquivo
+            combate(heroi, mob);
             break;
         case 2:
-            std::cout << "Um item, pegue ou deixa para lá" << std::endl; // Implementar a logica de achar item - puxar de outro arquivo
+            std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl; // Implementar a lógica de achar item - puxar de outro arquivo
             break;
-    } 
+    }
 
-    std::cout << "Aperte uma tecla para sair" << std::endl;
+    std::cout << "Aperte uma tecla para continuar" << std::endl;
     getch();
 };
-
 #endif 

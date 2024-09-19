@@ -14,8 +14,9 @@ class Monstro {
         float aplica_dano_magico();
 
         // Métodos para exibir informações
-        void exibe_vida();
-        void exibe_nome();
+        float exibe_vida();
+
+        std::string exibe_nome();
 
     private:
         std::string nome;
