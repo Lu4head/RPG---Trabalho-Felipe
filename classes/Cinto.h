@@ -21,7 +21,7 @@ class Cinto{
         int Esvaziar_cinto();
         int usar_item(int posicao); // usar ou remover item
         int espacos_disponiveis(); // verificar se tem algum espaço disponivel 
-        int mostrar_itens(); // Mostra todos os itens no cinto
+        int mostrar_itens(Item *lista_item); // Mostra todos os itens no cinto
 
     private:
         Item Entry[MaxList + 1];

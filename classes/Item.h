@@ -6,6 +6,8 @@ class Item {
         Item(std::string nome_item, float peso_item);
 
         Item(); // para criar um array
+        
+        virtual ~Item() = default;
 
         std::string get_nome();
         std::string get_tipo_do_item();

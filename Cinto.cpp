@@ -98,7 +98,7 @@ int Cinto::espacos_disponiveis() {
 };
 
 
-int Cinto::mostrar_itens() {
+int Cinto::mostrar_itens(Item* lista_itens) {
     if (Cinto_vazio()) {
         std::cout << "O cinto está vazio!" << std::endl;
         return 1;
@@ -108,6 +108,11 @@ int Cinto::mostrar_itens() {
     for (int i = 1; i < count; i++) {
         std::cout << i << ": " << Entry[i].get_nome() << std::endl;
     }
+
+    for (int i = 1; i <= MaxList; i++) {
+        lista_itens[i] = Entry[i];
+    }
+
     return 0;
 };
 
