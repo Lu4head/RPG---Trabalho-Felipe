@@ -23,12 +23,12 @@ void Monstro::gasta_mana(float custo){
    }
 } 
  
-void Monstro::exibe_vida(){
-    std::cout << "Vida do monstro : " << vida_atual << " / " << vida_total << std::endl;
+float Monstro::exibe_vida(){
+    return vida_atual;
  }
 
-void Monstro::exibe_nome(){
-    std::cout << "Nome do mosntro: " << nome << std::endl;
+std::string Monstro::exibe_nome(){
+    return nome;
  }
 
  float Monstro::aplica_dano_fisico(){

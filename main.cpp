@@ -6,7 +6,8 @@
 #include ".\classes\Item.h"
 #include <iostream>
 #include <conio.h> // função getch()
-#include <cstdlib>  // função system()
+#include <cstdlib> // funções system() e rand()
+#include <ctime>   // função time()
 #include <locale.h> // Definir linguagem do terminal - setlocale()
 
 using namespace std;
@@ -14,12 +15,15 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "pt_BR.UTF-8");
     
+    // Inicializa o gerador de números aleatórios
+    srand(static_cast<unsigned int>(time(0)));
+
     // Instanciando o cinto
     Cinto cinto;
 
     // Criando alguns itens de exemplo
-    Arma Katana("Nikana", 1.5f, 20.0f,"Destreza");
-    Pocao pocao_de_cura_fraca("Pocao de cura fraca", 1.0,15,0,"Cura");
+    Arma Katana("Nikana", 1.5f, 20.0f, "Destreza");
+    Pocao pocao_de_cura_fraca("Pocao de cura fraca", 1.0, 15, 0, "Cura");
 
     // Colocar herói no mapa
     Mapa mapa;
@@ -52,11 +56,12 @@ int main() {
             }
         } else if (sorteio == 2) {
             cout << "Você entrou em combate!" << endl;
+            // Aqui você pode chamar a função de combate, se desejar
         } else {
             cout << "Nada aconteceu..." << endl;
         }
         
-        system("cls");
+        system("cls"); // Limpar a tela do console
         mapa.mostrar_mapa();
     }
 

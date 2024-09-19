@@ -3,6 +3,8 @@
 #include "Mochila.h"
 #include "Cinto.h"
 #include "Item.h"
+#include "arma.h"
+#include "pocao.h"
 
 class Personagem{
     public:
@@ -10,12 +12,15 @@ class Personagem{
         ~Personagem();
         void recebe_dano(float x);
         int gasta_mana(float x);
+        void usa_pocao(Pocao &pc);
         void cura(float x);
         void recupera_mana(float x);
         void transfere_para_mochila(Item &x, int p);
         void transfere_para_cinto(Item &x, int p);
-        void exibe_vida(float &x);
+        float exibe_vida();
+        std::string exibe_nome();
         void aumenta_nivel();
+        Arma arma_equipada();
         Mochila mochila_personagem;
         Cinto cinto_personagem;
     private:

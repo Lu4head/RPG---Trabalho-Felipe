@@ -1,75 +1,45 @@
-// #pragma once
-// #include <iostream>
-// #include <random>
-// #include <cstdlib>
-// #include "./classes/Personagem.h"
-// #include "lista_de_monstros.cpp"
-// #include "lista_de_monstros.cpp"
+#include "./classes/Personagem.h"
+#include "./classes/Monstro.h"
+#include "./classes/equipamento.h"
+#include <iostream>
+#include "./classes/combate.h"
+extern Pocao pocao_de_cura_forte;
 
-// using namespace std;
+void combate(Personagem &heroi, Monstro &mob){
+    std::cout << "Iniciando o combate entre: " << heroi.exibe_nome() << " VS " <<  mob.exibe_nome() << std::endl;
 
-// bool Batalha(Personagem heroi, Monstro monstro) {
-// 	unsigned seed = time(0);
-// 	int destreza;
-// 	srand(seed);
-// 	destreza = 1 + rand() % 20;
-// 	if (destreza > 5) {
-// 		cout << "Seu Primeiro ataque foi um sucesso ! " << endl;
-// 		int ataque = 1 + rand() % 20;
-// 		if (ataque < 15) {
-// 			Monstro.HpMonstro -= danoHeroi;
-// 		}
-// 		else if (ataque >= 15) {
-// 			Monstro.HpMonstro -= danoHeroi * 2;
-// 		}
+    while(heroi.exibe_vida() > 0 && mob.exibe_vida() > 0){
+        int escolha;
+        std::cout << "Escolha uma opção:\n1 - atacar\n2 - Usar pocao\n3 - Trocar arma\n4 - Pegar item da mochila" << std::endl;
+        std::cin >> escolha;
 
-// 	}
-// 	else (destreza <= 5) {
-// 		cout << "Voce foi muito lento!" << endl;
+        switch(escolha) {
+            case 1:
+                std::cout << heroi.exibe_nome() << " atacou " << mob.exibe_nome() << std::endl;
+                mob.recebe_dano(heroi.arma_equipada().get_dano());
+                std::cout << heroi.exibe_nome() << "causou um dano de: " << heroi.arma_equipada().get_dano() << " O monstrou ficou com: " << mob.exibe_vida() << "de vida" << std::endl;
+                break;
+            case 2:
+                std::cout << "Utilizando poção" << std::endl;
+                heroi.usa_pocao(pocao_de_cura_forte);
+                std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " vida!" << std::endl;
+                break;
+            default:
+                std::cout << "Escolha invalida" << std::endl;
+                continue;
+        }
+        if (mob.exibe_vida() > 0) {
+            std::cout << mob.exibe_nome() << " ataca " << heroi.exibe_nome() << std::endl;
+            heroi.recebe_dano(mob.aplica_dano_fisico()); 
+            std::cout << mob.exibe_nome() << " causou um dano de: " << mob.aplica_dano_fisico() << ". " << heroi.exibe_nome() << " ficou com: " << heroi.exibe_vida() << " de vida" << std::endl;
+        } else {
+            std::cout << mob.exibe_nome() << " foi derrotado!" << std::endl;
+        }
+    }
 
-// 		ataque = 1 + rand() % 20;
-// 		if (ataque < 18) {
-// 			meuHeroi.hp -= danoMonstro;
-// 		}
-// 		else(ataque >= 18) {
-// 			meuHeroi.hp -= danoMonstro * 1.25;
-// 		}
-
-// 	}
-
-
-// }
-
-
-// void simula_batalha() {
-// 	Personagem heroi;
-// 	Monstro monstro;
-// 	int x, y;
-// 	cout << "Voce encontrou um monstro, o que voce deseja fazer? " << endl;
-// 	int escolha = 0;
-// 	do {
-// 		cout << "===============================" << endl;
-// 		cout << "1. Lutar " << endl;
-// 		cout << "2. Usar Item " << endl;
-// 		cout << "3. Fugir " << endl;
-// 		cout << "===============================" << endl;
-// 		cin >> escolha;
-// 		switch (escolha) {
-
-// 		case 1: Lutar();
-// 			break;
-// 		case 2: UsarItem();
-// 			break;
-// 		case 3: Fugir();
-// 			break;
-
-// 		default:
-// 			cout << "Op��o invalida!" << endl;
-
-// 			break;
-// 		}
-// 	heroi.exibe_vida(x);
-// 	} while ( x > 0 && monstro.HpMonstro > 0)
-
-
-// }
+    if (heroi.exibe_vida() <= 0) {
+        std::cout << heroi.exibe_nome() << " foi derrotado!" << std::endl;
+    } else if (mob.exibe_vida() <= 0) {
+        std::cout << heroi.exibe_nome() << " venceu o combate!" << std::endl;
+    }
+}
