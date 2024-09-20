@@ -42,7 +42,7 @@ void Mapa::colocar_heroi(int x, int y) {
     }
 };
 
-void Mapa::mostrar_mapa(Cinto& cinto) {
+void Mapa::mostrar_mapa(Personagem& heroi) {
     for (int i = 0; i < mapa_largura; ++i) {
         for (int j = 0; j < mapa_altura; ++j) {
             std::cout << tamanho_mapa[j][i] << " ";
@@ -50,11 +50,11 @@ void Mapa::mostrar_mapa(Cinto& cinto) {
         std::cout << std::endl;
     }
     std::cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << std::endl;
-    cinto.mostrar_itens();
+    heroi.mostrar_cinto();
 };
 
 
-void Mapa::mover_heroi(char x, Personagem& heroi, Cinto& cinto){
+void Mapa::mover_heroi(char x, Personagem& heroi){
     if (posicao_x >= 0 && posicao_x < mapa_largura && posicao_y >= 0 && posicao_y < mapa_altura){
         tamanho_mapa[posicao_x][posicao_y] = '.';
     }
@@ -90,7 +90,7 @@ void Mapa::mover_heroi(char x, Personagem& heroi, Cinto& cinto){
 
     // Coloca o herói na nova posição
     tamanho_mapa[posicao_x][posicao_y] = 'H';
-    eventos(heroi, cinto);
+    eventos(heroi);
 };
 
 
@@ -103,7 +103,7 @@ void Mapa::limpar_mapa() {
     }
 };
 
-void Mapa::encotrar_itens(Personagem& heroi,Cinto& cinto){
+void Mapa::encotrar_itens(Personagem& heroi) {
     // Array fixo com todos os itens disponíveis
     Item* itens[] = {
         &Katana, &Adaga, &Manopla, &Machadinha,
@@ -123,15 +123,11 @@ void Mapa::encotrar_itens(Personagem& heroi,Cinto& cinto){
     int opcao;
     std::cin >> opcao;
 
-
     if (opcao == 1) {
-        // Adicionar o item ao cinto
-        if (cinto.Colocar_item(*item_encontrado, 1) == 0) { // Verifica se a inserção foi bem-sucedida
-            std::cout << item_encontrado->get_nome() << " foi adicionado ao cinto!" << std::endl;
-            cinto.mostrar_itens(); // Mostra os itens no cinto após a adição
-        } else {
-            std::cout << "Não foi possível adicionar o item ao cinto." << std::endl;
-        }
+        int posicao = 0;
+        std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
+        std::cin >> posicao;
+        heroi.Inserir_cinto(*item_encontrado, posicao);  // Agora o herói guarda o item no cinto
     } else {
         std::cout << "Você deixou o(a) " << item_encontrado->get_nome() << " para trás." << std::endl;
     }
@@ -139,7 +135,8 @@ void Mapa::encotrar_itens(Personagem& heroi,Cinto& cinto){
 
 
 
-void Mapa::eventos(Personagem& heroi, Cinto& cinto) {
+
+void Mapa::eventos(Personagem& heroi) {
     int evento = rand() % 3; // para gerar um numero entre 0 e 2
     
     // Inicializar Monstro com valores de exemplo
@@ -155,7 +152,7 @@ void Mapa::eventos(Personagem& heroi, Cinto& cinto) {
             break;
         case 2:
             std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl; // Implementar a lógica de achar item - puxar de outro arquivo
-            encotrar_itens(heroi,cinto);
+            encotrar_itens(heroi);
             break;
     }
 

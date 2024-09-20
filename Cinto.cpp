@@ -30,16 +30,31 @@ int Cinto::Colocar_item(Item item, int posicao) {
         std::cout << "Esse item não cabe no cinto, é pesado demais!" << std::endl;
         return 2;
     }
-    if(posicao < 1 || posicao > count + 1) { // Permite inserção na última posição
+    if(posicao < 1 || posicao > count + 1) { // Permite inserção na última posição válida
         std::cout << "Posição Inválida!" << std::endl;
         return 3;
     }
-    // Deslocar itens para abrir espaço
+    
+    // Verifica se já existe um item na posição especificada
+    if (Entry[posicao].get_peso() != 0) { // Supondo que Entry[posicao] seja um ponteiro para o Item
+        char escolha;
+        std::cout << "Já existe um item na posição " << posicao << ". Deseja substituí-lo? (s/n): ";
+        std::cin >> escolha;
+        
+        if (escolha != 's' && escolha != 'S') {
+            std::cout << "Item não substituído." << std::endl;
+            return 4; // Código para item não substituído
+        }
+    }
+    
+    // Deslocar itens para abrir espaço, se necessário
     for(int i = count; i >= posicao; i--) {    
         Entry[i + 1] = Entry[i]; // Aumenta o índice para o próximo
     }
+    
     Entry[posicao] = item; // Insere o novo item
     count++; // Incrementa o número de itens
+    std::cout << "Item inserido com sucesso!" << std::endl;
     return 0;
 }
 

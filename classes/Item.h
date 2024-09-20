@@ -17,5 +17,6 @@ class Item {
         std::string nome_item;
         std::string tipo_do_item;
         float peso_item;
+        bool vazio;
 };
 

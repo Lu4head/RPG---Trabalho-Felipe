@@ -120,9 +120,14 @@ Arma Machadinha("Loki", 0.1,18,"Forca");
 return Katana;
 }
 
-void Personagem::Inserir_cinto(Item item, int posicao){
-    cinto_personagem.Colocar_item(item, posicao);
-}
+void Personagem::Inserir_cinto(Item& item, int posicao){
+     if (cinto_personagem.Colocar_item(item, posicao) == 0) {
+            std::cout << item.get_nome() << " foi adicionado ao cinto!" << std::endl;
+        } else {
+            std::cout << "Cinto cheio ou não foi possível adicionar o item." << std::endl;
+        }
+    };
+
 
 void Personagem::usar_item_cinto(int posicao){
     cinto_personagem.usar_item(posicao);
@@ -131,4 +136,6 @@ void Personagem::usar_item_cinto(int posicao){
 void Personagem::mostrar_cinto(){
     cinto_personagem.mostrar_itens();
 }
+
+
 #endif

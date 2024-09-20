@@ -20,7 +20,8 @@ int main() {
 
     // Instanciando o cinto e o heroi
     Personagem heroi("Duzzi");
-    Cinto cinto;
+
+
 
     // Criando alguns itens de exemplo
     Arma Katana("Nikana", 1.5f, 20.0f, "Destreza");
@@ -29,7 +30,7 @@ int main() {
     // Colocar herói no mapa
     Mapa mapa;
     mapa.colocar_heroi(0, 0);
-    mapa.mostrar_mapa(cinto);
+    mapa.mostrar_mapa(heroi);
     
     char movimento;
     while (true) {
@@ -40,7 +41,7 @@ int main() {
             break; 
         }
 
-        mapa.mover_heroi(movimento, heroi, cinto);
+        mapa.mover_heroi(movimento, heroi);
         
         // Sorteia se um item será encontrado
         int sorteio = rand() % 3; // Pode resultar em 0 (nada), 1 (item), ou 2 (combate)
@@ -48,23 +49,13 @@ int main() {
         if (sorteio == 1) { // Encontrou item
             cout << "Você encontrou um item!" << endl;
 
-            // Podemos adicionar itens ao cinto
-            if (!cinto.Cinto_cheio()) {
-                cinto.Colocar_item(Katana, cinto.espacos_disponiveis());
-                cout << "Você adicionou " << Katana.get_nome() << " ao cinto!" << endl;
-            } else {
-                cout << "Cinto cheio! Não foi possível pegar o item." << endl;
-            }
-        } else if (sorteio == 2) {
-            cout << "Você entrou em combate!" << endl;
-            // Aqui você pode chamar a função de combate, se desejar
-        } else {
-            cout << "Nada aconteceu..." << endl;
-        }
+
         
         system("cls"); // Limpar a tela do console
-        mapa.mostrar_mapa(cinto);
+        mapa.mostrar_mapa(heroi);
     }
 
+    
+    }
     return 0;
 }
