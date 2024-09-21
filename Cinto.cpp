@@ -99,11 +99,11 @@ int Cinto::usar_pocao(Pocao &pocao){
     int posicao;
     
     for(int i = 1; i <= count; i++){
-        std::cout << Entry[i].get_tipo_do_item() << std::endl;
         if(Entry[i].get_tipo_do_item() == "cura" || Entry[i].get_tipo_do_item() == "mana"){
             std::cout << i << ": " << Entry[i].get_nome() << std::endl;
         }
     }
+
     do{
         std::cout << "Escolha a posição do item que deseja usar (1,2,3..) : " << std::endl;
         std::cin >> posicao;
@@ -118,6 +118,7 @@ int Cinto::usar_pocao(Pocao &pocao){
     } while(Entry[posicao].get_tipo_do_item() == "Pocao");
 
     std::cout << "Utilizando o item " << Entry[posicao].get_nome() << std::endl;
+    Remover_item(pocao, posicao);
     pocao = dynamic_cast<Pocao&>(Entry[posicao]);
     return 0;
     
