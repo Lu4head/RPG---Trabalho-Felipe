@@ -21,7 +21,7 @@ void combate(Personagem &heroi, Monstro &mob){
                 break;
             case 2:
                 std::cout << "Utilizando poção" << std::endl;
-                heroi.usa_pocao(pocao_de_cura_forte);
+                heroi.usa_pocao();
                 std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " vida!" << std::endl;
                 break;
             default:

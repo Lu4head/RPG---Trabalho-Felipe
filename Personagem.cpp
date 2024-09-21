@@ -82,18 +82,10 @@ void Personagem::aumenta_nivel() {
         mana_Total = mana_Total * multiplicador_mana; // aumenta a mana max
         vida_Atual = vida_Total; // enche a vida
         mana_Atual = mana_Total; // enche a mana
+        cinto_personagem.definir_capacidade(5); // aumenta o peso maximo que o cinto pode carregar
     }
 };
 
-void Personagem::usa_pocao(Pocao &pc) {
-    if (pc.get_tipo_do_item() == "Cura") {
-        float vida_antes = vida_Atual; 
-        cura(pc.get_cura());
-        std::cout << "Você usou uma: " << pc.get_nome() << " e recuperou: " << vida_Atual - vida_antes << " pontos de vida" << std::endl;
-    } else {
-        std::cout << "A poção não tem efeito de cura!" << std::endl;
-    }
-}
 
 void Personagem::cura(float x) {
     if (vida_Atual + x < vida_Total) {
@@ -112,11 +104,18 @@ void Personagem::recupera_mana(float x){
     }
 }
 
+void Personagem::usa_pocao() {
+    Pocao pc = Pocao("Pocao", 0, "cura", 0, 0);
+    cinto_personagem.usar_pocao(pc);
+    cura(pc.get_cura());
+    recupera_mana(pc.get_mana());
+}
+
 Arma Personagem::arma_equipada(){
-Arma Katana("Nikana", 1.5, 20,"Destreza");
-Arma Adaga("Kriss", 0.5, 12, "Destreza");
-Arma Manopla("Atlas", 3.0, 38,"Forca"); 
-Arma Machadinha("Loki", 0.1,18,"Forca");
+Arma Katana("Nikana", 1.5,"Destreza", 20);
+Arma Adaga("Kriss", 0.5, "Destreza", 12);
+Arma Manopla("Atlas", 3.0,"Forca", 38); 
+Arma Machadinha("Loki", 0.1,"Forca",18);
 return Katana;
 }
 
@@ -130,7 +129,7 @@ void Personagem::Inserir_cinto(Item& item, int posicao){
 
 
 void Personagem::usar_item_cinto(int posicao){
-    cinto_personagem.usar_item(posicao);
+    // cinto_personagem.usar_pocao();
 }
 
 void Personagem::mostrar_cinto(){

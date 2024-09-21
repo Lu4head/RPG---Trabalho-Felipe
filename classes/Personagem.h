@@ -12,7 +12,7 @@ class Personagem{
         ~Personagem();
         void recebe_dano(float x);
         int gasta_mana(float x);
-        void usa_pocao(Pocao &pc);
+        void usa_pocao();
         void cura(float x);
         void recupera_mana(float x);
         void transfere_para_mochila(Item &x, int p);
@@ -24,7 +24,6 @@ class Personagem{
         void Inserir_cinto(Item& item, int posicao);
         void usar_item_cinto(int posicao);
         void mostrar_cinto(); 
-        Mochila mochila_personagem;
         
     private:
         std::string nome;
@@ -35,6 +34,7 @@ class Personagem{
         int nivel;
         int exp_total;
         int exp_atual;  
-        Cinto cinto_personagem;  
+        Cinto cinto_personagem; 
+        Mochila mochila_personagem; 
 
 };
