@@ -180,7 +180,6 @@ int Cinto::equipar_arma(Arma* &arma_equipada){
     } while (Entry[posicao]->get_tipo_do_item() != "Arma");
 
     // Equipar a arma
-    std::cout << "Agora você está equipado com " << arma_equipada->get_nome() << "!" << std::endl;
     arma_equipada = dynamic_cast<Arma*>(Entry[posicao]);
     Item* item_temp;
     Remover_item(item_temp,posicao);
