@@ -8,7 +8,7 @@ class Pocao: public Item{
         float get_cura();
         float get_mana();
         void usar();
-
+        Pocao();
     private:
         float cura;
         float mana;

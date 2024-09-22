@@ -127,7 +127,7 @@ void Mapa::encotrar_itens(Personagem& heroi) {
         int posicao = 0;
         std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
         std::cin >> posicao;
-        heroi.Inserir_cinto(*item_encontrado, posicao);  // Agora o herói guarda o item no cinto
+        heroi.Inserir_cinto(item_encontrado, posicao);  // Agora o herói guarda o item no cinto
     } else {
         std::cout << "Você deixou o(a) " << item_encontrado->get_nome() << " para trás." << std::endl;
     }

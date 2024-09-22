@@ -37,29 +37,7 @@ int Personagem::gasta_mana(float x){
     }
 };
 
-void Personagem::transfere_para_mochila(Item &x, int p){
-    if(cinto_personagem.Remover_item(x, p) != 0){
-        std::cout << "Não foi possivel transferir o item" << std::endl;
-        return;
-    }
-    if(mochila_personagem.ColocarItem(x) != 0){
-        cinto_personagem.Colocar_item(x, p);
-        std::cout << "Não foi possivel trasferir o item" << std::endl;
-        return;
-    }
-};
 
-void Personagem::transfere_para_cinto(Item &x, int p){
-    if(mochila_personagem.RetirarItem(x) != 0){
-        std::cout << "Não foi possivel transferir o item" << std::endl;
-        return;
-    }
-    if(cinto_personagem.Colocar_item(x,p) != 0){
-        mochila_personagem.ColocarItem(x);
-        std::cout << "Não foi possivel trasferir o item" << std::endl;
-        return;
-    }
-}
 
 float Personagem::exibe_vida(){
     return vida_Atual;
@@ -105,27 +83,22 @@ void Personagem::recupera_mana(float x){
 }
 
 void Personagem::usa_pocao() {
-    Pocao pc = Pocao("Pocao", 0, "cura", 0, 0);
-    cinto_personagem.usar_pocao(pc);
-    cura(pc.get_cura());
-    recupera_mana(pc.get_mana());
+    Pocao* pocao = nullptr;
+    cinto_personagem.usar_pocao(pocao);
+    std::cout << pocao->get_cura();
+    cura(pocao->get_cura());
+    recupera_mana(pocao->get_cura());
 }
 
-Arma Personagem::arma_equipada(){
-Arma Katana("Nikana", 1.5,"Destreza", 20);
-Arma Adaga("Kriss", 0.5, "Destreza", 12);
-Arma Manopla("Atlas", 3.0,"Forca", 38); 
-Arma Machadinha("Loki", 0.1,"Forca",18);
-return Katana;
-}
 
-void Personagem::Inserir_cinto(Item& item, int posicao){
+void Personagem::Inserir_cinto(Item* item, int posicao){
      if (cinto_personagem.Colocar_item(item, posicao) == 0) {
-            std::cout << item.get_nome() << " foi adicionado ao cinto!" << std::endl;
+            std::cout << item->get_nome() << " foi adicionado ao cinto!" << std::endl;
         } else {
             std::cout << "Cinto cheio ou não foi possível adicionar o item." << std::endl;
         }
     };
+
 
 
 void Personagem::usar_item_cinto(int posicao){
@@ -134,6 +107,20 @@ void Personagem::usar_item_cinto(int posicao){
 
 void Personagem::mostrar_cinto(){
     cinto_personagem.mostrar_itens();
+}
+
+void Personagem::Equipar_arma(Arma* arma){
+    arma_equipada = *arma;
+}
+
+void Personagem::trocar_arma(){
+    Arma* arma_temp = nullptr;
+    cinto_personagem.equipar_arma(arma_temp);
+    Equipar_arma(arma_temp);
+}
+
+Arma Personagem::mostrar_arma_equipada(){
+    return arma_equipada;
 }
 
 

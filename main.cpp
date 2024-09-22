@@ -26,6 +26,7 @@ int main() {
     // Criando alguns itens de exemplo
     Arma Katana("Nikana", 1.5f, "Destreza", 20.0f);
     Pocao pocao_de_cura_fraca("Pocao de cura fraca", 1.0, "Cura", 15, 0);
+    heroi.Equipar_arma(&Katana);
 
     // Colocar herói no mapa
     Mapa mapa;

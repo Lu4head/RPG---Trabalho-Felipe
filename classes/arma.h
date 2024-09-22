@@ -5,6 +5,7 @@
 class Arma: public Item{
     public:
         Arma(std::string nome_item,float peso_item, std::string tipo_do_item, float dano);
+        Arma();
         float get_dano();
         std::string get_tipo();
 

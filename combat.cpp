@@ -16,14 +16,18 @@ void combate(Personagem &heroi, Monstro &mob){
         switch(escolha) {
             case 1:
                 std::cout << heroi.exibe_nome() << " atacou " << mob.exibe_nome() << std::endl;
-                mob.recebe_dano(heroi.arma_equipada().get_dano());
-                std::cout << heroi.exibe_nome() << "causou um dano de: " << heroi.arma_equipada().get_dano() << " O monstrou ficou com: " << mob.exibe_vida() << "de vida" << std::endl;
+                mob.recebe_dano(heroi.mostrar_arma_equipada().get_dano());
+                std::cout << heroi.exibe_nome() << "causou um dano de: " << heroi.mostrar_arma_equipada().get_dano() << " O monstrou ficou com: " << mob.exibe_vida() << "de vida" << std::endl;
                 break;
             case 2:
                 std::cout << "Utilizando poção" << std::endl;
                 heroi.usa_pocao();
                 std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " vida!" << std::endl;
                 break;
+            case 3:
+                std::cout << "Trocando arma" << std::endl;
+                heroi.trocar_arma();
+                std::cout << "Arma nova: " << heroi.mostrar_arma_equipada().get_nome() << " - " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
             default:
                 std::cout << "Escolha invalida" << std::endl;
                 continue;

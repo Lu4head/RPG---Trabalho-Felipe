@@ -5,7 +5,9 @@
 #define POCAO_H
 
 Pocao::Pocao(std::string nome_item, float peso_item, std::string tipo_do_item, float cura, float mana) : Item(nome_item, peso_item, tipo_do_item), cura(cura), mana(mana){ };
-
+Pocao::Pocao(){
+    
+}
 float Pocao::get_cura(){
     return cura;
 }
