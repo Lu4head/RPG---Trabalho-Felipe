@@ -13,6 +13,7 @@ class Mapa {
         void mostrar_mapa(Personagem& heroi);
         void mover_heroi(char x, Personagem& heroi);
         void encotrar_itens(Personagem &heroi);
+        void encontrar_monstros(Personagem& heroi);
     private:
         char tamanho_mapa[mapa_largura][mapa_altura]; // Matriz que representa o mapa
         int posicao_x, posicao_y; // posicao do heroi 

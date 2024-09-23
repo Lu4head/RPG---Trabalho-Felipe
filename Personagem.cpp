@@ -123,5 +123,17 @@ Arma Personagem::mostrar_arma_equipada(){
     return arma_equipada;
 }
 
+void Personagem::ganha_xp(int xp) {
+    exp_atual += xp;
+    while (exp_atual >= exp_total) {
+        aumenta_nivel();  // Função que sobe o nível
+        std::cout << "Parabéns! " << exibe_nome() << " subiu para o nível " << nivel << std::endl;
+    }
+}
+
+int Personagem::get_nivel(){
+    return nivel;
+}
+
 
 #endif

@@ -25,7 +25,9 @@ class Personagem{
         void trocar_arma();
         void Inserir_cinto(Item* item, int posicao);
         void usar_item_cinto(int posicao);
-        void mostrar_cinto(); 
+        void mostrar_cinto();   
+        void ganha_xp(int quantidade);
+        int get_nivel();
         
     private:
         std::string nome;

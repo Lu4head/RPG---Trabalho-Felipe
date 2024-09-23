@@ -134,21 +134,42 @@ void Mapa::encotrar_itens(Personagem& heroi) {
 }
 
 
+void Mapa::encontrar_monstros(Personagem& heroi){
+    Monstro* monstros[] = {
+        &Orgro, &Elfo_da_floresta, &Soldado_do_forte, &Mago_de_luz
+    };
+
+    // Sorteando monstro apropriado ao nível do herói
+    Monstro* monstro_sorteado = nullptr;
+    int nivel_heroi = heroi.get_nivel(); // Supondo que Personagem tenha um método get_nivel()
+    int tamanho_monstros = sizeof(monstros) / sizeof(monstros[0]);
+
+    srand(time(0));
+
+    do {
+        int indice = rand() % tamanho_monstros; // Sorteia um índice
+        monstro_sorteado = monstros[indice];
+    } while (monstro_sorteado->get_nivel() > nivel_heroi + 1); // Garante que o nível do monstro não seja muito alto
+    
+    Monstro mob = *monstro_sorteado; 
+    std::cout << "Um " << monstro_sorteado->exibe_nome() << " de nível " << monstro_sorteado->get_nivel() << " apareceu!" << std::endl;
+    combate(heroi, mob); // Inicia o combate com o monstro sorteado
+}
+
 
 
 void Mapa::eventos(Personagem& heroi) {
     int evento = rand() % 3; // para gerar um numero entre 0 e 2
     
     // Inicializar Monstro com valores de exemplo
-    Monstro mob("Goblin", 50, 30, 5, 10);
+
 
     switch (evento) {
         case 0:
             std::cout << "Um pouco de Paz" << std::endl; // quando nada acontece
             break;
         case 1:
-            std::cout << "Um inimigo apareceu!" << std::endl; // Implementar a lógica do combate - puxar de outro arquivo
-            combate(heroi, mob);
+            encontrar_monstros(heroi);
             break;
         case 2:
             std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl; // Implementar a lógica de achar item - puxar de outro arquivo

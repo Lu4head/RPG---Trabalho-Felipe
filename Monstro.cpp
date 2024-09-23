@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 
-Monstro::Monstro(std::string nome, float vida_total, float mana_total, float dano_fisico, float dano_magico) 
-    : nome(nome), vida_total(vida_total),vida_atual(vida_total),mana_total(mana_total), mana_atual(mana_total),dano_fisico(dano_fisico), dano_magico(dano_magico), nivel(1){
+Monstro::Monstro(std::string nome, float vida_total, float mana_total, float dano_fisico, float dano_magico, int nivel) 
+    : nome(nome), vida_total(vida_total * nivel),vida_atual(vida_total),mana_total(mana_total * nivel), mana_atual(mana_total),dano_fisico(dano_fisico * nivel), dano_magico(dano_magico * nivel), nivel(nivel){
     }
 
 
@@ -38,3 +38,12 @@ std::string Monstro::exibe_nome(){
  float Monstro::aplica_dano_magico(){
    return dano_magico;
  }
+
+int Monstro::get_nivel(){
+   return nivel;
+}
+
+// Calcula a recompensa de XP com base no nível do monstro
+int Monstro::get_recompensa_xp(){
+   return 20 + (nivel * 10); // Exemplo: base de 20 XP, aumentando 10 XP por nível
+}
