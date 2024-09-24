@@ -19,25 +19,20 @@ int main() {
     // Inicializa o gerador de números aleatórios
     srand(static_cast<unsigned int>(time(0)));
 
-    Interface interface_jogo;
-
+    // Variáveis auxiliares para inicização do personagem
     std::string nome_personagem = "";
-    std::string arma_inicial = "";
+    Arma arma_inicial;
 
-    interface_jogo.creditos();
-    interface_jogo.abertura();
-    interface_jogo.personagem(nome_personagem);
+    // Interface inicial
+    interface_creditos();
+    interface_abertura();
+    interface_personagem(nome_personagem);
 
-    Personagem heroi(nome_personagem);
+    Personagem heroi(nome_personagem); // Instancia o personagem heroi
     
-    interface_jogo.EscolherArmaInicial(nome_personagem, arma_inicial);
-    // Instanciando o cinto e o heroi
-    cout << "Arma inicial = " << arma_inicial << endl;
+    interface_arma_inicial(nome_personagem, arma_inicial);
 
-
-    // Criando alguns itens de exemplo
-    Arma Katana("Nikana", 1.5f, "Destreza", 20.0f,1);
-    heroi.Equipar_arma(&Katana);
+    heroi.Equipar_arma(&arma_inicial); // Equipa a arma inicial escolhida no heroi
 
     // Colocar herói no mapa
     Mapa mapa;

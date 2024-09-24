@@ -27,6 +27,8 @@ Pocao pocao_mana_pequena("Poção de Mana Pequena", 0.3f, "Pocao", 0,30.0f ,1); 
 Pocao pocao_mana_grande("Poção de Mana Grande", 0.8f, "Pocao", 0, 100.0f,3);  // Nível 3
 
 Arma espada_curta("Espada Curta", 5.0f, "Arma", 15.0f, 1);    // Arma de nível 1
+Arma adaga("Adaga", 2.0f, "Arma", 10.0f, 1);    // Arma de nível 1
+Arma varinha_quebrada("Varinha Quebrada", 1.0f, "Arma", 15.0f, 1);    // Arma de nível 1
 Arma machado_guerreiro("Machado de Guerreiro", 10.0f, "Arma", 25.0f, 2); // Arma de nível 2
 Arma espada_longa("Espada Longa", 8.0f, "Arma", 40.0f, 4);    // Arma de nível 4
 Arma arco_elfico("Arco Élfico", 3.5f, "Arma", 35.0f, 3);        // Arma de nível 3
@@ -34,6 +36,10 @@ Arma cajado_arcano("Cajado Arcano", 2.0f, "Arma", 60.0f, 5);  // Arma de nível 
 
 
 // Itens de nível 1
+Arma* armas_inciais[] = {
+    &espada_curta, &adaga, &varinha_quebrada
+};
+
 Item* itens_nivel_1[] = {
     &espada_curta, &pocao_vida_pequena, &pocao_mana_pequena
 };

@@ -7,7 +7,7 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-void Interface::creditos() {
+void interface_creditos() {
 	std::cout << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
@@ -129,7 +129,7 @@ void Interface::creditos() {
 	system("cls");
 };
 
-void Interface::abertura() {
+void interface_abertura() {
 	std::cout << R"(
 ========================================================================================================================
 |||				      )\ __\     _____                                                             |||
@@ -160,7 +160,7 @@ void Interface::abertura() {
 
 };
 
-void Interface::personagem(std::string& name) {
+void interface_personagem(std::string& name) {
 	std::cout << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
@@ -170,9 +170,13 @@ void Interface::personagem(std::string& name) {
 |||                          ..@@@@@//**@(                                                                           |||
 |||                        @@(((((((((@@@@@@@                                                                        |||
 |||                        @@(((((((((@@***((@@                                                                      |||
-|||                       #@**(((/.      (((  @@)" << "\033[5m" << R"(                  ESCOLHA O NOME DE SEU HEROI...)" << "\033[0m" << R"(                     |||
+|||                       #@**(((/.      (((  @@)" 
+<< "\033[5m" <<
+R"(                  ESCOLHA O NOME DE SEU HEROI...)" << "\033[0m" << 
+R"(                     |||
 |||                       (@**((..   @@@@./@  @@                                                                     |||
-|||                        @@((...      .  ..@@                                                                      ||||||                         @((...      .  ..@                                                                       |||
+|||                        @@((...      .  ..@@                                                                      |||
+|||                         @((...      .  ..@                                                                       |||
 |||                    @@@@***@@(/.&@@@@@@&.@@@@@,                                                                   |||
 |||                  @@((*******@&,,,,,,,,/@****(&@                                                                  |||
 |||                #@(((((**@@************/@**(((((@@                                                                |||
@@ -185,19 +189,23 @@ void Interface::personagem(std::string& name) {
 |||               @@@@@@@@@@@@@@@%     @@@@@@@@@@@@@@@@                                                              |||
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
-	std::cin >> name;
+	std::cout << "Nome: ";
+    std::cin >> name;
 	system("cls");
 };
 
-void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_anterior){
+void Exibe_Espada_Curta(std::string name, int indice, int indice_anterior){
     if(indice_anterior == 2){
+        system("cls");
         std::cout << "transição varinha -> espada" << std::endl;
     }
     else if(indice_anterior == 1){
+        system("cls");
         std::cout << "                                " << "  \033[1;33m" << name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
-|||                                                                                                                  ||||||                                                                                                                  |||
+|||                                                                                                                  |||
+|||                                                                                                                  |||
 |||                                                                                                                  |||
 |||                               @@@@@@                                                                             |||
 |||                          ..@@@@@//**@(                                                                           |||
@@ -221,7 +229,7 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
 
-			for (int i = 0; i < 10000000 * 10; ++i) { // Aumenta o número de iterações para "simular" o tempo
+			for (int i = 0; i < 10000000 ; ++i) { // Aumenta o número de iterações para "simular" o tempo
 				// Loop vazio, apenas para criar um atraso
 			};
 			system("cls");
@@ -229,7 +237,8 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
 			std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
-|||                                                                                                                  ||||||                                                                                                                  |||
+|||                                                                                                                  |||
+|||                                                                                                                  |||
 |||                                                                                                                  |||
 |||                               @@@@@@                                                                             |||
 |||                          ..@@@@@//**@(                                                                           |||
@@ -257,7 +266,8 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
 			std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
-|||                                                                                                                  ||||||                                                                                                                  |||
+|||                                                                                                                  |||
+|||                                                                                                                  |||
 |||                                                                                                                  |||
 |||                               @@@@@@                                                                             |||
 |||                          ..@@@@@//**@(                                                                           |||
@@ -281,7 +291,7 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
 
-			for (int i = 0; i < 10000000 * 10; ++i) { // Aumenta o número de iterações para "simular" o tempo
+			for (int i = 0; i < 10000000 ; ++i) { // Aumenta o número de iterações para "simular" o tempo
 				// Loop vazio, apenas para criar um atraso
 			};
 			system("cls");
@@ -290,7 +300,8 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
     std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
-|||                                                                                                                  ||||||                                                                                                                  |||
+|||                                                                                                                  |||
+|||                                                                                                                  |||
 |||                                                                                                                  |||
 |||                               @@@@@@                                                                             |||
 |||                          ..@@@@@//**@(                                                                           |||
@@ -316,14 +327,16 @@ void Interface::Exibe_Espada_Curta(std::string name, int indice, int indice_ante
 
 }
 
-
-void Interface::Exibe_Adaga(std::string name, int indice, int indice_anterior) {
+void Exibe_Adaga(std::string name, int indice, int indice_anterior) {
 
     if(indice_anterior == 0){
+        system("cls");
         std::cout << "transição espada -> adaga" << std::endl;
     }
     else if(indice_anterior == 2){
+        system("cls");
         std::cout << "transição varinha -> adaga" << std::endl;
+        system("cls");
     }
 
     std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
@@ -354,13 +367,16 @@ void Interface::Exibe_Adaga(std::string name, int indice, int indice_anterior) {
 ========================================================================================================================)" << std::endl;
 }
 
-void Interface::Exibe_Varinha(std::string name, int indice, int indice_anterior) {
+void Exibe_Varinha(std::string name, int indice, int indice_anterior) {
 
     if(indice_anterior == 0){
+        system("cls");
         std::cout << "transição espada -> varinha" << std::endl;
     }
     else if(indice_anterior == 1){
+        system("cls");
         std::cout << "transição adaga -> varinha" << std::endl;
+        system("cls");
     }
 
     std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
@@ -392,18 +408,18 @@ void Interface::Exibe_Varinha(std::string name, int indice, int indice_anterior)
 
 }
 
-
-void Interface::EscolherArmaInicial(std::string name, std::string& escolhaarma) {
+void interface_arma_inicial(std::string name, Arma &escolha_arma) {
 	char escolha;
-	char arma;
     int indice = 0;
     int indice_anterior = indice;
-    std::string armas[] = {"Espada Curta", "Adaga", "Varinha Quebrada"};
-    std::string escolhaarma = armas[0];
+    escolha_arma = *armas_inciais[0];
+
+    Exibe_Espada_Curta(name, indice, indice_anterior);
 
 	do {
 		escolha = _getch();
         indice_anterior = indice;
+
 		switch (escolha) {
             case 'd':
                 if(indice < 2){
@@ -420,23 +436,32 @@ void Interface::EscolherArmaInicial(std::string name, std::string& escolhaarma) 
                 }
                 break;
             default:
+                system("cls");
                 std::cout << "Tecla inválida!" << std::endl;
                 break;
             }
-        escolhaarma = armas[indice];
-        if(indice == 0){
+
+        escolha_arma = *armas_inciais[indice];
+
+        if( indice == 0 ){
             Exibe_Espada_Curta(name, indice, indice_anterior);
-        } else if ( indice == 1){
+        } 
+
+        else if ( indice == 1 ){
             Exibe_Adaga(name, indice, indice_anterior);
-        } else if (indice == 2){
+        } 
+
+        else if ( indice == 2 ){
             Exibe_Varinha(name, indice, indice_anterior);
         }
-    } while(  escolha != '13' );
+
+    } while(  escolha != 13 );
 
 			std::cout << "                                " << "  \033[1;33m" << name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
-|||                                                                                                                  ||||||                                                                                                                  |||
+|||                                                                                                                  |||
+|||                                                                                                                  |||
 |||                                                                                                                  |||
 |||                               @@@@@@                                                                             |||
 |||                          ..@@@@@//**@(                                                                           |||
@@ -467,7 +492,6 @@ void Interface::EscolherArmaInicial(std::string name, std::string& escolhaarma) 
 			system("cls");
 }
 
-
 // 			std::cout << "                                " << "  \033[1;33m" << name << "\033[0m" << R"(
 // ========================================================================================================================
 // |||                                                                                                                  |||
@@ -494,17 +518,6 @@ void Interface::EscolherArmaInicial(std::string name, std::string& escolhaarma) 
 // |||          )" << "\033[5m" << R"(   PARA ESCOLHER SUA ARMA, PRESSIONE A ou D...)" << "\033[0m" << R"(                                                          |||
 // |||                                                                                                                  |||
 // ========================================================================================================================)" << std::endl;
-
-
-
-// 			for (int i = 0; i < 1000000 * 10; ++i) { // Aumenta o número de iterações para "simular" o tempo
-// 				// Loop vazio, apenas para criar um atraso
-// 			};
-// 			system("cls");
-
-
-
-
 
 // 			std::cout << "                                " << "  \033[1;33m" << name << "\033[0m" << R"(
 // ========================================================================================================================
@@ -533,30 +546,7 @@ void Interface::EscolherArmaInicial(std::string name, std::string& escolhaarma) 
 // |||                                                                                                                  |||
 // ========================================================================================================================)" << endl;
 
-
-
-
-// 			break;
-// 		case 'a':
-// 			for (int i = 0; i < 10000000 * 10; ++i) { // Aumenta o número de iterações para "simular" o tempo
-// 				// Loop vazio, apenas para criar um atraso
-// 			};
-// 			system("cls");
-
-			
-			
-// 			break;
-// 		}
-// 	} while (escolha == 'a' || escolha == 'd');
-
-// 	_getch();
-// 	system("cls");
-
-// };
-
-
-
-void Interface::Combate(std::string name, std::string& vida, std::string& WhoWon) {
+void interface_combate(std::string name, std::string& vida, std::string& WhoWon) {
 	std::cout << R"(
 ========================================================================================================================
 |||				                                     )\ __\     _____                                |||

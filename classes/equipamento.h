@@ -4,6 +4,7 @@
 #include "Arma.h"
 #include "Pocao.h"
 
+extern Arma* armas_inciais[];
 extern Item* itens_nivel_1[];
 extern Item* itens_nivel_2[];
 extern Item* itens_nivel_3[];
