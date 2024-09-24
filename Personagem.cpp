@@ -135,5 +135,28 @@ int Personagem::get_nivel(){
     return nivel;
 }
 
+void Personagem::transfere_para_mochila(Item *x, int p){
+    if(cinto_personagem.Remover_item(x, p) != 0){
+        std::cout << "Não foi possivel transferir o item" << std::endl;
+        return;
+    }
+    if(mochila_personagem.ColocarItem(x) != 0){
+        cinto_personagem.Colocar_item(x, p);
+        std::cout << "Não foi possivel trasferir o item" << std::endl;
+        return;
+    }
+};
+
+void Personagem::transfere_para_cinto(Item* &x, int p){
+    if(mochila_personagem.RetirarItem(x) != 0){
+        std::cout << "Não foi possivel transferir o item" << std::endl;
+        return;
+    }
+    if(cinto_personagem.Colocar_item(x,p) != 0){
+        mochila_personagem.ColocarItem(x);
+        std::cout << "Não foi possivel trasferir o item" << std::endl;
+        return;
+    }
+}
 
 #endif

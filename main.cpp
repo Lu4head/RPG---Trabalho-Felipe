@@ -4,6 +4,7 @@
 #include ".\classes\Arma.h"
 #include ".\classes\Pocao.h"
 #include ".\classes\Item.h"
+#include ".\classes\Interface.h"
 #include <iostream>
 #include <conio.h> // função getch()
 #include <cstdlib> // funções system() e rand()
@@ -18,9 +19,20 @@ int main() {
     // Inicializa o gerador de números aleatórios
     srand(static_cast<unsigned int>(time(0)));
 
-    // Instanciando o cinto e o heroi
-    Personagem heroi("Duzzi");
+    Interface interface_jogo;
 
+    std::string nome_personagem = "";
+    std::string arma_inicial = "";
+
+    interface_jogo.creditos();
+    interface_jogo.abertura();
+    interface_jogo.personagem(nome_personagem);
+
+    Personagem heroi(nome_personagem);
+    
+    interface_jogo.EscolherArmaInicial(nome_personagem, arma_inicial);
+    // Instanciando o cinto e o heroi
+    cout << "Arma inicial = " << arma_inicial << endl;
 
 
     // Criando alguns itens de exemplo

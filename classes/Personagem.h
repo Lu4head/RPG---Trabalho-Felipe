@@ -16,7 +16,7 @@ class Personagem{
         void cura(float x);
         void recupera_mana(float x);
         void transfere_para_mochila(Item* x, int p);
-        void transfere_para_cinto(Item& x, int p);
+        void transfere_para_cinto(Item* &x, int p);
         float exibe_vida();
         std::string exibe_nome();
         void aumenta_nivel();

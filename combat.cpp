@@ -16,6 +16,7 @@ void combate(Personagem &heroi, Monstro &mob) {
         switch (escolha) {
             case 1:
                 std::cout << heroi.exibe_nome() << " atacou " << mob.exibe_nome() << std::endl;
+                int dano = heroi.mostrar_arma_equipada().get_dano();
                 mob.recebe_dano(heroi.mostrar_arma_equipada().get_dano());
                 std::cout << heroi.exibe_nome() << " causou um dano de: " << heroi.mostrar_arma_equipada().get_dano() << ". O monstro ficou com: " << mob.exibe_vida() << " de vida" << std::endl;
                 break;

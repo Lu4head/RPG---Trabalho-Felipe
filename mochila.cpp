@@ -13,7 +13,7 @@ bool Mochila::MochilaVazia() {
     return (top == NULL);
 };
 
-int Mochila::ColocarItem(Item x) {
+int Mochila::ColocarItem(Item* x) {
     MochilaPointer p; // criamos um ponteiro novo, p, que aponta para uma struct MochilaNode
     p = new MochilaNode; // alocamos esse "p" de forma dinamica
     if (p == NULL) { // verificamos se ainda temos memoria para alocar
@@ -26,7 +26,7 @@ int Mochila::ColocarItem(Item x) {
     return 0;
 };
 
-int Mochila::RetirarItem(Item& x) {
+int Mochila::RetirarItem(Item* &x) {
     MochilaPointer p;
     if (MochilaVazia()) {
         std::cout << "Mochila vazia!" << std::endl;
@@ -54,7 +54,7 @@ int Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), porem
     return 0;
 };
 
-int Mochila::ItemMochila(Item& x) {
+int Mochila::ItemMochila(Item* &x) {
     if (top == NULL) {
         std::cout << "Mochila Vazia!!" << std::endl;
         return 1;
@@ -64,7 +64,7 @@ int Mochila::ItemMochila(Item& x) {
 };
 
 Mochila::~Mochila() {
-    Item x;
+    Item* x;
     while (!MochilaVazia()) {
         RetirarItem(x);
     }
