@@ -36,7 +36,7 @@ int main() {
 
 
     // Criando alguns itens de exemplo
-    Arma Katana("Nikana", 1.5f, "Destreza", 20.0f);
+    Arma Katana("Nikana", 1.5f, "Destreza", 20.0f,1);
     heroi.Equipar_arma(&Katana);
 
     // Colocar herói no mapa
