@@ -19,6 +19,7 @@ class Cinto{
         int Remover_item(Item* &item_retorno, int posicao);
 
         // Operações Extras
+        int Trocar_posicao(int p1, int p2);
         int Esvaziar_cinto();
         int espacos_disponiveis(); // verificar se tem algum espaço disponivel 
         int mostrar_itens(); // Mostra todos os itens no cinto

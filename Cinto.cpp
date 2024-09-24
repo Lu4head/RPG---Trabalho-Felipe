@@ -56,6 +56,7 @@ int Cinto::Remover_item(Item* &item_retorno, int posicao){
         std::cout << "Cinto vazio!" << std::endl;
         return 1;
     }
+    
     if(posicao < 1 || posicao > count){
         std::cout << "Posicao Invalida!" << std::endl;
         return 3;
@@ -69,6 +70,29 @@ int Cinto::Remover_item(Item* &item_retorno, int posicao){
     count--;
     return 0;
 };
+
+int Cinto::Trocar_posicao(int p1, int p2){
+    if(Cinto_vazio()){
+        std::cout << "Cinto vazio!" << std::endl;
+        return 1;
+    }
+
+    if( count <= 1 ){
+        std::cout << "Só há 1 item no cinto, não é possivel realizar essa operação." << std::endl;
+        return 2;
+    }
+
+    if(p1 < 1 || p1 > count || p2 < 1 || p2 > count || p1 == p2){
+        std::cout << "Posicao Invalida!" << std::endl;
+        return 3;
+    }
+
+    Item* item_temp = Entry[p2];
+    Entry[p2] = Entry[p1];
+    Entry[p1] = item_temp;
+
+    return 0;
+}
 
 int Cinto::Esvaziar_cinto(){
     if(Cinto_vazio()){
@@ -86,6 +110,7 @@ int Cinto::usar_pocao(Pocao* &pocao){
         std::cout << "Sem itens no cinto!";
         return 1;;
     }
+
     
     int posicao;
     

@@ -6,6 +6,7 @@
 #include "./classes/item.h"
 #include "./classes/equipamento.h"
 #include "./classes/Personagem.h"
+#include "./classes/Interface.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -51,6 +52,8 @@ void Mapa::mostrar_mapa(Personagem& heroi) {
     }
     std::cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << std::endl;
     heroi.mostrar_cinto();
+    Item* item_itemp;
+    heroi.mostrar_item_mochila(item_itemp);
 };
 
 
@@ -108,6 +111,7 @@ void Mapa::encotrar_itens(Personagem& heroi) {
     Item** itens_sorteio = nullptr;  // Item** para apontar para um array de ponteiros para Item
     int tamanho_itens = 0;
     int nivel_heroi = heroi.get_nivel();
+    int escolha;
 
     if (nivel_heroi == 1) {
         itens_sorteio = itens_nivel_1;
@@ -131,10 +135,16 @@ void Mapa::encotrar_itens(Personagem& heroi) {
     std::cin >> opcao;
 
     if (opcao == 1) {
-        int posicao = 0;
-        std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
-        std::cin >> posicao;
-        heroi.Inserir_cinto(item_encontrado, posicao);  // Agora o herói guarda o item no cinto
+        std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
+        std::cin >> escolha;
+        if(escolha == 1){
+            int posicao = 0;
+            std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
+            std::cin >> posicao;
+            heroi.Inserir_cinto(item_encontrado, posicao);  // Agora o herói guarda o item no cinto
+        } else if ( escolha == 2){
+            heroi.inserir_item_mochila(item_encontrado);
+        }
     } else {
         std::cout << "Você deixou o(a) " << item_encontrado->get_nome() << " para trás." << std::endl;
     }
@@ -179,23 +189,23 @@ void Mapa::eventos(Personagem& heroi) {
     if (evento < 70) { // 70% de chance de encontrar um item
         encotrar_itens(heroi);
     } else if (evento < 90) { // 20% de chance de encontrar um monstro
-        encontrar_monstros(heroi);
-    } else { // fica parado
-        std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl;
         menu_parado(heroi);
+    } else { // fica parado
+        encontrar_monstros(heroi);
     }
 
     std::cout << "Aperte uma tecla para continuar" << std::endl;
     getch();
 }
 
-  
+
+
 void Mapa::menu_parado(Personagem& heroi){
     int escolha = 0;
     std::cout << "Um pouco de Paz" << std::endl;
-    std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Sair\n4 - Usar mochila" << std::endl;
+    std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Gerenciar inventario\n4 - Sair" << std::endl;
     std::cin >> escolha;
-
+    interface_descanso();
     switch(escolha){
         case 1:
             std::cout << "Trocando arma" << std::endl;
@@ -208,10 +218,58 @@ void Mapa::menu_parado(Personagem& heroi){
             std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " de vida!" << std::endl;
             break;
         case 3:
+            std::cout << "Abrindo inventario..." << std::endl;
+            gerenciar_iventario(heroi);
+        case 4:
             std::cout << "Voltando a aventura..." << std::endl;
             break;
+
     }
 
 
 }
+
+void Mapa::gerenciar_iventario(Personagem& heroi){
+    int escolha = 0;
+    
+    do{
+        int posicao1 = 0,posicao2 = 0;
+        Item* item_temp = nullptr;
+    
+        std::cout << "O que deseja fazer: \n1 - Trocar posição no cinto\n2 - Descartar item do cinto\n3 - Colocar item do cinto na mochila\n4 - Descartar item da mochila\n5 - Sair" << std::endl;
+        std::cin >> escolha;
+        interface_descanso();
+        switch(escolha){
+            case 1:
+                std::cout << "Qual item deseja trocar?" << std::endl;
+                std::cin >> posicao1;
+                std::cout << "Qual posição deseja colocar o item?" << std::endl;
+                std::cin >> posicao2;
+                std::cout << "Trocando o item de posição no cinto: " << std::endl;
+                heroi.Trocar_posicao_cinto(posicao1,posicao2);
+                break;
+            case 2:
+                std::cout << "Informe a posição que deseja remover: " << std::endl;
+                std::cin >> posicao1;
+                heroi.Remover_cinto(item_temp,posicao1);
+                break;
+            case 3:
+                std::cout << "Informe qual item será transferido para a mochila: " << std::endl;
+                std::cin >> posicao1;
+                Item* item_temp;
+                heroi.transfere_para_mochila(item_temp, posicao1);
+                break;
+            case 4:
+                std::cout << "Descartando o item da mochila" << std::endl;
+                heroi.retirar_item_mochila(item_temp);
+            case 5:
+                std::cout << "Saindo..." << std::endl;
+                break;
+            default:
+                break;
+        }
+    }while(escolha != 5);
+}
+
+
 #endif 

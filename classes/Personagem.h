@@ -24,11 +24,15 @@ class Personagem{
         Arma mostrar_arma_equipada();
         void trocar_arma();
         void Inserir_cinto(Item* item, int posicao);
+        void Remover_cinto(Item* item, int posicao);
+        void Trocar_posicao_cinto(int p1, int p2);
         void usar_item_cinto(int posicao);
         void mostrar_cinto();   
         void ganha_xp(int quantidade);
         int get_nivel();
-        
+        void retirar_item_mochila(Item* x);
+        void mostrar_item_mochila(Item* x);
+        void inserir_item_mochila(Item* x);
     private:
         std::string nome;
         float vida_Total;

@@ -97,8 +97,22 @@ void Personagem::Inserir_cinto(Item* item, int posicao){
         } else {
             std::cout << "Cinto cheio ou não foi possível adicionar o item." << std::endl;
         }
-    };
+}
 
+void Personagem::Remover_cinto(Item* item, int posicao){
+    if(cinto_personagem.Remover_item(item, posicao) == 0){
+        std::cout << item->get_nome() << " foi removido do cinto" << std::endl;
+    } else {
+        std::cout << "Não foi possivel remover item da posição indicada." << std::endl;
+    }
+}
+
+void Personagem::Trocar_posicao_cinto(int p1, int p2){
+    if(cinto_personagem.Trocar_posicao(p1, p2) == 0){
+    } else {
+        std::cout << "Não foi possivel realizar a troca." << std::endl;
+    }
+}
 
 
 void Personagem::usar_item_cinto(int posicao){
@@ -156,6 +170,28 @@ void Personagem::transfere_para_cinto(Item* &x, int p){
         mochila_personagem.ColocarItem(x);
         std::cout << "Não foi possivel trasferir o item" << std::endl;
         return;
+    }
+}
+
+void Personagem::retirar_item_mochila(Item* x){
+    if (mochila_personagem.RetirarItem(x) == 0) {
+            std::cout << x->get_nome() << "Item foi retirado da mochila!" << std::endl;
+        } else {
+            std::cout << "Mochila vazia impossivel retirar item" << std::endl;
+        }
+}
+
+void Personagem::inserir_item_mochila(Item* x){
+    if (mochila_personagem.ColocarItem(x) == 0) {
+            std::cout << x->get_nome() << "Item foi inserido da mochila!" << std::endl;
+        } else {
+            std::cout << "Não foi possivel adicionar o item à mochila" << std::endl;
+        }   
+}
+
+void Personagem::mostrar_item_mochila(Item* x){
+    if(mochila_personagem.ItemMochila(x) == 0){
+    std::cout << "Item do topo da mochilha: " << x->get_nome() << std::endl;
     }
 }
 

@@ -16,5 +16,6 @@
 	
 	void interface_arma_inicial(std::string name, Arma &escolhaarma); // Interfape para escolha da arma inicial do heroi
 	
-	// void Combate(std::string name, std::string& vida, std::string& WhoWon);
+	void interface_descanso();
     void interface_combate(std::string name, std::string& vida, std::string& WhoWon);
+
