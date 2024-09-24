@@ -4,7 +4,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-Item::Item(std::string nome_item,float peso_item, std::string tipo_do_item) : nome_item(nome_item), peso_item(peso_item), tipo_do_item(tipo_do_item) {
+Item::Item(std::string nome_item,float peso_item, std::string tipo_do_item,int nivel) : nome_item(nome_item), peso_item(peso_item), tipo_do_item(tipo_do_item),nivel(nivel) {
 }
 
 Item::Item() : nome_item("Item desconhecido"), peso_item(0.0f) {}
@@ -22,6 +22,9 @@ std::string Item::get_tipo_do_item() {
     return tipo_do_item;
 }
 
+int Item::get_nivel(){
+    return nivel;
+}
 
 
 #endif

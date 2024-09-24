@@ -105,17 +105,24 @@ void Mapa::limpar_mapa() {
 
 void Mapa::encotrar_itens(Personagem& heroi) {
     // Array fixo com todos os itens disponíveis
-    Item* itens[] = {
-        &Katana, &Adaga, &Manopla, &Machadinha,
-        &pocao_de_cura_fraca, &pocao_de_cura_media, &pocao_de_cura_forte,
-        &pocao_de_mana_fraca, &pocao_de_mana_media, &pocao_de_mana_forte
-     };
+    Item** itens_sorteio = nullptr;  // Item** para apontar para um array de ponteiros para Item
+    int tamanho_itens = 0;
+    int nivel_heroi = heroi.get_nivel();
 
-    int tamanho_itens = sizeof(itens) / sizeof(itens[0]);
+    if (nivel_heroi == 1) {
+        itens_sorteio = itens_nivel_1;
+        tamanho_itens = tamanho_itens_nivel_1;
+    } else if (nivel_heroi == 2) {
+        itens_sorteio = itens_nivel_2;
+        tamanho_itens = tamanho_itens_nivel_2;
+    } else if (nivel_heroi >= 3) {
+        itens_sorteio = itens_nivel_3;
+        tamanho_itens = tamanho_itens_nivel_3;
+    }
 
     srand(time(0));
-    int escolha = rand() % tamanho_itens;
-    Item* item_encontrado = itens[escolha];
+    int indice = rand() % tamanho_itens;
+    Item* item_encontrado = itens_sorteio[indice];
     std::cout << "Você encontrou um(a) " << item_encontrado->get_nome() << ". Deseja pegar?" << std::endl;
     std::cout << "1. Sim" << std::endl;
     std::cout << "2. Não" << std::endl;
@@ -135,21 +142,28 @@ void Mapa::encotrar_itens(Personagem& heroi) {
 
 
 void Mapa::encontrar_monstros(Personagem& heroi){
-    Monstro* monstros[] = {
-        &Orgro, &Elfo_da_floresta, &Soldado_do_forte, &Mago_de_luz
-    };
 
     // Sorteando monstro apropriado ao nível do herói
-    Monstro* monstro_sorteado = nullptr;
+    Monstro** monstros_apropriados = nullptr;
     int nivel_heroi = heroi.get_nivel(); // Supondo que Personagem tenha um método get_nivel()
-    int tamanho_monstros = sizeof(monstros) / sizeof(monstros[0]);
+    int tamanho = 0;
+
+    // Seleciona o vetor de monstros apropriado com base no nível do herói
+    if (nivel_heroi == 1) {
+        monstros_apropriados = monstro_nivel_1;
+        tamanho = tamanho_nivel_1;
+    } else if (nivel_heroi == 2) {
+        monstros_apropriados = monstro_nivel_2;
+        tamanho = tamanho_nivel_2;
+    } else {
+        std::cout << "Nenhum monstro disponível para o seu nível." << std::endl;
+        return;
+    }
 
     srand(time(0));
 
-    do {
-        int indice = rand() % tamanho_monstros; // Sorteia um índice
-        monstro_sorteado = monstros[indice];
-    } while (monstro_sorteado->get_nivel() > nivel_heroi + 1); // Garante que o nível do monstro não seja muito alto
+    int indice = rand() % tamanho; // Sorteia um índice
+    Monstro* monstro_sorteado = monstros_apropriados[indice];
     
     Monstro mob = *monstro_sorteado; 
     std::cout << "Um " << monstro_sorteado->exibe_nome() << " de nível " << monstro_sorteado->get_nivel() << " apareceu!" << std::endl;
@@ -159,25 +173,45 @@ void Mapa::encontrar_monstros(Personagem& heroi){
 
 
 void Mapa::eventos(Personagem& heroi) {
-    int evento = rand() % 3; // para gerar um numero entre 0 e 2
-    
-    // Inicializar Monstro com valores de exemplo
+    int evento = rand() % 100; // Sorteia um número entre 0 e 99
 
-
-    switch (evento) {
-        case 0:
-            std::cout << "Um pouco de Paz" << std::endl; // quando nada acontece
-            break;
-        case 1:
-            encontrar_monstros(heroi);
-            break;
-        case 2:
-            std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl; // Implementar a lógica de achar item - puxar de outro arquivo
-            encotrar_itens(heroi);
-            break;
+    // Defina a chance de cada evento
+    if (evento < 70) { // 70% de chance de encontrar um item
+        encotrar_itens(heroi);
+    } else if (evento < 90) { // 20% de chance de encontrar um monstro
+        encontrar_monstros(heroi);
+    } else { // fica parado
+        std::cout << "Você encontrou um item, pegue ou deixe para lá" << std::endl;
+        menu_parado(heroi);
     }
 
     std::cout << "Aperte uma tecla para continuar" << std::endl;
     getch();
-};
+}
+
+  
+void Mapa::menu_parado(Personagem& heroi){
+    int escolha = 0;
+    std::cout << "Um pouco de Paz" << std::endl;
+    std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Sair\n4 - Usar mochila" << std::endl;
+    std::cin >> escolha;
+
+    switch(escolha){
+        case 1:
+            std::cout << "Trocando arma" << std::endl;
+            heroi.trocar_arma();
+            std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
+            break;
+        case 2:
+            std::cout << "Utilizando poção" << std::endl;
+            heroi.usa_pocao();
+            std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " de vida!" << std::endl;
+            break;
+        case 3:
+            std::cout << "Voltando a aventura..." << std::endl;
+            break;
+    }
+
+
+}
 #endif 
