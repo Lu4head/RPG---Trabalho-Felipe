@@ -3,6 +3,8 @@
 #include "./classes/equipamento.h"
 #include <iostream>
 #include "./classes/combate.h"
+#include <fstream>
+#include <ctime>
 extern Pocao pocao_de_cura_forte;
 
 void combate(Personagem &heroi, Monstro &mob) {
@@ -61,8 +63,28 @@ void combate(Personagem &heroi, Monstro &mob) {
     // Resultado do combate
     if (heroi.exibe_vida() <= 0) {
         std::cout << heroi.exibe_nome() << " foi derrotado!" << std::endl;
+        salvar_dados_personagem(heroi);
         abort();
     } else if (mob.exibe_vida() <= 0) {
         std::cout << heroi.exibe_nome() << " venceu o combate!" << std::endl;
+    }
+}
+
+
+void salvar_dados_personagem(Personagem& p){
+    std::ofstream arquivo_saida("resultado_final.txt", std::ios::app);
+     if (arquivo_saida.is_open()) {
+        std::time_t t = std::time(nullptr); // Pega o tempo atual
+        char buffer[100];
+        std::strftime(buffer, sizeof(buffer), "%d/%m/%Y %H:%M:%S", std::localtime(&t)); // Formatar a data e hora
+
+        arquivo_saida << "Personagem: " << p.exibe_nome() << "\n";
+        arquivo_saida << "Nível final: " << p.get_nivel() << "\n";
+        arquivo_saida << "Salvo em: " << buffer << "\n";
+        arquivo_saida << "-------------------" << "\n";
+        arquivo_saida.close(); // Fecha o arquivo
+        std::cout << "Os dados do personagem foram salvos com sucesso!" << std::endl;
+    } else {
+        std::cerr << "Erro ao abrir o arquivo!" << std::endl;
     }
 }

@@ -137,7 +137,7 @@ void Mapa::encotrar_itens(Personagem& heroi) {
     if (opcao == 1) {
         std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
         std::cin >> escolha;
-        if(escolha == 1){
+        if(escolha ==  1){
             int posicao = 0;
             std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
             std::cin >> posicao;
@@ -189,9 +189,10 @@ void Mapa::eventos(Personagem& heroi) {
     if (evento < 70) { // 70% de chance de encontrar um item
         encotrar_itens(heroi);
     } else if (evento < 90) { // 20% de chance de encontrar um monstro
-        menu_parado(heroi);
-    } else { // fica parado
         encontrar_monstros(heroi);
+    } else { // fica parado
+        menu_parado(heroi);
+       ;
     }
 
     std::cout << "Aperte uma tecla para continuar" << std::endl;
