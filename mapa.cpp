@@ -126,21 +126,50 @@ void Mapa::encotrar_itens(Personagem& heroi) {
 
     srand(time(0));
     int indice = rand() % tamanho_itens;
-    Item* item_encontrado = itens_sorteio[indice];
-    std::cout << "Você encontrou um(a) " << item_encontrado->get_nome() << ". Deseja pegar?" << std::endl;
-    std::cout << "1. Sim" << std::endl;
-    std::cout << "2. Não" << std::endl;
-
     int opcao;
-    std::cin >> opcao;
+    Item* item_encontrado = itens_sorteio[indice];
+
+    while(true){
+        std::cout << "Você encontrou um(a) " << item_encontrado->get_nome() << ". Deseja pegar? \n1. Sim \n 2.Não" << std::endl;
+        std::cin >> opcao;
+        if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
+        } else {
+            break;
+        }
+    }
 
     if (opcao == 1) {
-        std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
-        std::cin >> escolha;
+
+        while(true){
+            std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
+            std::cin >> escolha;
+            if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+                std::cin.clear();
+                std::cin.ignore(32767, '\n');
+                std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
+            } else {
+                break;
+            }
+        }
+
         if(escolha ==  1){
             int posicao = 0;
-            std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
-            std::cin >> posicao;
+
+            while(true){
+                std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
+                std::cin >> posicao;
+                if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+                    std::cin.clear();
+                    std::cin.ignore(32767, '\n');
+                    std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
+                } else {
+                    break;
+                }
+            }
+
             heroi.Inserir_cinto(item_encontrado, posicao);  // Agora o herói guarda o item no cinto
         } else if ( escolha == 2){
             heroi.inserir_item_mochila(item_encontrado);
@@ -204,8 +233,19 @@ void Mapa::eventos(Personagem& heroi) {
 void Mapa::menu_parado(Personagem& heroi){
     int escolha = 0;
     std::cout << "Um pouco de Paz" << std::endl;
-    std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Gerenciar inventario\n4 - Sair" << std::endl;
-    std::cin >> escolha;
+    
+    while(true){
+        std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Gerenciar inventario\n4 - Sair" << std::endl;
+        std::cin >> escolha;
+        if(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Entrada inválida. Digite 1, 2, 3 ou 4." << std::endl;
+        } else {
+            break;
+        }
+    }
+    
     interface_descanso();
     switch(escolha){
         case 1:
@@ -237,26 +277,77 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
         int posicao1 = 0,posicao2 = 0;
         Item* item_temp = nullptr;
     
-        std::cout << "O que deseja fazer: \n1 - Trocar posição no cinto\n2 - Descartar item do cinto\n3 - Colocar item do cinto na mochila\n4 - Descartar item da mochila\n5 - Sair" << std::endl;
-        std::cin >> escolha;
+        
+        while(true){
+            std::cout << "O que deseja fazer: \n1 - Trocar posição no cinto\n2 - Descartar item do cinto\n3 - Colocar item do cinto na mochila\n4 - Descartar item da mochila\n5 - Sair" << std::endl;
+            std::cin >> escolha;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(32767, '\n');
+                std::cout << "Entrada inválida. Digite 1, 2, 3, 4 ou 5." << std::endl;
+            } else {
+                break;
+            }
+        }
+
         interface_descanso();
         switch(escolha){
             case 1:
-                std::cout << "Qual item deseja trocar?" << std::endl;
-                std::cin >> posicao1;
-                std::cout << "Qual posição deseja colocar o item?" << std::endl;
-                std::cin >> posicao2;
-                std::cout << "Trocando o item de posição no cinto: " << std::endl;
+                while(true){
+                    std::cout << "Qual item deseja trocar?" << std::endl;
+                    std::cin >> posicao1;  
+                    if(std::cin.fail()){
+                        std::cin.clear();
+                        std::cin.ignore(32767, '\n');
+                        std::cout << "Entrada inválida." << std::endl;
+                    } else {
+                        break;
+                    }
+                } 
+                
+                while(true){
+                    std::cout << "Qual posição deseja colocar o item?" << std::endl;
+                    std::cin >> posicao2;
+                    if(std::cin.fail()){
+                        std::cin.clear();
+                        std::cin.ignore(32767, '\n');
+                        std::cout << "Entrada inválida." << std::endl;
+                    } else {
+                        break;
+                    }
+                }           
+
+                std::cout << "Trocando o item de posição no cinto." << std::endl;
                 heroi.Trocar_posicao_cinto(posicao1,posicao2);
                 break;
             case 2:
-                std::cout << "Informe a posição que deseja remover: " << std::endl;
-                std::cin >> posicao1;
+                while(true){
+                    std::cout << "Informe a posição que deseja remover: " << std::endl;
+                    std::cin >> posicao1;
+                    if(std::cin.fail()){
+                        std::cin.clear();
+                        std::cin.ignore(32767, '\n');
+                        std::cout << "Entrada inválida." << std::endl;
+                    } else {
+                        break;
+                    }
+                }    
+                
                 heroi.Remover_cinto(item_temp,posicao1);
                 break;
             case 3:
-                std::cout << "Informe qual item será transferido para a mochila: " << std::endl;
-                std::cin >> posicao1;
+                while(true){
+                    std::cout << "Informe qual item será transferido para a mochila: " << std::endl;                
+                    std::cin >> posicao1;
+                    if(std::cin.fail()){
+                        std::cin.clear();
+                        std::cin.ignore(32767, '\n');
+                        std::cout << "Entrada inválida." << std::endl;
+                    } else {
+                        break;
+                    }
+                }    
+
                 Item* item_temp;
                 heroi.transfere_para_mochila(item_temp, posicao1);
                 break;

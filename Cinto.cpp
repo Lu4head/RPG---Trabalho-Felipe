@@ -121,8 +121,18 @@ int Cinto::usar_pocao(Pocao* &pocao){
     }
 
     do{
-        std::cout << "Escolha a posição do item que deseja usar (1,2,3..) : " << std::endl;
-        std::cin >> posicao;
+        while(true){
+            std::cout << "Escolha a posição do item que deseja usar (1,2,3..) : " << std::endl;
+            std::cin >> posicao;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(32767, '\n');
+                std::cout << "Entrada inválida." << std::endl;
+            } else {
+                break;
+            }
+        }    
+
         if(posicao < 1 || posicao > count){
             std::cout << "Posicao Invalida!" << std::endl;
             return 2;
@@ -189,8 +199,17 @@ int Cinto::equipar_arma(Arma* &arma_equipada){
     }
 
     do {
-        std::cout << "Escolha a posição da arma que deseja equipar (1, 2, 3...): ";
-        std::cin >> posicao;
+        while(true){
+            std::cout << "Escolha a posição da arma que deseja equipar (1, 2, 3...): ";
+            std::cin >> posicao;    
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(32767, '\n');
+                std::cout << "Entrada inválida." << std::endl;
+            } else {
+                break;
+            }
+        }            
 
         if (posicao < 1 || posicao > count) {
             std::cout << "Posição inválida!" << std::endl;

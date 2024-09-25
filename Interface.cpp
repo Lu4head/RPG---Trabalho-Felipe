@@ -189,8 +189,17 @@ R"(                     |||
 |||               @@@@@@@@@@@@@@@%     @@@@@@@@@@@@@@@@                                                              |||
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
-	std::cout << "Nome: ";
-    std::cin >> name;
+    while(true){
+	    std::cout << "Nome: ";
+        std::cin >> name;
+        if(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Entrada inválida." << std::endl;
+        } else {
+            break;
+        }
+    }        
 	system("cls");
 };
 

@@ -12,8 +12,17 @@ void combate(Personagem &heroi, Monstro &mob) {
 
     while (heroi.exibe_vida() > 0 && mob.exibe_vida() > 0) {
         int escolha;
-        std::cout << "Escolha uma opção:\n1 - Atacar fisicamente\n2 - Usar pocao\n3 - Trocar arma\n4 - Usar ataque mágico\n5 - Pegar item da mochila" << std::endl;
-        std::cin >> escolha;
+        while(true){
+            std::cout << "Escolha uma opção:\n1 - Atacar fisicamente\n2 - Usar pocao\n3 - Trocar arma\n4 - Usar ataque mágico\n5 - Pegar item da mochila" << std::endl;
+            std::cin >> escolha;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(32767, '\n');
+                std::cout << "Entrada inválida." << std::endl;
+            } else {
+                break;
+            }
+        }        
 
         switch (escolha) {
             case 1:
