@@ -84,6 +84,10 @@ void Personagem::recupera_mana(float x){
 
 void Personagem::usa_pocao() {
     Pocao* pocao = nullptr;
+    if(cinto_personagem.usar_pocao(pocao) != 0){
+        std::cout << "Não foi possivel usar a poção" << std::endl;
+        return;
+    }
     cinto_personagem.usar_pocao(pocao);
     std::cout << pocao->get_cura();
     cura(pocao->get_cura());
@@ -114,11 +118,6 @@ void Personagem::Trocar_posicao_cinto(int p1, int p2){
     }
 }
 
-
-void Personagem::usar_item_cinto(int posicao){
-    // cinto_personagem.usar_pocao();
-}
-
 void Personagem::mostrar_cinto(){
     cinto_personagem.mostrar_itens();
 }
@@ -129,6 +128,10 @@ void Personagem::Equipar_arma(Arma* arma){
 
 void Personagem::trocar_arma(){
     Arma* arma_temp = nullptr;
+    if(cinto_personagem.equipar_arma(arma_temp) != 0){
+        std::cout << "Não foi possivel equipar a arma" << std::endl;
+        return;
+    }
     cinto_personagem.equipar_arma(arma_temp);
     Equipar_arma(arma_temp);
 }

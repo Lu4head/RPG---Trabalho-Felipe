@@ -12,6 +12,7 @@ void combate(Personagem &heroi, Monstro &mob) {
 
     while (heroi.exibe_vida() > 0 && mob.exibe_vida() > 0) {
         int escolha;
+        int custo_mana = 0;
         while(true){
             std::cout << "Escolha uma opção:\n1 - Atacar fisicamente\n2 - Usar pocao\n3 - Trocar arma\n4 - Usar ataque mágico\n5 - Pegar item da mochila" << std::endl;
             std::cin >> escolha;
@@ -27,7 +28,10 @@ void combate(Personagem &heroi, Monstro &mob) {
         switch (escolha) {
             case 1:
                 std::cout << heroi.exibe_nome() << " atacou " << mob.exibe_nome() << std::endl;
-                mob.recebe_dano(heroi.mostrar_arma_equipada().get_dano());
+                custo_mana = heroi.mostrar_arma_equipada().get_custo_mana();
+                if(heroi.gasta_mana(custo_mana) == 0){
+                    mob.recebe_dano(heroi.mostrar_arma_equipada().get_dano());
+                }
                 std::cout << heroi.exibe_nome() << " causou um dano de: " << heroi.mostrar_arma_equipada().get_dano() << ". O monstro ficou com: " << mob.exibe_vida() << " de vida" << std::endl;
                 break;
             case 2:
@@ -81,7 +85,7 @@ void combate(Personagem &heroi, Monstro &mob) {
 
 
 void salvar_dados_personagem(Personagem& p){
-    std::ofstream arquivo_saida("resultado_final.txt", std::ios::app);
+    std::ofstream arquivo_saida("High_scores.txt", std::ios::app);
      if (arquivo_saida.is_open()) {
         std::time_t t = std::time(nullptr); // Pega o tempo atual
         char buffer[100];
