@@ -94,16 +94,16 @@ int Cinto::Trocar_posicao(int p1, int p2){
     return 0;
 }
 
-int Cinto::Esvaziar_cinto(){
-    if(Cinto_vazio()){
-        std::cout << "O cinto já está vazio!" << std::endl;
-        return 1;
-    }
-    peso_ocupado = 0;
-    count = 0;
-    std::cout << "Cinto foi esvaziado, todos itens foram descartados!";
-    return 0;
-};
+// int Cinto::Esvaziar_cinto(){
+//     if(Cinto_vazio()){
+//         std::cout << "O cinto já está vazio!" << std::endl;
+//         return 1;
+//     }
+//     peso_ocupado = 0;
+//     count = 0;
+//     std::cout << "Cinto foi esvaziado, todos itens foram descartados!";
+//     return 0;
+// };
 
 int Cinto::usar_pocao(Pocao* &pocao){
     if(Cinto_vazio()){

@@ -754,19 +754,19 @@ void interface_combate(std::string name, std::string& vida, std::string& WhoWon)
 |||          100.           ||                                                            ||              "          |||
 ======================================================================================================================== )" << std::endl;
 
-};
-
-
-int seconds;
-for (int i = 0; i < 100000000 * 100; ++i) { // Aumenta o número de iterações para "simular" o tempo
-    // Loop vazio, apenas para criar um atraso
-};
-system("cls");
 
 
 
+            int seconds;
+			for (int i = 0; i < 10000000 * 10; ++i) { // Aumenta o número de iterações para "simular" o tempo
+				// Loop vazio, apenas para criar um atraso
+			};
+			system("cls");
 
-	std::cout << R"(
+
+
+
+std::cout << R"(
 ========================================================================================================================
 |||				                                     )\ __\     _____                                |||
 |||				                                    / /  .´    /  _  \                               |||
@@ -791,8 +791,7 @@ system("cls");
 |||          100.           ||                                                            ||              "          |||
 ======================================================================================================================== )" << std::endl;
 
-};
-
+}
 	
 #endif
 

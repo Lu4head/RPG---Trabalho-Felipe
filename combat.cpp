@@ -54,6 +54,8 @@ void combate(Personagem &heroi, Monstro &mob) {
                     std::cout << "Mana insuficiente!" << std::endl;
                 }
                 break;
+            case 5:
+                
             default:
                 std::cout << "Escolha inválida" << std::endl;
                 continue;
