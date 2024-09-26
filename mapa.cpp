@@ -147,7 +147,7 @@ void Mapa::encotrar_itens(Personagem& heroi) { // Função para encontrar itens 
         while(true){ // Pergunta ao jogador se deseja colocar o item no cinto ou na mochila
             std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
             std::cin >> escolha;
-            if(std::cin.fail() || (opcao != 1 && opcao != 2)){ // Verifica se a entrada é válida
+            if(std::cin.fail() || (escolha != 1 && escolha != 2)){ // Verifica se a entrada é válida
                 std::cin.clear();
                 std::cin.ignore(32767, '\n');
                 std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
@@ -162,10 +162,10 @@ void Mapa::encotrar_itens(Personagem& heroi) { // Função para encontrar itens 
             while(true){ // Pergunta ao jogador em qual posição do cinto deseja inserir o item
                 std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
                 std::cin >> posicao;
-                if(std::cin.fail() || (opcao != 1 && opcao != 2)){ // Verifica se a entrada é válida
+                if(std::cin.fail()){ // Verifica se a entrada é válida
                     std::cin.clear();
                     std::cin.ignore(32767, '\n');
-                    std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
+                    std::cout << "Entrada inválida" << std::endl;
                 } else {
                     break;
                 }
@@ -233,6 +233,8 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
 
 void Mapa::menu_parado(Personagem& heroi){ // Função para exibir menu de opções quando o herói está no SQM de descanso
     int escolha = 0;
+    Item* item_temp = nullptr;
+    heroi.mostrar_item_mochila(item_temp);
     std::cout << "Um pouco de Paz" << std::endl;
     
     while(true){ // Menu de opções para o herói durante o descanso
@@ -251,6 +253,28 @@ void Mapa::menu_parado(Personagem& heroi){ // Função para exibir menu de opç�
 
     switch(escolha){ // Realiza a ação escolhida pelo jogador
         case 1: // Trocar Arma
+            if(item_temp->get_tipo_do_item() == "Arma"){
+                while(true){ // Pergunta ao jogador se deseja colocar o item no cinto ou na mochila
+                std::cout << "Deseja utilizar a arma do cinto ou da mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
+                std::cin >> escolha;
+                if(std::cin.fail() || (escolha != 1 && escolha != 2)){ // Verifica se a entrada é válida
+                    std::cin.clear();
+                    std::cin.ignore(32767, '\n');
+                    std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
+                } else {
+                    if(escolha == 1){
+                        std::cout << "Trocando de arma" << std::endl;
+                        heroi.trocar_arma();
+                        std::cout << "nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano()  << std::endl;
+                    }else{
+                        std::cout << "Trocando de arma" << std::endl;
+                        heroi.trocar_arma_mochila();
+                        std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
+                    }
+                    break;
+                }
+            }
+        }
             std::cout << "Trocando arma" << std::endl;
             heroi.trocar_arma(); // Função para trocar a arma do herói
             std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;

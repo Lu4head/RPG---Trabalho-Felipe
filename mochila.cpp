@@ -71,5 +71,43 @@ Mochila::~Mochila() { // Destrutor da Mochila
     }
 };
 
+int Mochila::usar_pocao(Pocao* &pocao){
+    if(MochilaVazia()){// verifica se a mochila está vazia
+        std::cout << "Mochila sem itens!" << std::endl;
+        return 1;
+    }
+    
+    std::string tipo = top->Entry->get_tipo_do_item();
+    
+    if(tipo != "Pocao"){
+        std::cout << "O item não é uma poção!" << std::endl;
+        return 2;
+    }
+
+    std::cout << "Utilizando o item" << top->Entry->get_nome() << std::endl;
+    pocao = dynamic_cast<Pocao*>(top->Entry);
+    Item* item_temp;
+    RetirarItem(item_temp);
+    return 0;
+}
+
+int Mochila::equipar_arma(Arma* &arma_equipada){
+    if(MochilaVazia()){// verifica se a mochila está vazia
+        std::cout << "Mochila sem itens!" << std::endl;
+        return 1;
+    }
+
+    std::string tipo = top->Entry->get_tipo_do_item();
+
+    if(tipo != "Arma"){
+        std::cout << "O item não é uma arma!" << std::endl;
+        return 2;
+    }
+
+    Arma* arma = dynamic_cast<Arma*>(top->Entry);
+
+    std::cout << arma->get_nome() << " - Dano: " << arma->get_dano() << std::endl;
+}
+
 
 #endif

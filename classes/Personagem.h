@@ -20,7 +20,7 @@ class Personagem{
         Arma mostrar_arma_equipada();
         int get_nivel();
         void mostrar_cinto();   
-        void mostrar_item_mochila(Item* x);
+        void mostrar_item_mochila(Item* &x);
         
         // Setter
         void Equipar_arma(Arma* arma); // 
@@ -36,7 +36,8 @@ class Personagem{
 
         void usa_pocao(); // Recebe uma poção e calcula as alterações no personagem com base no efeito dela (cura/mana)
         void trocar_arma(); // Chama função do cinto para identificar armas no cinto e equipar a escolhida
-        
+        void usa_pocao_mochila();
+        void trocar_arma_mochila();
         // Manipulação de inventários
         void Inserir_cinto(Item* item, int posicao); // Insere item no cinto do heroi
         void Remover_cinto(Item* item, int posicao); // Remove item do cinto do heroi

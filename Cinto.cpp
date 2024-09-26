@@ -103,7 +103,7 @@ int Cinto::Trocar_posicao(int p1, int p2){ // Troca a posição de dois itens na
 int Cinto::usar_pocao(Pocao* &pocao){
     if(Cinto_vazio()){ // Verifica se o cinto está vazio
         std::cout << "Sem itens no cinto!";
-        return 1;;
+        return 1;
     }
 
     int posicao;

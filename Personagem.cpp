@@ -181,10 +181,32 @@ void Personagem::inserir_item_mochila(Item* x){ // Função para inserir item na
         }   
 }
 
-void Personagem::mostrar_item_mochila(Item* x){ // Função para mostrar os itens na mochila do personagem
+void Personagem::mostrar_item_mochila(Item* &x){ // Função para mostrar os itens na mochila do personagem
     if(mochila_personagem.ItemMochila(x) == 0){ 
     std::cout << "Item do topo da mochilha: " << x->get_nome() << std::endl;
     }
 }
 
+void Personagem::trocar_arma_mochila(){
+    Arma* arma_temp = nullptr;
+    if(mochila_personagem.equipar_arma(arma_temp) != 0){
+        std::cout << "Não foi possivel equipar a arma" << std::endl;
+        return;
+    }
+    mochila_personagem.equipar_arma(arma_temp);
+    Equipar_arma(arma_temp);
+}
+
+void Personagem::usa_pocao_mochila(){
+    Pocao* pocao = nullptr;
+    if(mochila_personagem.usar_pocao(pocao) != 0){
+        std::cout << "Não foi possivel usar a poção" << std::endl;
+        return;
+    }
+
+    mochila_personagem.usar_pocao(pocao);
+    std::cout << pocao->get_cura();
+    cura(pocao->get_cura());
+    recupera_mana(pocao->get_mana());
+}
 #endif

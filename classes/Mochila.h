@@ -1,7 +1,8 @@
 #pragma once // pragma once para não espelhar os arquivos importados
 
 #include "Item.h" 
-
+#include "arma.h"
+#include "pocao.h"
 class Mochila {
     public: // Metodos publicos
         Mochila(); // Construtor padrão para Mochila
@@ -14,7 +15,8 @@ class Mochila {
 
         int LimparMochila(); // Retira todos os itens da mochila
         int ItemMochila(Item* &x); // Retorna o elemento do topo da Mochila
-
+        int equipar_arma(Arma* &arma); // Seta a arma no slot de uso do heroi
+        int usar_pocao(Pocao* &pocao); // usar ou remover item, passado 
     private: // Atributos
         //Struct que armazena os elementos da Mochila
         struct MochilaNode {

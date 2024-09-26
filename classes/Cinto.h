@@ -28,6 +28,7 @@ class Cinto{
         void definir_capacidade(int x); // Define a capacidade de peso do cinto
         int equipar_arma(Arma* &arma); // Seta a arma no slot de uso do heroi
         int usar_pocao(Pocao* &pocao); // usar ou remover item, passado 
+        
     private:
         Item* Entry[MaxList + 1]; // Lista de itens, é um ponteiro para itens, pois a lista é uma lista de ponteiros
         int peso_max;
