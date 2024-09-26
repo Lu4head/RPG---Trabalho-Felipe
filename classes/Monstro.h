@@ -8,7 +8,7 @@ class Monstro {
         // Construtores e Destutores
         Monstro(std::string nome, float vida_total, float mana_total, float dano_fisico, float dano_magico, int nivel); // Construtor para Monstro
         Monstro(); // Construtor padrão para criação de array / variável temporária
-        ~Monstro(); // Destrutor padrão
+
 
         // Métodos para modificar o estado do monstro
         void recebe_dano(float dano); // Função para calcular dano recebido pelo monstro
