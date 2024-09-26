@@ -7,10 +7,11 @@
 #include "./classes/equipamento.h"
 #include "./classes/Personagem.h"
 #include "./classes/Interface.h"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <conio.h>
+
+#include <iostream> // Biblioteca para entrada e saída de dados
+#include <cstdlib> // Biblioteca padrão do C++
+#include <ctime> // Biblioteca para manipulação de tempo
+#include <conio.h> // Biblioteca para getch()
 
 
 #ifndef MAPA_H
@@ -22,7 +23,7 @@ Mapa::Mapa() {
     posicao_y = -1;
 };
 
-// Inicializa o mapa com zeros
+// Inicializa o mapa com valores iniciais
 void Mapa::inicializar_mapa() {
     for (int i = 0; i < mapa_largura; ++i) {
         for (int j = 0; j < mapa_altura; ++j) {
@@ -31,7 +32,7 @@ void Mapa::inicializar_mapa() {
     }
 };
 
-// Coloca o heróiv em uma posição específica
+// Coloca o herói em uma posição específica
 void Mapa::colocar_heroi(int x, int y) {
     // Verifica se as coordenadas estão dentro dos limites do mapa
     if (x >= 0 && x < mapa_largura && y >= 0 && y < mapa_altura) {
@@ -43,21 +44,21 @@ void Mapa::colocar_heroi(int x, int y) {
     }
 };
 
-void Mapa::mostrar_mapa(Personagem& heroi) {
+void Mapa::mostrar_mapa(Personagem& heroi) { // Exibe o mapa na tela
+    Item* item_itemp;
     for (int i = 0; i < mapa_largura; ++i) {
         for (int j = 0; j < mapa_altura; ++j) {
             std::cout << tamanho_mapa[j][i] << " ";
         }
         std::cout << std::endl;
     }
-    std::cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << std::endl;
-    heroi.mostrar_cinto();
-    Item* item_itemp;
-    heroi.mostrar_item_mochila(item_itemp);
+    std::cout << "Posição do herói: (" << posicao_x << ", " << posicao_y << ")" << std::endl; // Exibe a posição do herói
+    heroi.mostrar_cinto(); // Mostra o cinto do herói
+    heroi.mostrar_item_mochila(item_itemp); // Mostra os itens na mochila do herói
 };
 
 
-void Mapa::mover_heroi(char x, Personagem& heroi){
+void Mapa::mover_heroi(char x, Personagem& heroi){ // Move o herói no mapa
     if (posicao_x >= 0 && posicao_x < mapa_largura && posicao_y >= 0 && posicao_y < mapa_altura){
         tamanho_mapa[posicao_x][posicao_y] = '.';
     }
@@ -86,14 +87,14 @@ void Mapa::mover_heroi(char x, Personagem& heroi){
             }
 
             break;
-        default:
+        default: // Direção inválida
             std::cout << "Direção inválida!" << std::endl;
             return;
     }
 
     // Coloca o herói na nova posição
-    tamanho_mapa[posicao_x][posicao_y] = 'H';
-    eventos(heroi);
+    tamanho_mapa[posicao_x][posicao_y] = 'H'; // 'H' representa a posição do herói
+    eventos(heroi); // Chama os eventos que podem ocorrer em cada SQM
 };
 
 
@@ -106,33 +107,33 @@ void Mapa::limpar_mapa() {
     }
 };
 
-void Mapa::encotrar_itens(Personagem& heroi) {
+void Mapa::encotrar_itens(Personagem& heroi) { // Função para encontrar itens no SQM
     // Array fixo com todos os itens disponíveis
     Item** itens_sorteio = nullptr;  // Item** para apontar para um array de ponteiros para Item
     int tamanho_itens = 0;
-    int nivel_heroi = heroi.get_nivel();
+    int nivel_heroi = heroi.get_nivel(); // Verifica o nível do personagem (itens são apropriados ao nível do herói)
     int escolha;
 
-    if (nivel_heroi == 1) {
+    if (nivel_heroi == 1) { // Seleciona o vetor de itens apropriado com base no nível do herói
         itens_sorteio = itens_nivel_1;
         tamanho_itens = tamanho_itens_nivel_1;
-    } else if (nivel_heroi == 2) {
+    } else if (nivel_heroi == 2) { // Seleciona o vetor de itens apropriado com base no nível do herói
         itens_sorteio = itens_nivel_2;
         tamanho_itens = tamanho_itens_nivel_2;
-    } else if (nivel_heroi >= 3) {
+    } else if (nivel_heroi >= 3) { // Seleciona o vetor de itens apropriado com base no nível do herói
         itens_sorteio = itens_nivel_3;
         tamanho_itens = tamanho_itens_nivel_3;
     }
 
     srand(time(0));
-    int indice = rand() % tamanho_itens;
+    int indice = rand() % tamanho_itens; // Sorteia um índice para o vetor de itens
     int opcao;
-    Item* item_encontrado = itens_sorteio[indice];
+    Item* item_encontrado = itens_sorteio[indice]; // Seleciona um item aleatório do vetor de itens
 
-    while(true){
+    while(true){ // Pergunta ao jogador se deseja pegar o item encontrado
         std::cout << "Você encontrou um(a) " << item_encontrado->get_nome() << ". Deseja pegar? \n1. Sim \n 2.Não" << std::endl;
         std::cin >> opcao;
-        if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+        if(std::cin.fail() || (opcao != 1 && opcao != 2)){ // Verifica se a entrada é válida
             std::cin.clear();
             std::cin.ignore(32767, '\n');
             std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
@@ -141,12 +142,12 @@ void Mapa::encotrar_itens(Personagem& heroi) {
         }
     }
 
-    if (opcao == 1) {
+    if (opcao == 1) { // Se o jogador deseja pegar o item
 
-        while(true){
+        while(true){ // Pergunta ao jogador se deseja colocar o item no cinto ou na mochila
             std::cout << "Deseja colocar o item no cinto ou na mochila? (digite 1 para cinto, ou 2 para mochila)" << std::endl;
             std::cin >> escolha;
-            if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+            if(std::cin.fail() || (opcao != 1 && opcao != 2)){ // Verifica se a entrada é válida
                 std::cin.clear();
                 std::cin.ignore(32767, '\n');
                 std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
@@ -155,13 +156,13 @@ void Mapa::encotrar_itens(Personagem& heroi) {
             }
         }
 
-        if(escolha ==  1){
+        if(escolha ==  1){ // Se o jogador deseja colocar o item no cinto
             int posicao = 0;
 
-            while(true){
+            while(true){ // Pergunta ao jogador em qual posição do cinto deseja inserir o item
                 std::cout << "Qual posicao do cinto deseja inserir" << std::endl;
                 std::cin >> posicao;
-                if(std::cin.fail() || (opcao != 1 && opcao != 2)){
+                if(std::cin.fail() || (opcao != 1 && opcao != 2)){ // Verifica se a entrada é válida
                     std::cin.clear();
                     std::cin.ignore(32767, '\n');
                     std::cout << "Entrada inválida. Digite 1 ou 2." << std::endl;
@@ -171,16 +172,16 @@ void Mapa::encotrar_itens(Personagem& heroi) {
             }
 
             heroi.Inserir_cinto(item_encontrado, posicao);  // Agora o herói guarda o item no cinto
-        } else if ( escolha == 2){
-            heroi.inserir_item_mochila(item_encontrado);
+        } else if ( escolha == 2){ // Se o jogador deseja colocar o item na mochila
+            heroi.inserir_item_mochila(item_encontrado); // Agora o herói guarda o item na mochila
         }
-    } else {
-        std::cout << "Você deixou o(a) " << item_encontrado->get_nome() << " para trás." << std::endl;
+    } else { // Se o jogador não deseja pegar o item
+        std::cout << "Você deixou o(a) " << item_encontrado->get_nome() << " para trás." << std::endl; // Mensagem de item deixado para trás
     }
 }
 
 
-void Mapa::encontrar_monstros(Personagem& heroi){
+void Mapa::encontrar_monstros(Personagem& heroi){ // Função para encontrar monstros no SQM
 
     // Sorteando monstro apropriado ao nível do herói
     Monstro** monstros_apropriados = nullptr;
@@ -202,7 +203,7 @@ void Mapa::encontrar_monstros(Personagem& heroi){
     srand(time(0));
 
     int indice = rand() % tamanho; // Sorteia um índice
-    Monstro* monstro_sorteado = monstros_apropriados[indice];
+    Monstro* monstro_sorteado = monstros_apropriados[indice]; // Seleciona um monstro aleatório
     
     Monstro mob = *monstro_sorteado; 
     std::cout << "Um " << monstro_sorteado->exibe_nome() << " de nível " << monstro_sorteado->get_nivel() << " apareceu!" << std::endl;
@@ -211,16 +212,16 @@ void Mapa::encontrar_monstros(Personagem& heroi){
 
 
 
-void Mapa::eventos(Personagem& heroi) {
+void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleatórios de acontecerão em casa SQM
     int evento = rand() % 100; // Sorteia um número entre 0 e 99
 
     // Defina a chance de cada evento
     if (evento < 70) { // 70% de chance de encontrar um item
-        encotrar_itens(heroi);
+        encotrar_itens(heroi); // Chama a função para encontrar itens
     } else if (evento < 90) { // 20% de chance de encontrar um monstro
-        encontrar_monstros(heroi);
+        encontrar_monstros(heroi); // Chama a função para encontrar monstros
     } else { // fica parado
-        menu_parado(heroi);
+        menu_parado(heroi); // Chama a função para exibir o menu de opções quando o herói está no SQM de descanso
        ;
     }
 
@@ -230,14 +231,14 @@ void Mapa::eventos(Personagem& heroi) {
 
 
 
-void Mapa::menu_parado(Personagem& heroi){
+void Mapa::menu_parado(Personagem& heroi){ // Função para exibir menu de opções quando o herói está no SQM de descanso
     int escolha = 0;
     std::cout << "Um pouco de Paz" << std::endl;
     
-    while(true){
+    while(true){ // Menu de opções para o herói durante o descanso
         std::cout << "O que deseja fazer: \n1 - Trocar arma\n2 - Usar pocao\n3 - Gerenciar inventario\n4 - Sair" << std::endl;
         std::cin >> escolha;
-        if(std::cin.fail()){
+        if(std::cin.fail()){ // Verifica se a entrada é válida
             std::cin.clear();
             std::cin.ignore(32767, '\n');
             std::cout << "Entrada inválida. Digite 1, 2, 3 ou 4." << std::endl;
@@ -246,42 +247,44 @@ void Mapa::menu_parado(Personagem& heroi){
         }
     }
     
-    interface_descanso();
-    switch(escolha){
-        case 1:
+    interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
+
+    switch(escolha){ // Realiza a ação escolhida pelo jogador
+        case 1: // Trocar Arma
             std::cout << "Trocando arma" << std::endl;
-            heroi.trocar_arma();
+            heroi.trocar_arma(); // Função para trocar a arma do herói
             std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
             break;
-        case 2:
+        case 2: // Usar poção
             std::cout << "Utilizando poção" << std::endl;
-            heroi.usa_pocao();
+            heroi.usa_pocao(); // Função para usar poção
             std::cout << "Ficou com um total de: " << heroi.exibe_vida() << " de vida!" << std::endl;
             break;
-        case 3:
+        case 3: // Gerenciar inventário 
             std::cout << "Abrindo inventario..." << std::endl;
-            gerenciar_iventario(heroi);
-        case 4:
-            std::cout << "Voltando a aventura..." << std::endl;
+            gerenciar_iventario(heroi); // Função para gerenciar o inventário do herói durante o SQM de descanso
+        case 4: // Sair
+            std::cout << "Voltando a aventura..." << std::endl; // Mensagem de saída
             break;
-
+        default:
+            break;
     }
 
 
 }
 
-void Mapa::gerenciar_iventario(Personagem& heroi){
+void Mapa::gerenciar_iventario(Personagem& heroi){ // Função para gerenciar o inventário do herói durante o SQM de descanso
     int escolha = 0;
     
-    do{
+    do{ // Menu de opções para gerenciar o inventário
         int posicao1 = 0,posicao2 = 0;
         Item* item_temp = nullptr;
     
         
-        while(true){
+        while(true){ // Pede a escolha do jogador
             std::cout << "O que deseja fazer: \n1 - Trocar posição no cinto\n2 - Descartar item do cinto\n3 - Colocar item do cinto na mochila\n4 - Descartar item da mochila\n5 - Sair" << std::endl;
             std::cin >> escolha;
-            if(std::cin.fail()){
+            if(std::cin.fail()){ // Verifica se a entrada é válida
                 std::cin.clear();
                 std::cin.ignore(32767, '\n');
                 std::cout << "Entrada inválida. Digite 1, 2, 3, 4 ou 5." << std::endl;
@@ -290,13 +293,14 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
             }
         }
 
-        interface_descanso();
-        switch(escolha){
+        interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
+
+        switch(escolha){ // Realiza a ação escolhida pelo jogador
             case 1:
-                while(true){
+                while(true){ // Pede a posição dos itens que o jogador deseja trocar
                     std::cout << "Qual item deseja trocar?" << std::endl;
                     std::cin >> posicao1;  
-                    if(std::cin.fail()){
+                    if(std::cin.fail()){ // Verifica se a entrada é válida
                         std::cin.clear();
                         std::cin.ignore(32767, '\n');
                         std::cout << "Entrada inválida." << std::endl;
@@ -305,10 +309,10 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
                     }
                 } 
                 
-                while(true){
+                while(true){ // Pede a posição dos itens que o jogador deseja trocar
                     std::cout << "Qual posição deseja colocar o item?" << std::endl;
                     std::cin >> posicao2;
-                    if(std::cin.fail()){
+                    if(std::cin.fail()){ // Verifica se a entrada é válida
                         std::cin.clear();
                         std::cin.ignore(32767, '\n');
                         std::cout << "Entrada inválida." << std::endl;
@@ -318,14 +322,14 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
                 }           
 
                 std::cout << "Trocando o item de posição no cinto." << std::endl;
-                heroi.Trocar_posicao_cinto(posicao1,posicao2);
+                heroi.Trocar_posicao_cinto(posicao1,posicao2); // Função para trocar a posição dos itens no cinto
                 break;
-            case 2:
-                while(true){
+            case 2: // Descartar item do cinto
+                while(true){ // Pede a posição do item que o jogador deseja remover
                     std::cout << "Informe a posição que deseja remover: " << std::endl;
                     std::cin >> posicao1;
-                    if(std::cin.fail()){
-                        std::cin.clear();
+                    if(std::cin.fail()){ // Verifica se a entrada é válida
+                        std::cin.clear(); 
                         std::cin.ignore(32767, '\n');
                         std::cout << "Entrada inválida." << std::endl;
                     } else {
@@ -333,13 +337,13 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
                     }
                 }    
                 
-                heroi.Remover_cinto(item_temp,posicao1);
+                heroi.Remover_cinto(item_temp,posicao1); // Função para remover o item do cinto
                 break;
-            case 3:
-                while(true){
+            case 3: // Colocar item do cinto na mochila
+                while(true){ // Pede a posição do item que o jogador deseja transferir para a mochila
                     std::cout << "Informe qual item será transferido para a mochila: " << std::endl;                
                     std::cin >> posicao1;
-                    if(std::cin.fail()){
+                    if(std::cin.fail()){ // Verifica se a entrada é válida
                         std::cin.clear();
                         std::cin.ignore(32767, '\n');
                         std::cout << "Entrada inválida." << std::endl;
@@ -349,12 +353,12 @@ void Mapa::gerenciar_iventario(Personagem& heroi){
                 }    
 
                 Item* item_temp;
-                heroi.transfere_para_mochila(item_temp, posicao1);
+                heroi.transfere_para_mochila(item_temp, posicao1); // Função para transferir o item do cinto para a mochila
                 break;
-            case 4:
+            case 4: // Descartar item da mochila
                 std::cout << "Descartando o item da mochila" << std::endl;
-                heroi.retirar_item_mochila(item_temp);
-            case 5:
+                heroi.retirar_item_mochila(item_temp); // Função para retirar o item da mochila
+            case 5: // Sair
                 std::cout << "Saindo..." << std::endl;
                 break;
             default:

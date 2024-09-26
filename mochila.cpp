@@ -1,19 +1,20 @@
 #include "./classes/Mochila.h"
-#include <iostream>
+
+#include <iostream> // Biblioteca para entrada e saída de dados
 
 
 #ifndef MOCHILA_H
 #define MOCHILA_H
 
-Mochila::Mochila() {
-    top = NULL;// diferente do estatico, que colocamos o top, na posi�ao zero, aqui na dinamica, iniciamos ele com NULL; "A pilha deve iniciar vazia, ou seja, top est� �aterrado�"
+Mochila::Mochila() { // Construtor da Mochila
+    top = NULL;// diferente do estatico, que colocamos o top, na posiçao zero, aqui na dinamica, iniciamos ele com NULL; "A pilha deve iniciar vazia, ou seja, top esta aterrado"
 };
 
-bool Mochila::MochilaVazia() {
+bool Mochila::MochilaVazia() { // Verifica se a Mochila está vazia
     return (top == NULL);
 };
 
-int Mochila::ColocarItem(Item* x) {
+int Mochila::ColocarItem(Item* x) { // Coloca um item na Mochila
     MochilaPointer p; // criamos um ponteiro novo, p, que aponta para uma struct MochilaNode
     p = new MochilaNode; // alocamos esse "p" de forma dinamica
     if (p == NULL) { // verificamos se ainda temos memoria para alocar
@@ -26,27 +27,27 @@ int Mochila::ColocarItem(Item* x) {
     return 0;
 };
 
-int Mochila::RetirarItem(Item* &x) {
+int Mochila::RetirarItem(Item* &x) { // Retira um item da Mochila
     MochilaPointer p;
-    if (MochilaVazia()) {
+    if (MochilaVazia()) { // verificamos se a mochila esta vazia
         std::cout << "Mochila vazia!" << std::endl;
         return 1;
     }
     x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
     p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
     top = top->NextNode; // apontas o top, para o NextNode, nesse caso o que estava em baixo do top anterior
-    delete p;
+    delete p; // deletamos o p, que era o top anterior, e agora � um item que foi retirado
     return 0;
 };
 
 
 int Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), porem, nesse caso, n�o guardamos o valor de Item em lugar nenhum
-    MochilaPointer p;
-    if(MochilaVazia()){
+    MochilaPointer p; 
+    if(MochilaVazia()){ // verificamos se a mochila esta vazia
         std::cout << "A mochila já esta vazia!" << std::endl;
         return 1;
     }
-    while (!MochilaVazia()) {
+    while (!MochilaVazia()) { // enquanto a mochila n�o estiver vazia, retiramos o item
         p = top;
         top = top->NextNode;
         delete p;
@@ -54,18 +55,18 @@ int Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), porem
     return 0;
 };
 
-int Mochila::ItemMochila(Item* &x) {
-    if (top == NULL) {
+int Mochila::ItemMochila(Item* &x) { // Retorna o elemento do topo da Mochila
+    if (top == NULL) { // verificamos se a mochila esta vazia
         std::cout << "Mochila Vazia!!" << std::endl;
         return 1;
     }
-    x = top->Entry;
+    x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
     return 0;
 };
 
-Mochila::~Mochila() {
+Mochila::~Mochila() { // Destrutor da Mochila
     Item* x;
-    while (!MochilaVazia()) {
+    while (!MochilaVazia()) { // enquanto a mochila n�o estiver vazia, retiramos o item
         RetirarItem(x);
     }
 };

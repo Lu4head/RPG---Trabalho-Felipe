@@ -1,12 +1,13 @@
 #include ".\classes\Personagem.h"
 #include ".\classes\Arma.h"
 #include ".\classes\Pocao.h"
-#include <iostream>
+
+#include <iostream> // Biblioteca para entrada e saída de dados
 
 #ifndef PERSONAGEM_H
 #define PERSONAGEM_H
 
-Personagem::Personagem(std::string nome): nome(nome){
+Personagem::Personagem(std::string nome): nome(nome){ // Construtor
     vida_Total = 100;
     vida_Atual = vida_Total;
     mana_Total = 100;
@@ -16,9 +17,9 @@ Personagem::Personagem(std::string nome): nome(nome){
     exp_atual = 0;
 };
 
-Personagem::~Personagem(){};
+Personagem::~Personagem(){}; // Destrutor padrão
 
-void Personagem::recebe_dano(float x){
+void Personagem::recebe_dano(float x){ // Calcula dano recebido subtraindo a vida atual do personagem
     if(vida_Atual - x > 0){
         vida_Atual = vida_Atual - x;
     } else{
@@ -26,10 +27,10 @@ void Personagem::recebe_dano(float x){
     }
 };
 
-int Personagem::gasta_mana(float x){
-    if(mana_Atual - x < 0){
+int Personagem::gasta_mana(float x){ // Calcula mana gasta subtraindo da mana atual do personagem
+    if(mana_Atual - x < 0){ // Verifica se a mana atual é suficiente para o gasto
         std::cout << "Mana insuficiente" << std::endl;
-        return 1;
+        return 1; // Retorna 1 se a mana for insuficiente
     }
     else{
         mana_Atual = mana_Atual - x;
@@ -39,15 +40,15 @@ int Personagem::gasta_mana(float x){
 
 
 
-float Personagem::exibe_vida(){
+float Personagem::exibe_vida(){ // Função que retorna a vida atual do personagem
     return vida_Atual;
 };
 
-std::string Personagem::exibe_nome(){
+std::string Personagem::exibe_nome(){ // Função que retorna o nome do personagem
     return nome;
 }
 
-void Personagem::aumenta_nivel() {
+void Personagem::aumenta_nivel() { // Calcula se o personagem tem XP suficiente para subir de nível e aumenta os status caso ele suba de nível
     if(exp_atual >= exp_total){
         float multiplicador_exp = 1.25;
         float multiplicador_vida = 1.25;
@@ -65,7 +66,7 @@ void Personagem::aumenta_nivel() {
 };
 
 
-void Personagem::cura(float x) {
+void Personagem::cura(float x) { // Função para curar o personagem
     if (vida_Atual + x < vida_Total) {
         vida_Atual = vida_Atual + x;
     } else {
@@ -74,7 +75,7 @@ void Personagem::cura(float x) {
     std::cout << "A vida atual agora é: " << vida_Atual << " / " << vida_Total << std::endl;
 }
 
-void Personagem::recupera_mana(float x){
+void Personagem::recupera_mana(float x){ // Função para recuperar a mana do personagem
     if(mana_Atual + x < mana_Total){
         mana_Atual = mana_Atual + x;
     } else {
@@ -82,65 +83,65 @@ void Personagem::recupera_mana(float x){
     }
 }
 
-void Personagem::usa_pocao() {
+void Personagem::usa_pocao() { // Recebe uma poção e calcula as alterações no personagem com base no efeito dela (cura/mana)
     Pocao* pocao = nullptr;
-    if(cinto_personagem.usar_pocao(pocao) != 0){
+    if(cinto_personagem.usar_pocao(pocao) != 0){ // Verifica se foi possível usar a poção
         std::cout << "Não foi possivel usar a poção" << std::endl;
         return;
     }
-    cinto_personagem.usar_pocao(pocao);
-    std::cout << pocao->get_cura();
-    cura(pocao->get_cura());
-    recupera_mana(pocao->get_cura());
+    cinto_personagem.usar_pocao(pocao); // Usa a poção
+    std::cout << pocao->get_cura(); // Exibe a quantidade de cura da poção
+    cura(pocao->get_cura()); // Cura o personagem
+    recupera_mana(pocao->get_cura()); // Recupera a mana do personagem
 }
 
 
-void Personagem::Inserir_cinto(Item* item, int posicao){
-     if (cinto_personagem.Colocar_item(item, posicao) == 0) {
+void Personagem::Inserir_cinto(Item* item, int posicao){ // Insere item no cinto do heroi
+     if (cinto_personagem.Colocar_item(item, posicao) == 0) { // Verifica se foi possível adicionar o item
             std::cout << item->get_nome() << " foi adicionado ao cinto!" << std::endl;
         } else {
             std::cout << "Cinto cheio ou não foi possível adicionar o item." << std::endl;
         }
 }
 
-void Personagem::Remover_cinto(Item* item, int posicao){
-    if(cinto_personagem.Remover_item(item, posicao) == 0){
+void Personagem::Remover_cinto(Item* item, int posicao){ // Remove item do cinto do heroi
+    if(cinto_personagem.Remover_item(item, posicao) == 0){ // Verifica se foi possível remover o item
         std::cout << item->get_nome() << " foi removido do cinto" << std::endl;
     } else {
         std::cout << "Não foi possivel remover item da posição indicada." << std::endl;
     }
 }
 
-void Personagem::Trocar_posicao_cinto(int p1, int p2){
-    if(cinto_personagem.Trocar_posicao(p1, p2) == 0){
+void Personagem::Trocar_posicao_cinto(int p1, int p2){ // Função para trocar a posição de 2 itens do cinto do heroi
+    if(cinto_personagem.Trocar_posicao(p1, p2) == 0){ // Verifica se foi possível trocar os itens de posição
     } else {
         std::cout << "Não foi possivel realizar a troca." << std::endl;
     }
 }
 
-void Personagem::mostrar_cinto(){
-    cinto_personagem.mostrar_itens();
+void Personagem::mostrar_cinto(){ // Mostra o cinto do heroi
+    cinto_personagem.mostrar_itens(); // Chama a função para mostrar os itens do cinto
 }
 
-void Personagem::Equipar_arma(Arma* arma){
+void Personagem::Equipar_arma(Arma* arma){ // Função para equipar a arma do heroi
     arma_equipada = *arma;
 }
 
-void Personagem::trocar_arma(){
+void Personagem::trocar_arma(){ // Função para trocar a arma do heroi
     Arma* arma_temp = nullptr;
-    if(cinto_personagem.equipar_arma(arma_temp) != 0){
+    if(cinto_personagem.equipar_arma(arma_temp) != 0){ // Verifica se foi possível equipar a arma
         std::cout << "Não foi possivel equipar a arma" << std::endl;
         return;
     }
-    cinto_personagem.equipar_arma(arma_temp);
-    Equipar_arma(arma_temp);
+    cinto_personagem.equipar_arma(arma_temp); // Equipa a arma
+    Equipar_arma(arma_temp); // Chama a função para equipar a arma
 }
 
-Arma Personagem::mostrar_arma_equipada(){
-    return arma_equipada;
+Arma Personagem::mostrar_arma_equipada(){ // Função que retorna a arma equipada
+    return arma_equipada; 
 }
 
-void Personagem::ganha_xp(int xp) {
+void Personagem::ganha_xp(int xp) { // Função para calcular o ganho de XP e chama função para verificar se personagem subiu de nível
     exp_atual += xp;
     while (exp_atual >= exp_total) {
         aumenta_nivel();  // Função que sobe o nível
@@ -148,52 +149,40 @@ void Personagem::ganha_xp(int xp) {
     }
 }
 
-int Personagem::get_nivel(){
+int Personagem::get_nivel(){ // Função que retorna o nível do personagem
     return nivel;
 }
 
-void Personagem::transfere_para_mochila(Item *x, int p){
-    if(cinto_personagem.Remover_item(x, p) != 0){
+void Personagem::transfere_para_mochila(Item *x, int p){ // Função para transferir item do cinto para a mochila do personagem
+    if(cinto_personagem.Remover_item(x, p) != 0){ // Verifica se foi possível remover o item do cinto
         std::cout << "Não foi possivel transferir o item" << std::endl;
-        return;
+        return; // Se não foi possivel remover o item encerra a função
     }
-    if(mochila_personagem.ColocarItem(x) != 0){
-        cinto_personagem.Colocar_item(x, p);
+    if(mochila_personagem.ColocarItem(x) != 0){ // Verifica se foi possível adicionar o item à mochila
+        cinto_personagem.Colocar_item(x, p); // Se não foi possível adicionar o item à mochila, o item é devolvido ao cinto
         std::cout << "Não foi possivel trasferir o item" << std::endl;
-        return;
     }
 };
 
-void Personagem::transfere_para_cinto(Item* &x, int p){
-    if(mochila_personagem.RetirarItem(x) != 0){
-        std::cout << "Não foi possivel transferir o item" << std::endl;
-        return;
-    }
-    if(cinto_personagem.Colocar_item(x,p) != 0){
-        mochila_personagem.ColocarItem(x);
-        std::cout << "Não foi possivel trasferir o item" << std::endl;
-        return;
-    }
-}
 
-void Personagem::retirar_item_mochila(Item* x){
-    if (mochila_personagem.RetirarItem(x) == 0) {
+void Personagem::retirar_item_mochila(Item* x){ // Função para retirar item da mochila do personagem
+    if (mochila_personagem.RetirarItem(x) == 0) { // Verifica se foi possível retirar o item
             std::cout << x->get_nome() << "Item foi retirado da mochila!" << std::endl;
         } else {
             std::cout << "Mochila vazia impossivel retirar item" << std::endl;
         }
 }
 
-void Personagem::inserir_item_mochila(Item* x){
-    if (mochila_personagem.ColocarItem(x) == 0) {
+void Personagem::inserir_item_mochila(Item* x){ // Função para inserir item na mochila do personagem
+    if (mochila_personagem.ColocarItem(x) == 0) { // Verifica se foi possível adicionar o item
             std::cout << x->get_nome() << "Item foi inserido da mochila!" << std::endl;
         } else {
             std::cout << "Não foi possivel adicionar o item à mochila" << std::endl;
         }   
 }
 
-void Personagem::mostrar_item_mochila(Item* x){
-    if(mochila_personagem.ItemMochila(x) == 0){
+void Personagem::mostrar_item_mochila(Item* x){ // Função para mostrar os itens na mochila do personagem
+    if(mochila_personagem.ItemMochila(x) == 0){ 
     std::cout << "Item do topo da mochilha: " << x->get_nome() << std::endl;
     }
 }

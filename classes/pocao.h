@@ -1,17 +1,21 @@
-#pragma once
+#pragma once // pragma once para não espelhar os arquivos importados
+
 #include "Item.h"
+
 #include <string>
 
 class Pocao: public Item{
-    public:
-        Pocao(std::string nome_item, float peso_item, std::string tipo_do_item, float cura,float mana,int nivel);
-        float get_cura();
-        float get_mana();
-        void usar();
-        Pocao();
-    private:
+    public: // Metodos publicos
+        // Construtores e Destrutores
+        Pocao(std::string nome_item, float peso_item, std::string tipo_do_item, float cura,float mana,int nivel); // Construtor de pocao
+        Pocao(); // Construtor padrão para criação de arrays / variaveis temporarias
+        ~Pocao(); // Destrutor padrão
+
+        // Getters
+        float get_cura(); // Retorna atributo de cura da poção
+        float get_mana(); // Retorna atributo de mana da poção (quantidade de mana que será recuperada)
+
+    private: // Atributos
         float cura;
         float mana;
-
-
 };

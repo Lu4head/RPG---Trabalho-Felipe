@@ -1,4 +1,5 @@
-#pragma once
+// Arquivo para importação das funções de combate
+#pragma once // pragma once para não espelhar os arquivos importados
 
 #include "Personagem.h"
 #include "Monstro.h"
