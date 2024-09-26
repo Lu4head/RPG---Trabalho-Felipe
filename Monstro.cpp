@@ -5,7 +5,7 @@
 Monstro::Monstro(std::string nome, float vida_total, float mana_total, float dano_fisico, float dano_magico, int nivel) 
     : nome(nome), vida_total(vida_total ),vida_atual(vida_total),mana_total(mana_total), mana_atual(mana_total),dano_fisico(dano_fisico ), dano_magico(dano_magico), nivel(nivel){};
 
-
+Monstro::~Monstro(){};
 void Monstro::recebe_dano(float x){ // Função para calcular dano recebido pelo monstro
    if(vida_atual - x > 0){
          vida_atual = vida_atual - x;

@@ -1137,7 +1137,7 @@ void interface_combate(std::string name, std::string& vida, std::string& WhoWon)
 
 
     int seconds;
-    for (int i = 0; i < 100000000 * 100; ++i) { // Aumenta o número de iterações para "simular" o tempo
+    for (int i = 0; i < 10000000 * 100; ++i) { // Aumenta o número de iterações para "simular" o tempo
         // Loop vazio, apenas para criar um atraso
     };
     system("cls");

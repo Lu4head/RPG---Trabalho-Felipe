@@ -224,4 +224,6 @@ int Cinto::equipar_arma(Arma* &arma_equipada){ // Retorna armas no cinto que pod
     Remover_item(item_temp,posicao); // Remove a arma do cinto
     return 0;
 }
+
+
 #endif

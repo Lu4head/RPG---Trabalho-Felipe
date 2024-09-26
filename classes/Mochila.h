@@ -16,7 +16,8 @@ class Mochila {
         int LimparMochila(); // Retira todos os itens da mochila
         int ItemMochila(Item* &x); // Retorna o elemento do topo da Mochila
         int equipar_arma(Arma* &arma); // Seta a arma no slot de uso do heroi
-        int usar_pocao(Pocao* &pocao); // usar ou remover item, passado 
+        int usar_pocao(Pocao* &pocao); // usar ou remover item, passado     
+
     private: // Atributos
         //Struct que armazena os elementos da Mochila
         struct MochilaNode {

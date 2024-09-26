@@ -22,7 +22,7 @@ Mapa::Mapa() {
     posicao_x = -1;
     posicao_y = -1;
 };
-
+Mapa::~Mapa(){};
 // Inicializa o mapa com valores iniciais
 void Mapa::inicializar_mapa() {
     for (int i = 0; i < mapa_largura; ++i) {
@@ -274,10 +274,11 @@ void Mapa::menu_parado(Personagem& heroi){ // Função para exibir menu de opç�
                     break;
                 }
             }
-        }
-            std::cout << "Trocando arma" << std::endl;
-            heroi.trocar_arma(); // Função para trocar a arma do herói
-            std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
+            }else{
+                std::cout << "Trocando arma" << std::endl;
+                heroi.trocar_arma(); // Função para trocar a arma do herói
+                std::cout << "Nova arma: " << heroi.mostrar_arma_equipada().get_nome() << " - Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
+             }
             break;
         case 2: // Usar poção
             std::cout << "Utilizando poção" << std::endl;
