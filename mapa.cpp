@@ -195,12 +195,6 @@ void Mapa::limpar_mapa() {
     }
 };
 
-void colorirTexto(int cor) {
-    #ifdef _WIN32
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, cor);
-    #endif
-}
 
 
 

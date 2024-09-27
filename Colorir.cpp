@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <.\classes\colorir.h"
+#include ".\classes\colorir.h"
 
 
 void colorirTexto(int cor){
