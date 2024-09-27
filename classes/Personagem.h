@@ -45,7 +45,9 @@ class Personagem{
         void transfere_para_mochila(Item* x, int p); // Transfere item do cinto para a mochila
         void inserir_item_mochila(Item* x); // Insere item na mochila do heroi
         void retirar_item_mochila(Item* x); // Remove item da mochila do heroi
-        
+        float exibe_vida_total();
+        int exibe_mana_atual();
+        int exibe_mana_total();
         
         void aumenta_nivel(); // Calcula se o personagem tem XP suficiente para subir de nível e aumenta os status caso ele suba de nível
         

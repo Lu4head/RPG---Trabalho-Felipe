@@ -2,6 +2,7 @@
 #include ".\classes\Arma.h"
 #include ".\classes\Pocao.h"
 
+
 #include <iostream> // Biblioteca para entrada e saída de dados
 
 #ifndef PERSONAGEM_H
@@ -15,6 +16,7 @@ Personagem::Personagem(std::string nome): nome(nome){ // Construtor
     nivel = 1;
     exp_total = 100;
     exp_atual = 0;
+    arma_equipada = Arma();
 };
 
 Personagem::~Personagem(){}; // Destrutor padrão
@@ -208,5 +210,17 @@ void Personagem::usa_pocao_mochila(){
     std::cout << pocao->get_cura();
     cura(pocao->get_cura());
     recupera_mana(pocao->get_mana());
+}
+
+float Personagem::exibe_vida_total(){
+    return vida_Total;
+}
+
+int Personagem::exibe_mana_atual(){
+    return mana_Atual;
+}
+
+int Personagem::exibe_mana_total(){
+    return mana_Total;
 }
 #endif

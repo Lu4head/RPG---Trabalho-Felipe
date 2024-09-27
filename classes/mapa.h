@@ -19,12 +19,13 @@ class Mapa {
         void encontrar_monstros(Personagem& heroi); // Função para encontrar monstros no SQM
         void menu_parado(Personagem& heroi); // Função para exibir menu de opções quando o herói está no SQM de descanso
         void gerenciar_iventario(Personagem& heroi); // Função para gerenciar o inventário do herói durante o SQM de descanso
-
+        void trocar_arma_menu(Personagem& heroi);;
     private: // Atributos e métodos privados
         char tamanho_mapa[mapa_largura][mapa_altura]; // Matriz que representa o mapa
         int posicao_x, posicao_y; // posicao do heroi 
         void limpar_mapa(); // Retorna o mapa para o estado inicial
         void eventos(Personagem& heroi); // Função para chamar os eventos aleatórios de acontecerão em casa SQM
+        void setConsoleColor(int textColor, int bgColor);
 };
 
 

@@ -2,8 +2,8 @@
 #include "./classes/mobs.h"
 
 // Mosntros de nível 1
-Monstro Orgro("Orgro", 100.0, 50.0, 20.0, 10.0, 1);
-Monstro Elfo_da_floresta("Elfo da Floresta", 100.0, 60.0, 15.0, 25.0, 1);
+Monstro Orgro("Orgro", 20.0, 50.0, 20.0, 10.0, 1);
+Monstro Elfo_da_floresta("Elfo da Floresta", 20.0, 60.0, 15.0, 25.0, 1);
 
 // Monstros de nível 2
 Monstro Soldado_do_forte("Soldado do Forte", 120.0, 70.0, 25.0, 15.0, 2);

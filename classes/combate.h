@@ -8,3 +8,4 @@
 
 void combate(Personagem& p, Monstro& m);
 void salvar_dados_personagem(Personagem& p);
+void trocar_arma_menu(Personagem& heroi);

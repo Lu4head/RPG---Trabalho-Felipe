@@ -43,10 +43,9 @@ int Cinto::Colocar_item(Item* item, int posicao) { // Coloca um item no cinto
         Entry[i + 1] = Entry[i]; // Aumenta o índice para o próximo
     }
 
+    count++; // Incrementa o número de itens
     Entry[posicao] = item; // Insere o novo item
     peso_ocupado += item->get_peso(); // Incrementa o peso ocupado
-    count++; // Incrementa o número de itens
-    std::cout << item->get_nome() << " inserido na mochila com sucesso!" << std::endl;
     return 0;
 }
 
