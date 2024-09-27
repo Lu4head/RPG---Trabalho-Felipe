@@ -111,6 +111,8 @@ setConsoleColor(10, 0); // Texto verde
     // Exibir Vida e Mana do herói
     std::cout << "  Vida: " << heroi.exibe_vida() << " / " << heroi.exibe_vida_total() << std::endl;
     std::cout << "  Mana: " << heroi.exibe_mana_atual() << " / " << heroi.exibe_mana_total() << std::endl;
+    std::cout << std::endl << "  Nível: " << heroi.get_nivel() << std::endl;
+    std::cout << "  Arma Atual: " << heroi.mostrar_arma_equipada().get_nome() << "  /  Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
     std::cout << "           Itens do Cinto do Herói:        " << std::endl;
