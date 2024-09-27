@@ -39,11 +39,13 @@ int main() {
     // Colocar herÃ³i no mapa
     Mapa mapa; // Instancia o mapa
     mapa.colocar_heroi(0, 0); // Coloca o herÃ³i na posiÃ§Ã£o (0, 0) do mapa
-    mapa.mostrar_mapa(heroi); // Mostra o mapa com a posiÃ§Ã£o do herÃ³i
+    //mapa.mostrar_mapa(heroi); // Mostra o mapa com a posiÃ§Ã£o do herÃ³i
     
     char movimento;
 
     while (true) { // Loop principal do jogo - Solicitando o movimento do personagem no mapa
+        system("cls"); // Limpar a tela do console
+        mapa.mostrar_mapa(heroi); // Mostra o mapa com a posiÃ§Ã£o do herÃ³i
         std::cout << "Digite a direÃ§Ã£o para mover o herÃ³i (w = cima, s = baixo, a = esquerda, d = direita, q = sair): ";
         movimento = getch();
 
@@ -63,8 +65,6 @@ int main() {
         
         if (sorteio == 1) { // Encontrou item
             std::cout << "VocÃª encontrou um item!" << std::endl;
-            system("cls"); // Limpar a tela do console
-            mapa.mostrar_mapa(heroi); // Mostra o mapa com a posiÃ§Ã£o do herÃ³i
         }
     }
     return 0;

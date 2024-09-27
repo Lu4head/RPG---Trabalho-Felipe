@@ -105,8 +105,10 @@ int Mochila::equipar_arma(Arma* &arma_equipada){
     }
 
     Arma* arma = dynamic_cast<Arma*>(top->Entry);
-
     std::cout << arma->get_nome() << " - Dano: " << arma->get_dano() << std::endl;
+    arma_equipada = arma;
+    Arma arma_temp;
+    RetirarItem(arma_temp);
     return 0;
 }
 

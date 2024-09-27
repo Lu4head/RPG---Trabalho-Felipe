@@ -135,7 +135,7 @@ void Personagem::trocar_arma(){ // Função para trocar a arma do heroi
         std::cout << "Não foi possivel equipar a arma" << std::endl;
         return;
     }
-    cinto_personagem.equipar_arma(arma_temp); // Equipa a arma
+    //cinto_personagem.equipar_arma(arma_temp); // Equipa a arma
     Equipar_arma(arma_temp); // Chama a função para equipar a arma
 }
 
@@ -195,7 +195,7 @@ void Personagem::trocar_arma_mochila(){
         std::cout << "Não foi possivel equipar a arma" << std::endl;
         return;
     }
-    mochila_personagem.equipar_arma(arma_temp);
+    //mochila_personagem.equipar_arma(arma_temp);
     Equipar_arma(arma_temp);
 }
 
