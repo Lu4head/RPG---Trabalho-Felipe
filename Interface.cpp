@@ -333,7 +333,6 @@ void Exibe_Espada_Curta(std::string name, int indice, int indice_anterior){
         for (int i = 0; i < 10000000; ++i) { // Aumenta o número de iterações para "simular" o tempo
             // Loop vazio, apenas para criar um atraso
         };
-        system("cls");
     }
     else if(indice_anterior == 1){
         for (int i = 0; i < 10000000; ++i) { // Aumenta o número de iterações para "simular" o tempo
@@ -439,7 +438,7 @@ void Exibe_Espada_Curta(std::string name, int indice, int indice_anterior){
 			};
 			system("cls");
     }
-
+    system("cls");
     std::cout << "  \033[1;33m" << std::setw(32) <<  name << "\033[0m" << R"(
 ========================================================================================================================
 |||                                                                                                                  |||
@@ -470,7 +469,6 @@ void Exibe_Espada_Curta(std::string name, int indice, int indice_anterior){
     for (int i = 0; i < 10000000; ++i) { // Aumenta o número de iterações para "simular" o tempo
         // Loop vazio, apenas para criar um atraso
     };
-    system("cls");
 }
 
 void Exibe_Adaga(std::string name, int indice, int indice_anterior) {
@@ -604,7 +602,6 @@ void Exibe_Adaga(std::string name, int indice, int indice_anterior) {
         for (int i = 0; i < 10000000; ++i) { // Aumenta o número de iterações para "simular" o tempo
             // Loop vazio, apenas para criar um atraso
         };
-        system("cls");
     }
     else if(indice_anterior == 2){
         system("cls");
@@ -858,8 +855,6 @@ void Exibe_Varinha(std::string name, int indice, int indice_anterior) {
 |||          )" << "\033[5m" << R"(   PARA ESCOLHER SUA ARMA, PRESSIONE A ou D...)" << "\033[0m" << R"(                                                          |||
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
-        system("cls");
-
     }
     else if(indice_anterior == 1){
         system("cls");
@@ -983,9 +978,8 @@ void Exibe_Varinha(std::string name, int indice, int indice_anterior) {
 |||                                                                                                                  |||
 ========================================================================================================================)" << std::endl;
    
-        system("cls");
     }
-    }
+}
 
     
 
@@ -1137,7 +1131,11 @@ void interface_combate(std::string name, std::string& vida, std::string& WhoWon)
 
 
     int seconds;
+<<<<<<< HEAD
     for (int i = 0; i < 10000000 * 100; ++i) { // Aumenta o número de iterações para "simular" o tempo
+=======
+    for (int i = 0; i < 10000000; ++i) { // Aumenta o número de iterações para "simular" o tempo
+>>>>>>> 8fff94eaaca389b7fcf0fe2543df967e2988eb69
         // Loop vazio, apenas para criar um atraso
     };
     system("cls");

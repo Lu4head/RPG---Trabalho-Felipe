@@ -10,7 +10,6 @@ class Mapa {
     public: // Metodos publicos
         // Construtores e Destrutores
         Mapa(); // Construtor padrão
-        ~Mapa(); // Destrutor padrão
 
         void inicializar_mapa(); // Inicializa o mapa com zeros
         void colocar_heroi(int x, int y); // Coloca o herói em uma posição específica

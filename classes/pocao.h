@@ -9,7 +9,6 @@ class Pocao: public Item{
         // Construtores e Destrutores
         Pocao(std::string nome_item, float peso_item, std::string tipo_do_item, float cura,float mana,int nivel); // Construtor de pocao
         Pocao(); // Construtor padrão para criação de arrays / variaveis temporarias
-        ~Pocao(); // Destrutor padrão
 
         // Getters
         float get_cura(); // Retorna atributo de cura da poção
