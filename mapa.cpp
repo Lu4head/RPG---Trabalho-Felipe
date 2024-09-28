@@ -93,7 +93,7 @@ setConsoleColor(10, 0); // Texto verde
             }
         }
         std::cout << std::endl;
-    };
+    }
 
     interface_Status_Heroi(heroi);
 };

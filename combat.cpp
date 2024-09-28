@@ -42,6 +42,9 @@ void combate(Personagem &heroi, Monstro &mob) { // Função para controlar as a�
                 std::cout << heroi.exibe_nome() << " atacou " << mob.exibe_nome() << "!" << std::endl;
                 custo_mana = heroi.mostrar_arma_equipada().get_custo_mana();
                 if (heroi.gasta_mana(custo_mana) == 0) {
+                    if(custo_mana > 0){
+                        std::cout << "gastou " << heroi.mostrar_arma_equipada().get_custo_mana() << " de mana." << std::endl;
+                    }
                     mob.recebe_dano(heroi.mostrar_arma_equipada().get_dano());
                 }
                 std::cout << heroi.exibe_nome() << " causou um dano de: " 
