@@ -1,6 +1,8 @@
 // Arquivo para importação dos itens criados
 #pragma once // pragma once para não espelhar os arquivos importados
 
+#include "Pocao.h"
+#include "Personagem.h"
 #include "Arma.h"
 #include "Pocao.h"
 
