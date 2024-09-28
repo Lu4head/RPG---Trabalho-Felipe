@@ -333,7 +333,7 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
         encontrar_monstros(heroi); // Chama a função para encontrar monstros
     } else { // fica parado
         menu_descanso(heroi); // Chama a função para exibir o menu de opções quando o herói está no SQM de descanso
-       ;
+       
     }
 
     std::cout << "Aperte uma tecla para continuar" << std::endl;

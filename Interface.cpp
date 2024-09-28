@@ -1165,7 +1165,7 @@ void interface_combate(std::string name, std::string& vida, std::string& WhoWon)
 };
 
 void interface_Status_Heroi(Personagem heroi){
-    Item* item_temp;
+    Item* item_temp = nullptr; // Inicializa o ponteiro
     setConsoleColor(15, 0); // Texto branco
     std::cout << "===============================================" << std::endl;
 
@@ -1173,8 +1173,7 @@ void interface_Status_Heroi(Personagem heroi){
     setConsoleColor(11, 0); // Texto azul
     std::cout << "           Informações do Herói:             " << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
-    
-    // Exibir Vida e Mana do herói
+
     std::cout << "  Vida: " << heroi.exibe_vida() << " / " << heroi.exibe_vida_total() << std::endl;
     std::cout << "  Mana: " << heroi.exibe_mana_atual() << " / " << heroi.exibe_mana_total() << std::endl;
     std::cout << std::endl << "  Nível: " << heroi.get_nivel() << std::endl;
@@ -1187,7 +1186,7 @@ void interface_Status_Heroi(Personagem heroi){
 
     setConsoleColor(15, 0); // Texto branco
     std::cout << "===============================================" << std::endl;
-    
+
     setConsoleColor(11, 0); // Texto azul
     std::cout << "           Itens na Mochila do Herói:        " << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;

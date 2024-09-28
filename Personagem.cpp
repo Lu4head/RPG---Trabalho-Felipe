@@ -188,9 +188,13 @@ void Personagem::inserir_item_mochila(Item* x){ // Função para inserir item na
         }   
 }
 
-void Personagem::mostrar_item_mochila(Item* &x){ // Função para mostrar os itens na mochila do personagem
-    if(mochila_personagem.ItemMochila(x) == 0){ 
-    std::cout << "Item do topo da mochilha: " << x->get_nome() << std::endl;
+void Personagem::mostrar_item_mochila(Item* &x) {
+    // Verifica se a função ItemMochila retorna um item válido
+    if (mochila_personagem.ItemMochila(x) == 0 && x != nullptr) {
+        std::cout << "Item do topo da mochila: " << x->get_nome() << std::endl;
+    } else {
+        // Se não houver item ou x for nullptr, informe que a mochila está vazia
+        std::cout << "A mochila está vazia ou o item não é válido." << std::endl;
     }
 }
 
