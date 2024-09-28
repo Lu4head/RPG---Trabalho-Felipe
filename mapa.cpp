@@ -179,9 +179,24 @@ void Mapa::encotrar_itens(Personagem& heroi) {
     } else if (nivel_heroi == 2) { 
         itens_sorteio = itens_nivel_2;
         tamanho_itens = tamanho_itens_nivel_2;
-    } else if (nivel_heroi >= 3) { 
+    } else if (nivel_heroi == 3) { 
         itens_sorteio = itens_nivel_3;
         tamanho_itens = tamanho_itens_nivel_3;
+    } else if (nivel_heroi == 4){
+        itens_sorteio = itens_nivel_4;
+        tamanho_itens = tamanho_itens_nivel_4;
+    } else if (nivel_heroi == 5){
+        itens_sorteio = itens_nivel_5;
+        tamanho_itens = tamanho_itens_nivel_5;
+    } else if (nivel_heroi == 6){
+        itens_sorteio = itens_nivel_6;
+        tamanho_itens = tamanho_itens_nivel_6;
+    } else if (nivel_heroi == 7){
+        itens_sorteio = itens_nivel_7;
+        tamanho_itens = tamanho_itens_nivel_7;
+    } else if (nivel_heroi >= 8){
+        itens_sorteio = itens_nivel_8;
+        tamanho_itens = tamanho_itens_nivel_8;
     }
 
     srand(static_cast<unsigned>(time(0)));
@@ -329,16 +344,11 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
 
 void Mapa::menu_descanso(Personagem& heroi) { 
     int escolha = 0;
-<<<<<<< HEAD
     Item* item_temp = nullptr;
     heroi.mostrar_item_mochila(item_temp);
 
     std::cout << "Um pouco de Paz" << std::endl;
      interface_descanso();
-=======
-
-    
->>>>>>> 126b9854b315da7741c6d4c4745f98786243c1d8
     while (true) { // Menu de opções para o herói durante o descanso
         interface_descanso();
         interface_Status_Heroi(heroi);
@@ -417,10 +427,7 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
             }
         }
 
-<<<<<<< HEAD
         
-=======
->>>>>>> 126b9854b315da7741c6d4c4745f98786243c1d8
 
         switch (escolha) { // Realiza a ação escolhida pelo jogador
             case 1: { // Trocar posição no cinto
