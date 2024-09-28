@@ -49,7 +49,7 @@ Item* itens_nivel_2[] = {
 
 // Itens de nível 3
 Item* itens_nivel_3[] = {
-&arco_elfico, &pocao_vida_grande,&pocao_mana_grande, &espada_bastarda, &adaga_bandido
+    &arco_elfico, &pocao_vida_grande,&pocao_mana_grande, &espada_bastarda, &adaga_bandido
 };
 
 //Itens de nível 4
