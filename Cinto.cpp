@@ -71,7 +71,7 @@ int Cinto::Remover_item(Item* &item_retorno, int posicao){ // Remove item da moc
     peso_ocupado -= item_retorno->get_peso(); // Subtrai o peso do item removido de peso_ocupado
     
     count--; // Decrementa o número de itens
-    std::cout << item_retorno->get_nome() << " removido da mochila com sucesso!" << std::endl;
+    std::cout << item_retorno->get_nome() << " removido do cinto com sucesso!" << std::endl;
     return 0;
 };
 
@@ -100,12 +100,12 @@ int Cinto::Trocar_posicao(int p1, int p2){ // Troca a posição de dois itens na
 };
 
 int Cinto::usar_pocao(Pocao* &pocao){
+    int posicao;
+    
     if(Cinto_vazio()){ // Verifica se o cinto está vazio
         std::cout << "Sem itens no cinto!";
         return 1;
     }
-
-    int posicao;
     
     for(int i = 1; i <= count; i++){ // Mostra as poções disponíveis no cinto
         if(Entry[i]->get_tipo_do_item() == "Pocao"){
@@ -130,10 +130,12 @@ int Cinto::usar_pocao(Pocao* &pocao){
             std::cout << "Posicao Invalida!" << std::endl;
             return 2;
         }
+
         if(Entry[posicao]->get_tipo_do_item() != "Pocao"){ // Verifica se o item na posição escolhida é uma poção
             std::cout << "Item não é uma poção!" << std::endl;
             return 3;
         }
+
     } while(Entry[posicao]->get_tipo_do_item() != "Pocao");
 
     std::cout << "Utilizando o item " << Entry[posicao]->get_nome() << std::endl; 
@@ -154,7 +156,7 @@ int Cinto::mostrar_itens() { // Mostra os itens no cinto
         std::cout << "O cinto está vazio!" << std::endl;
         return 1; // Retorna 1 se o cinto estiver vazio
     }
-    std::cout << "Capacidade do cinto: " << peso_ocupado << "/" << peso_max << std::endl; // Mostra a capacidade do cinto
+    std::cout << "Capacidade do cinto: " << peso_ocupado << "/" << peso_max  << " kg" << std::endl; // Mostra a capacidade do cinto
     std::cout << "Itens no cinto:" << std::endl;
     for (int i = 1; i <= count; i++) { // Mostra os itens no cinto
         std::cout << i << ": " << Entry[i]->get_nome() << std::endl;
@@ -163,7 +165,7 @@ int Cinto::mostrar_itens() { // Mostra os itens no cinto
     return 0;
 }
 
-void Cinto::definir_capacidade(int x){ // Incrementa a capacidade de peso do cinto
+void Cinto::definir_capacidade(float x){ // Incrementa a capacidade de peso do cinto
     peso_max += x;
     return;
 }

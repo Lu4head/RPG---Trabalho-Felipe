@@ -174,7 +174,7 @@ void Personagem::transfere_para_mochila(Item *x, int p){ // Função para transf
 
 void Personagem::retirar_item_mochila(Item* x){ // Função para retirar item da mochila do personagem
     if (mochila_personagem.RetirarItem(x) == 0) { // Verifica se foi possível retirar o item
-            std::cout << x->get_nome() << "Item foi retirado da mochila!" << std::endl;
+            std::cout << x->get_nome() << " foi retirado da mochila!" << std::endl;
         } else {
             std::cout << "Mochila vazia impossivel retirar item" << std::endl;
         }
@@ -182,7 +182,7 @@ void Personagem::retirar_item_mochila(Item* x){ // Função para retirar item da
 
 void Personagem::inserir_item_mochila(Item* x){ // Função para inserir item na mochila do personagem
     if (mochila_personagem.ColocarItem(x) == 0) { // Verifica se foi possível adicionar o item
-            std::cout << x->get_nome() << "Item foi inserido da mochila!" << std::endl;
+            std::cout << x->get_nome() << " foi inserido da mochila!" << std::endl;
         } else {
             std::cout << "Não foi possivel adicionar o item à mochila" << std::endl;
         }   

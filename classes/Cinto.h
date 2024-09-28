@@ -25,13 +25,13 @@ class Cinto{
         //int Esvaziar_cinto(); 
         int espacos_disponiveis(); // verificar se tem algum espaço disponivel 
         int mostrar_itens(); // Mostra todos os itens no cinto
-        void definir_capacidade(int x); // Define a capacidade de peso do cinto
+        void definir_capacidade(float x); // Define a capacidade de peso do cinto
         int equipar_arma(Arma* &arma); // Seta a arma no slot de uso do heroi
         int usar_pocao(Pocao* &pocao); // usar ou remover item, passado 
         
     private:
         Item* Entry[MaxList + 1]; // Lista de itens, é um ponteiro para itens, pois a lista é uma lista de ponteiros
-        int peso_max;
-        int peso_ocupado;
+        float peso_max;
+        float peso_ocupado;
         int count;
 };

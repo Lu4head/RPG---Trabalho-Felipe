@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <conio.h>
 #include <iomanip>
+#include <windows.h>
 
 
 #ifndef INTERFACE_H
@@ -1162,6 +1163,41 @@ void interface_combate(std::string name, std::string& vida, std::string& WhoWon)
 ======================================================================================================================== )" << std::endl;
 
 };
+
+void interface_Status_Heroi(Personagem heroi){
+    Item* item_temp;
+    setConsoleColor(15, 0); // Texto branco
+    std::cout << "===============================================" << std::endl;
+
+    // Exibe informações do herói
+    setConsoleColor(11, 0); // Texto azul
+    std::cout << "           Informações do Herói:             " << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    
+    // Exibir Vida e Mana do herói
+    std::cout << "  Vida: " << heroi.exibe_vida() << " / " << heroi.exibe_vida_total() << std::endl;
+    std::cout << "  Mana: " << heroi.exibe_mana_atual() << " / " << heroi.exibe_mana_total() << std::endl;
+    std::cout << std::endl << "  Nível: " << heroi.get_nivel() << std::endl;
+    std::cout << "  Arma Atual: " << heroi.mostrar_arma_equipada().get_nome() << "  /  Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+
+    std::cout << "           Itens do Cinto do Herói:        " << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    heroi.mostrar_cinto(); // Mostra o cinto do herói
+
+    setConsoleColor(15, 0); // Texto branco
+    std::cout << "===============================================" << std::endl;
+    
+    setConsoleColor(11, 0); // Texto azul
+    std::cout << "           Itens na Mochila do Herói:        " << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    heroi.mostrar_item_mochila(item_temp); // Mostra os itens na mochila do herói
+
+    setConsoleColor(15, 0); // Resetar para padrão
+    std::cout << "===============================================" << std::endl;
+}
+
+
 
 	
 #endif

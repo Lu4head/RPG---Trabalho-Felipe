@@ -27,18 +27,18 @@ int Mochila::ColocarItem(Item* x) { // Coloca um item na Mochila
     return 0;
 };
 
-    int Mochila::RetirarItem(Item* &x) { // Retira um item da Mochila
-        MochilaPointer p;
-        if (MochilaVazia()) { // verificamos se a mochila esta vazia
-            std::cout << "Mochila vazia!" << std::endl;
-            return 1;
-        }
-        x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
-        p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
-        top = top->NextNode; // apontas o top, para o NextNode, nesse caso o que estava em baixo do top anterior
-        delete p; // deletamos o p, que era o top anterior, e agora � um item que foi retirado
-        return 0;
-    };
+int Mochila::RetirarItem(Item* &x) { // Retira um item da Mochila
+    MochilaPointer p;
+    if (MochilaVazia()) { // verificamos se a mochila esta vazia
+        std::cout << "Mochila vazia!" << std::endl;
+        return 1;
+    }
+    x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
+    p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
+    top = top->NextNode; // apontas o top, para o NextNode, nesse caso o que estava em baixo do top anterior
+    delete p; // deletamos o p, que era o top anterior, e agora � um item que foi retirado
+    return 0;
+};
 
 
 int Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), porem, nesse caso, n�o guardamos o valor de Item em lugar nenhum
