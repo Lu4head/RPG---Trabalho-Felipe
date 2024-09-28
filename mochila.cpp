@@ -27,18 +27,18 @@ int Mochila::ColocarItem(Item* x) { // Coloca um item na Mochila
     return 0;
 };
 
-int Mochila::RetirarItem(Item* &x) { // Retira um item da Mochila
-    MochilaPointer p;
-    if (MochilaVazia()) { // verificamos se a mochila esta vazia
-        std::cout << "Mochila vazia!" << std::endl;
-        return 1;
-    }
-    x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
-    p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
-    top = top->NextNode; // apontas o top, para o NextNode, nesse caso o que estava em baixo do top anterior
-    delete p; // deletamos o p, que era o top anterior, e agora � um item que foi retirado
-    return 0;
-};
+    int Mochila::RetirarItem(Item* &x) { // Retira um item da Mochila
+        MochilaPointer p;
+        if (MochilaVazia()) { // verificamos se a mochila esta vazia
+            std::cout << "Mochila vazia!" << std::endl;
+            return 1;
+        }
+        x = top->Entry; // passamos o valor que esta no Item, para o x, com c�pia, "&"
+        p = top; // o ponteiro p que criamos, apontamos ele para onde o top esta apontando para nao perdemos, quando formos trocar o top
+        top = top->NextNode; // apontas o top, para o NextNode, nesse caso o que estava em baixo do top anterior
+        delete p; // deletamos o p, que era o top anterior, e agora � um item que foi retirado
+        return 0;
+    };
 
 
 int Mochila::LimparMochila() {// segue o mesmo Principio do RetirarItem(), porem, nesse caso, n�o guardamos o valor de Item em lugar nenhum
@@ -91,24 +91,35 @@ int Mochila::usar_pocao(Pocao* &pocao){
     return 0;
 }
 
-int Mochila::equipar_arma(Arma* &arma_equipada){
-    if(MochilaVazia()){// verifica se a mochila está vazia
+int Mochila::equipar_arma(Arma* &arma_equipada) {
+    if (MochilaVazia()) { // verifica se a mochila está vazia
         std::cout << "Mochila sem itens!" << std::endl;
         return 1;
     }
 
-    std::string tipo = top->Entry->get_tipo_do_item();
+    std::string tipo = top->Entry->get_tipo_do_item(); // Verifica o tipo do item
 
-    if(tipo != "Arma"){
+    if (tipo != "Arma") { // Confere se o item é uma arma
         std::cout << "O item não é uma arma!" << std::endl;
         return 2;
     }
 
+    // Realiza o cast para Arma*
     Arma* arma = dynamic_cast<Arma*>(top->Entry);
+    if (arma == nullptr) {
+        std::cout << "Falha ao equipar a arma!" << std::endl;
+        return 3;
+    }
+
     std::cout << arma->get_nome() << " - Dano: " << arma->get_dano() << std::endl;
+
+    // Equipar a arma
     arma_equipada = arma;
-    Arma arma_temp;
-    RetirarItem(arma_temp);
+
+    // Retira o item da mochila (Item*, já que é polimórfico)
+    Item* item_temp;
+    RetirarItem(item_temp); // Retira o item da mochila
+
     return 0;
 }
 
