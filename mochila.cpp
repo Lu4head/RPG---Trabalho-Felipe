@@ -92,7 +92,7 @@ int Mochila::usar_pocao(Pocao* &pocao){
 }
 
 int Mochila::equipar_arma(Arma* &arma_equipada) {
-    if (MochilaVazia()) { // verifica se a mochila está vazia
+    if (MochilaVazia()) { // Verifica se a mochila está vazia
         std::cout << "Mochila sem itens!" << std::endl;
         return 1;
     }
@@ -105,20 +105,26 @@ int Mochila::equipar_arma(Arma* &arma_equipada) {
     }
 
     // Realiza o cast para Arma*
-    Arma* arma = dynamic_cast<Arma*>(top->Entry);
-    if (arma == nullptr) {
+    Arma* nova_arma = dynamic_cast<Arma*>(top->Entry);
+    if (nova_arma == nullptr) {
         std::cout << "Falha ao equipar a arma!" << std::endl;
         return 3;
     }
 
-    std::cout << arma->get_nome() << " - Dano: " << arma->get_dano() << std::endl;
+    std::cout << "Equipando " << nova_arma->get_nome() << " - Dano: " << nova_arma->get_dano() << std::endl;
 
-    // Equipar a arma
-    arma_equipada = arma;
+    // Se já há uma arma equipada, devolve-a para a mochila
+    if (arma_equipada != nullptr) {
+        std::cout << "Guardando " << arma_equipada->get_nome() << " na mochila." << std::endl;
+        ColocarItem(arma_equipada); // Adiciona a arma equipada de volta à mochila
+    }
+
+    // Equipar a nova arma
+    arma_equipada = nova_arma;
 
     // Retira o item da mochila (Item*, já que é polimórfico)
     Item* item_temp;
-    RetirarItem(item_temp); // Retira o item da mochila
+    RetirarItem(item_temp); // Remove o item da mochila
 
     return 0;
 }

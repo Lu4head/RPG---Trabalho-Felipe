@@ -127,7 +127,7 @@ void Personagem::mostrar_cinto(){ // Mostra o cinto do heroi
 
 void Personagem::Equipar_arma(Arma* arma){ // Função para equipar a arma do heroi
     arma_equipada = *arma;
-}
+}   
 
 void Personagem::trocar_arma(){ // Função para trocar a arma do heroi
     Arma* arma_temp = nullptr;
@@ -135,8 +135,13 @@ void Personagem::trocar_arma(){ // Função para trocar a arma do heroi
         std::cout << "Não foi possivel equipar a arma" << std::endl;
         return;
     }
-    //cinto_personagem.equipar_arma(arma_temp); // Equipa a arma
-    Equipar_arma(arma_temp); // Chama a função para equipar a arma
+    if (arma_equipada.get_nome() != "") {
+        // Se já houver uma arma equipada, mova-a para a mochila antes de equipar a nova arma
+        Item* item_para_mochila = dynamic_cast<Item*>(&arma_equipada);
+        std::cout << "Guardando " << arma_equipada.get_nome() << " na mochila." << std::endl;
+        mochila_personagem.ColocarItem(item_para_mochila);  // Coloca a arma antiga na mochila
+    }
+     Equipar_arma(arma_temp);
 }
 
 Arma Personagem::mostrar_arma_equipada(){ // Função que retorna a arma equipada
@@ -195,8 +200,13 @@ void Personagem::trocar_arma_mochila(){
         std::cout << "Não foi possivel equipar a arma" << std::endl;
         return;
     }
-    //mochila_personagem.equipar_arma(arma_temp);
-    Equipar_arma(arma_temp);
+   if (arma_equipada.get_nome() != "") {
+        // Se já houver uma arma equipada, mova-a para a mochila antes de equipar a nova arma
+        Item* item_para_mochila = dynamic_cast<Item*>(&arma_equipada);
+        std::cout << "Guardando " << arma_equipada.get_nome() << " na mochila." << std::endl;
+        mochila_personagem.ColocarItem(item_para_mochila);  // Coloca a arma antiga na mochila
+    }
+     Equipar_arma(arma_temp);
 }
 
 void Personagem::usa_pocao_mochila(){

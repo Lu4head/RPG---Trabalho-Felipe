@@ -366,7 +366,7 @@ void Mapa::menu_parado(Personagem& heroi) {
     heroi.mostrar_item_mochila(item_temp);
 
     std::cout << "Um pouco de Paz" << std::endl;
-
+     interface_descanso();
     while (true) { // Menu de opções para o herói durante o descanso
         std::cout << "\nO que deseja fazer:\n";
         std::cout << "1 - Trocar arma\n";
@@ -415,7 +415,7 @@ void Mapa::menu_parado(Personagem& heroi) {
 void Mapa::gerenciar_iventario(Personagem& heroi) { 
     // Função para gerenciar o inventário do herói durante o SQM de descanso
     int escolha = 0;
-
+    interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
     do { // Menu de opções para gerenciar o inventário
         int posicao1 = 0, posicao2 = 0;
         Item* item_temp = nullptr;
@@ -439,7 +439,7 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
             }
         }
 
-        interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
+        
 
         switch (escolha) { // Realiza a ação escolhida pelo jogador
             case 1: { // Trocar posição no cinto
