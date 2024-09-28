@@ -67,10 +67,6 @@ void Mapa::colocar_heroi(int x, int y) {
     }
 };
 
-void Mapa::setConsoleColor(int textColor, int bgColor) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, (bgColor << 4) | textColor);
-}
 
 
 void Mapa::mostrar_mapa(Personagem& heroi) {
@@ -97,39 +93,10 @@ setConsoleColor(10, 0); // Texto verde
             }
         }
         std::cout << std::endl;
-    }
+    };
 
-
-    setConsoleColor(15, 0); // Texto branco
-    std::cout << "===============================================" << std::endl;
-
-    // Exibe informações do herói
-    setConsoleColor(11, 0); // Texto azul
-    std::cout << "           Informações do Herói:             " << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    
-    // Exibir Vida e Mana do herói
-    std::cout << "  Vida: " << heroi.exibe_vida() << " / " << heroi.exibe_vida_total() << std::endl;
-    std::cout << "  Mana: " << heroi.exibe_mana_atual() << " / " << heroi.exibe_mana_total() << std::endl;
-    std::cout << std::endl << "  Nível: " << heroi.get_nivel() << std::endl;
-    std::cout << "  Arma Atual: " << heroi.mostrar_arma_equipada().get_nome() << "  /  Dano: " << heroi.mostrar_arma_equipada().get_dano() << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-
-    std::cout << "           Itens do Cinto do Herói:        " << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    heroi.mostrar_cinto(); // Mostra o cinto do herói
-
-    setConsoleColor(15, 0); // Texto branco
-    std::cout << "===============================================" << std::endl;
-    
-    setConsoleColor(11, 0); // Texto azul
-    std::cout << "           Itens na Mochila do Herói:        " << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    heroi.mostrar_item_mochila(item_temp); // Mostra os itens na mochila do herói
-
-    setConsoleColor(15, 0); // Resetar para padrão
-    std::cout << "===============================================" << std::endl;
-}
+    interface_Status_Heroi(heroi);
+};
 
 
 
@@ -350,7 +317,7 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
     } else if (evento < 90) { // 20% de chance de encontrar um monstro
         encontrar_monstros(heroi); // Chama a função para encontrar monstros
     } else { // fica parado
-        menu_parado(heroi); // Chama a função para exibir o menu de opções quando o herói está no SQM de descanso
+        menu_descanso(heroi); // Chama a função para exibir o menu de opções quando o herói está no SQM de descanso
        ;
     }
 
@@ -360,14 +327,14 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
 
 
 
-void Mapa::menu_parado(Personagem& heroi) { 
+void Mapa::menu_descanso(Personagem& heroi) { 
     int escolha = 0;
-    Item* item_temp = nullptr;
-    heroi.mostrar_item_mochila(item_temp);
 
-    std::cout << "Um pouco de Paz" << std::endl;
-
+    
     while (true) { // Menu de opções para o herói durante o descanso
+        interface_descanso();
+        interface_Status_Heroi(heroi);
+
         std::cout << "\nO que deseja fazer:\n";
         std::cout << "1 - Trocar arma\n";
         std::cout << "2 - Usar poção\n";
@@ -417,6 +384,9 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
     int escolha = 0;
 
     do { // Menu de opções para gerenciar o inventário
+        interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
+        interface_Status_Heroi(heroi);
+
         int posicao1 = 0, posicao2 = 0;
         Item* item_temp = nullptr;
 
@@ -439,11 +409,14 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
             }
         }
 
-        interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
 
         switch (escolha) { // Realiza a ação escolhida pelo jogador
             case 1: { // Trocar posição no cinto
                 while (true) { // Pede a posição dos itens que o jogador deseja trocar
+                    std::cout << "           Itens do Cinto do Herói:        " << std::endl;
+                    std::cout << "-----------------------------------------------" << std::endl;
+                    heroi.mostrar_cinto(); // Mostra o cinto do herói
+                    std::cout << "-----------------------------------------------" << std::endl;
                     std::cout << "Qual item deseja trocar? Informe a posição: ";
                     std::cin >> posicao1;
                     if (std::cin.fail()) { // Verifica se a entrada é válida
@@ -473,7 +446,10 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
             }
             case 2: { // Descartar item do cinto
                 while (true) { // Pede a posição do item que o jogador deseja remover
-                    std::cout << "Informe a posição que deseja remover do cinto: ";
+                    std::cout << "           Itens do Cinto do Herói:        " << std::endl;
+                    std::cout << "-----------------------------------------------" << std::endl;
+                    heroi.mostrar_cinto(); // Mostra o cinto do herói
+                    std::cout << "-----------------------------------------------" << std::endl;                    std::cout << "Informe a posição que deseja remover do cinto: ";
                     std::cin >> posicao1;
                     if (std::cin.fail()) { // Verifica se a entrada é válida
                         std::cin.clear();
@@ -489,7 +465,10 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
                 break;
             }
             case 3: { // Colocar item do cinto na mochila
-                while (true) { // Pede a posição do item que o jogador deseja transferir para a mochila
+                    std::cout << "           Itens do Cinto do Herói:        " << std::endl;
+                    std::cout << "-----------------------------------------------" << std::endl;
+                    heroi.mostrar_cinto(); // Mostra o cinto do herói
+                    std::cout << "-----------------------------------------------" << std::endl;                while (true) { // Pede a posição do item que o jogador deseja transferir para a mochila
                     std::cout << "Informe a posição do item que será transferido para a mochila: ";
                     std::cin >> posicao1;
                     if (std::cin.fail()) { // Verifica se a entrada é válida
@@ -502,7 +481,6 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
                 }
 
                 heroi.transfere_para_mochila(item_temp, posicao1); // Função para transferir o item do cinto para a mochila
-                std::cout << "📦 Item transferido para a mochila." << std::endl;
                 break;
             }
             case 4: { // Descartar item da mochila
