@@ -179,9 +179,24 @@ void Mapa::encotrar_itens(Personagem& heroi) {
     } else if (nivel_heroi == 2) { 
         itens_sorteio = itens_nivel_2;
         tamanho_itens = tamanho_itens_nivel_2;
-    } else if (nivel_heroi >= 3) { 
+    } else if (nivel_heroi == 3) { 
         itens_sorteio = itens_nivel_3;
         tamanho_itens = tamanho_itens_nivel_3;
+    } else if (nivel_heroi == 4){
+        itens_sorteio = itens_nivel_4;
+        tamanho_itens = tamanho_itens_nivel_4;
+    } else if (nivel_heroi == 5){
+        itens_sorteio = itens_nivel_5;
+        tamanho_itens = tamanho_itens_nivel_5;
+    } else if (nivel_heroi == 6){
+        itens_sorteio = itens_nivel_6;
+        tamanho_itens = tamanho_itens_nivel_6;
+    } else if (nivel_heroi == 7){
+        itens_sorteio = itens_nivel_7;
+        tamanho_itens = tamanho_itens_nivel_7;
+    } else if (nivel_heroi >= 8){
+        itens_sorteio = itens_nivel_8;
+        tamanho_itens = tamanho_itens_nivel_8;
     }
 
     srand(static_cast<unsigned>(time(0)));
@@ -329,8 +344,11 @@ void Mapa::eventos(Personagem& heroi) { // Função para chamar os eventos aleat
 
 void Mapa::menu_descanso(Personagem& heroi) { 
     int escolha = 0;
+    Item* item_temp = nullptr;
+    heroi.mostrar_item_mochila(item_temp);
 
-    
+    std::cout << "Um pouco de Paz" << std::endl;
+     interface_descanso();
     while (true) { // Menu de opções para o herói durante o descanso
         interface_descanso();
         interface_Status_Heroi(heroi);
@@ -382,7 +400,7 @@ void Mapa::menu_descanso(Personagem& heroi) {
 void Mapa::gerenciar_iventario(Personagem& heroi) { 
     // Função para gerenciar o inventário do herói durante o SQM de descanso
     int escolha = 0;
-
+    interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
     do { // Menu de opções para gerenciar o inventário
         interface_descanso(); // Exibe imagem para quando o personagem cai num SQM de descanso
         interface_Status_Heroi(heroi);
@@ -409,6 +427,7 @@ void Mapa::gerenciar_iventario(Personagem& heroi) {
             }
         }
 
+        
 
         switch (escolha) { // Realiza a ação escolhida pelo jogador
             case 1: { // Trocar posição no cinto
