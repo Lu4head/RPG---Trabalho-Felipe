@@ -1164,7 +1164,7 @@ void interface_pocao() {
 
 // };
 
-void interface_Status_Heroi(Personagem heroi){
+void interface_Status_Heroi(Personagem &heroi){
     Item* item_temp = nullptr; // Inicializa o ponteiro
     setConsoleColor(15, 0); // Texto branco
     std::cout << "===============================================" << std::endl;

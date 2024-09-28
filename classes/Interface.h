@@ -23,6 +23,6 @@
 	//void interface_descanso2();
 	void interface_pocao(); // Interface para quando o personagem encontra uma poção em um SQM
     void interface_combate(std::string name, std::string& vida, std::string& WhoWon); // Exibe tela de combate
-	void interface_Status_Heroi(Personagem heroi);
+	void interface_Status_Heroi(Personagem &heroi);
 
 
