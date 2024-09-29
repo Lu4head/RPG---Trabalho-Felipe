@@ -1,4 +1,9 @@
+//Luan Emanuel R. Argentato RA: 2184611
+//Gustavo duzzi             RA: 2214047
+//Guilherme Santos Gollino  RA: 2226090
 
+#include "./classes/Arma.h"
+#include "./classes/Pocao.h"
 #include "./classes/equipamento.h"
 
 // criando armas e pocoes
@@ -16,21 +21,21 @@ Arma varinha_quebrada("Varinha Quebrada", 1.0f, "Arma", 15.0f, 1, 5);           
 Arma machado_guerreiro("Machado de Guerreiro", 10.0f, "Arma", 25.0f, 2, 0);           // Arma de nível 2
 Arma rapieira("Rapieira", 5.0f, "Arma", 25.0f, 2, 0);                                // Arma de nível 2
 Arma machado_açougueiro("Machado do Açougueiro", 11.0f, "Arma", 27.0f, 2, 0);       // Arma de nível 2
-Arma arco_elfico("Arco Élfico", 4.5f, "Arma", 35.0f, 3, 0);                        // Arma de nível 3
-Arma espada_bastarda("Espada Bastarda", 6.5f, "Arma", 35.0f, 3, 0);               // Arma de nível 3 
-Arma adaga_bandido("Adaga de Bandido", 3.5f, "Arma", 30.0f, 3, 0);               // Arma de nível 3
-Arma espada_longa("Espada Longa", 8.0f, "Arma", 40.0f, 4, 0);                   // Arma de nível 4
-Arma espada_encantanda("Espada Encantada", 8.0f, "Arma", 50.0f, 4, 15);        // Arma de nível 4
-Arma machado_honrado("Machado do Honrado", 12.0, "Arma", 45.0f, 4, 0);        // Arma de nível 4  
-Arma cajado_arcano("Cajado Arcano", 2.0f, "Arma", 60.0f, 5, 25);             // Arma de nível 5, dano mágico
-Arma espada_vanguarda("Espada da Vanguarda", 7.5f, "Arma", 50.0f, 5, 0);    // Arma de nível 5
-Arma machado_do_golem("Machado do Golem", 15.0f, "Arma", 75.0f , 6, 0);    // Arma de nível 6
-Arma adaga_umbral("Adaga Umbral", 8.0f, "Arma", 70.0f, 6, 0);             // Arma de nível 6
-Arma adaga_tesouro("Caçadora de Tesouros", 10.0f, "Arma", 90.0f, 7, 0);  // Arma de nível 7
-Arma espada_ouro("Corrida do ouro", 12.0f, "Arma", 100.0f, 7, 0);       // Arma de nível 7
-Arma cajado_criacao("Cajado da Criação", 8.0f, "Arma", 120.0f, 7, 35); // Arma de nível 7
-Arma machado_dragao("Dente de Dragão", 20.0f, "Arma", 110.0f, 7, 0);  // Arma de nível 7 
-Arma espada_desejo("A vontade do Rei", 20.0f, "Arma", 160.0f, 8, 50); // Arma de nível 8
+Arma arco_elfico("Arco Élfico", 4.5f, "Arma", 40.0f, 3, 0);                        // Arma de nível 3
+Arma espada_bastarda("Espada Bastarda", 6.5f, "Arma", 42.0f, 3, 0);               // Arma de nível 3 
+Arma adaga_bandido("Adaga de Bandido", 3.5f, "Arma", 35.0f, 3, 0);               // Arma de nível 3
+Arma espada_longa("Espada Longa", 8.0f, "Arma", 50.0f, 4, 0);                   // Arma de nível 4
+Arma espada_encantanda("Espada Encantada", 8.0f, "Arma", 60.0f, 4, 15);        // Arma de nível 4
+Arma machado_honrado("Machado do Honrado", 12.0, "Arma", 55.0f, 4, 0);        // Arma de nível 4  
+Arma cajado_arcano("Cajado Arcano", 2.0f, "Arma", 70.0f, 5, 25);             // Arma de nível 5, dano mágico
+Arma espada_vanguarda("Espada da Vanguarda", 7.5f, "Arma", 80.0f, 5, 0);    // Arma de nível 5
+Arma machado_do_golem("Machado do Golem", 15.0f, "Arma", 105.0f , 6, 0);    // Arma de nível 6
+Arma adaga_umbral("Adaga Umbral", 8.0f, "Arma", 90.0f, 6, 0);             // Arma de nível 6
+Arma adaga_tesouro("Caçadora de Tesouros", 10.0f, "Arma", 125.0f, 7, 0); // Arma de nível 7
+Arma espada_ouro("Corrida do ouro", 12.0f, "Arma", 130.0f, 7, 0);       // Arma de nível 7
+Arma cajado_criacao("Cajado da Criação", 8.0f, "Arma", 125.0f, 7, 55); // Arma de nível 7
+Arma machado_dragao("Dente de Dragão", 20.0f, "Arma", 150.0f, 7, 0);  // Arma de nível 7 
+Arma espada_desejo("A vontade do Rei", 20.0f, "Arma", 725.0f, 8, 50) // Arma de nível 8
 
 // Itens de nível 1
 Arma* armas_inciais[] = {
@@ -48,7 +53,7 @@ Item* itens_nivel_2[] = {
 
 // Itens de nível 3
 Item* itens_nivel_3[] = {
-    &arco_elfico, &pocao_vida_grande,&pocao_mana_grande, &espada_bastarda, &adaga_bandido
+&arco_elfico, &pocao_vida_grande,&pocao_mana_grande, &espada_bastarda, &adaga_bandido
 };
 
 //Itens de nível 4
