@@ -59,11 +59,21 @@ void combate(Personagem &heroi, Monstro &mob) { // Função para controlar as a�
                 break;
             }
             case 2: { // Usar poção
-                std::cout << "💧 Utilizando poção..." << std::endl;
-                heroi.usa_pocao(); // Função para usar poção
-                std::cout << heroi.exibe_nome() << " ficou com um total de: " 
-                          << heroi.exibe_vida() << " de vida!" << std::endl;
-                break;
+            std::cout << "\nEscolha de onde pegar a poção:\n1 - Cinto\n2 - Mochila" << std::endl;
+            std::cin >> escolha;
+            if (escolha == 1) {
+                std::cout << "Exibindo poções disponíveis no cinto..." << std::endl;
+                // Lógica para trocar a arma pelo cinto
+                heroi.usa_pocao();
+                std::cout << "✅ Poção utilizada " <<std::endl;
+                break; // Adicionado para sair do loop após a troca
+            } else if (escolha == 2) {
+                // Lógica para usar a pocao pela mochila
+                heroi.usa_pocao_mochila();
+                break; // Adicionado para sair do loop após a troca
+            } else {
+                std::cout << "⚠️ Escolha inválida. Digite 1 ou 2." << std::endl;
+            }
             }
             case 3: { // Trocar arma
                 trocar_arma_menu(heroi);

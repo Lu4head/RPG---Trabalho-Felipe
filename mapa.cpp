@@ -126,7 +126,13 @@ void Mapa::mover_heroi(char direcao, Personagem& heroi) {
             novo_x--;
             break;
         case 'd':
-            novo_x++;
+            // Se o herói estiver na última coluna da linha atual, move-o para o início da linha de baixo
+            if (novo_x == mapa_largura - 1) {
+                novo_x = 0;  // Volta para o início da linha
+                novo_y++;    // Move para a linha de baixo
+            } else {
+                novo_x++;    // Move para a direita normalmente
+            }
             break;
         default:
             std::cout << "Direção inválida! Use 'w', 'a', 's', ou 'd' para mover." << std::endl;
@@ -299,13 +305,25 @@ void Mapa::encontrar_monstros(Personagem& heroi) {
     } else if (nivel_heroi == 2) {
         monstros_apropriados = monstro_nivel_2;
         tamanho = tamanho_nivel_2;
-    } else {
-        colorirTexto(12); // Vermelho
-        std::cout << "⚠️ Nenhum monstro disponível para o seu nível." << std::endl;
-        colorirTexto(7); // Branco padrão
-        return;
+    } else if (nivel_heroi == 3) {
+        monstros_apropriados = monstro_nivel_3;
+        tamanho = tamanho_nivel_3;
+    } else if (nivel_heroi == 4) {
+        monstros_apropriados = monstro_nivel_4;
+        tamanho = tamanho_nivel_4;
+    } else if (nivel_heroi == 5) {
+        monstros_apropriados = monstro_nivel_5;
+        tamanho = tamanho_nivel_5;
+    } else if (nivel_heroi == 6) {
+        monstros_apropriados = monstro_nivel_6;
+        tamanho = tamanho_nivel_6;
+    } else if (nivel_heroi == 7) {
+        monstros_apropriados = monstro_nivel_7;
+        tamanho = tamanho_nivel_7;
+    } else if (nivel_heroi >= 8) {
+        monstros_apropriados = monstro_nivel_8;
+        tamanho = tamanho_nivel_8;
     }
-
     srand(static_cast<unsigned>(time(0)));
     int indice = rand() % tamanho; // Sorteia um índice
     Monstro* monstro_sorteado = monstros_apropriados[indice]; // Seleciona um monstro aleatório
@@ -380,10 +398,21 @@ void Mapa::menu_descanso(Personagem& heroi) {
                 break;
             }
             case 2: { // Usar poção
-                std::cout << "💧 Utilizando poção..." << std::endl;
-                heroi.usa_pocao(); // Função para usar poção
-                std::cout << "❤️ Você ficou com um total de: " << heroi.exibe_vida() << " de vida!" << std::endl;
-                break;
+               std::cout << "\nEscolha de onde pegar a poção:\n1 - Cinto\n2 - Mochila" << std::endl;
+                std::cin >> escolha;
+                if (escolha == 1) {
+                    std::cout << "Exibindo poções disponíveis no cinto..." << std::endl;
+                    // Lógica para trocar a arma pelo cinto
+                    heroi.usa_pocao();
+                    std::cout << "✅ Poção utilizada " <<std::endl;
+                    break; // Adicionado para sair do loop após a troca
+                } else if (escolha == 2) {
+                    // Lógica para usar a pocao pela mochila
+                    heroi.usa_pocao_mochila();
+                    break; // Adicionado para sair do loop após a troca
+                } else {
+                std::cout << "⚠️ Escolha inválida. Digite 1 ou 2." << std::endl;
+                }
             }
             case 3: { // Gerenciar inventário 
                 std::cout << "📦 Abrindo inventário..." << std::endl;

@@ -17,7 +17,7 @@ Monstro Soldado_decomposto("Soldado Decomposto", 80.0, 60, 35.0, 15.0, 2);
 
 // Monstro de nível 3
 Monstro Ogro("Ogro", 200, 30, 15, 5, 3);
-Monstro Mimico("Baú Mimico", 210, 20, 5, 3);
+Monstro Mimico("Bau Mimico", 210, 20, 15,5, 3);
 Monstro Gargula("Gárgula", 220, 25, 22, 10, 3);
 
 // Monstro de nível 4
@@ -57,13 +57,13 @@ Monstro* monstro_nivel_3[] = {
     &Ogro, &Mimico , &Gargula
 };
 Monstro* monstro_nivel_4[] = {
-    &Ciclope, &Mago, &Lobisomem
-}
+    &Ciclope, &Mago_das_sombras, &Lobisomem
+};
 Monstro* monstro_nivel_5[] = {
     &Titan, &Soldado_do_Rei
 };
 Monstro* monstro_nivel_6[] = {
-    &cacador_de_recompensa, &Gigante
+    &Cacador_de_recompensa, &Gigante
 };
 Monstro* monstro_nivel_7[] = {
     &Dragao, &Necromante, &Mao_do_Rei

@@ -35,7 +35,7 @@ Arma adaga_tesouro("Caçadora de Tesouros", 10.0f, "Arma", 125.0f, 7, 0); // Arm
 Arma espada_ouro("Corrida do ouro", 12.0f, "Arma", 130.0f, 7, 0);       // Arma de nível 7
 Arma cajado_criacao("Cajado da Criação", 8.0f, "Arma", 125.0f, 7, 55); // Arma de nível 7
 Arma machado_dragao("Dente de Dragão", 20.0f, "Arma", 150.0f, 7, 0);  // Arma de nível 7 
-Arma espada_desejo("A vontade do Rei", 20.0f, "Arma", 725.0f, 8, 50) // Arma de nível 8
+Arma espada_desejo("A vontade do Rei", 20.0f, "Arma", 725.0f, 8, 50); // Arma de nível 8
 
 // Itens de nível 1
 Arma* armas_inciais[] = {

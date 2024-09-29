@@ -218,17 +218,20 @@ void Personagem::trocar_arma_mochila(){
      Equipar_arma(arma_temp);
 }
 
-void Personagem::usa_pocao_mochila(){
+void Personagem::usa_pocao_mochila() {
     Pocao* pocao = nullptr;
-    if(mochila_personagem.usar_pocao(pocao) != 0){
-        std::cout << "Não foi possivel usar a poção" << std::endl;
+
+    // Tenta usar a poção da mochila, e se falhar, retorna
+    if (mochila_personagem.usar_pocao(pocao) != 0) {
+        std::cout << "Não foi possível usar a poção" << std::endl;
         return;
     }
 
-    mochila_personagem.usar_pocao(pocao);
-    std::cout << pocao->get_cura();
+    // Se a poção foi usada com sucesso, cura o personagem
+    std::cout << "Poção utilizada: Cura = " << pocao->get_cura() << ", Mana = " << pocao->get_mana() << std::endl;
     cura(pocao->get_cura());
     recupera_mana(pocao->get_mana());
+    std::cout << "✅ Poção utilizada com sucesso!" << std::endl;
 }
 
 float Personagem::exibe_vida_total(){
