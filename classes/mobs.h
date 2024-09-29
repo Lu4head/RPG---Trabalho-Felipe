@@ -1,3 +1,7 @@
+//Luan Emanuel R. Argentato RA: 2184611
+//Gustavo duzzi             RA: 2214047
+//Guilherme Santos Gollino  RA: 2226090
+
 // Arquivo para importação dos monstros criados
 #pragma once // pragma once para não espelhar os arquivos importados
 
